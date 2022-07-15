@@ -52,7 +52,6 @@ namespace Game.Core
 
 		public void UpdateRequest(DiceRequest req)
 		{
-			UnityEngine.Debug.Log(Utils.DiceRequestToString(req));
 			if (Time.time >= req.Timestamp)
 				GameManager.Game.UI.AddDebugLine(Utils.DiceRequestToString(req));
 		}
