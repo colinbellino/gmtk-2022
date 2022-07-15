@@ -1,0 +1,146 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: AllText_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: b290e49b81a464c3dac81c3936fc860c, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 18029022411055131
+    m_Localized: Move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055130
+    m_Localized: Jump / Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055129
+    m_Localized: Dig / Confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055128
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055127
+    m_Localized: ActionUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055126
+    m_Localized: ActionRight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055125
+    m_Localized: Jump / Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055124
+    m_Localized: Dig / Confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055123
+    m_Localized: Move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055122
+    m_Localized: Move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055121
+    m_Localized: "\u201CThat\u2019s the last of em!\u201D Larry chuckles to himself
+      as he slips back into bed.\\n\\n\u201CNow, time for a nice nap. Wake me up
+      when these pathetic mortals raise the stakes. Better luck necks time!\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055120
+    m_Localized: "\u201CCan\u2019t a lad just get a couple centuries of sleep around
+      here ?! I, Larry the sleepy vampire, was having sweet dreams of hemorrhages
+      and hemoglobin when I got rudely awoken by yet another angry mob storming MY
+      manor!\u201D\\n\\nHe pops out of his coffin to take care of the intruders when
+      he suddenly realizes he hasn\u2019t feasted in years!\\n\\n\u201CI'm famished.\u201D
+      he thought to himself. \u201CBetter roam the manor and banish these invaders
+      at once... or I'll surely die from hunger! Ah-Ah-Ah\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055119
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055118
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055117
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055116
+    m_Localized: Thanks for playing!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055115
+    m_Localized: A game by
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055114
+    m_Localized: Level selection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055113
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055112
+    m_Localized: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055111
+    m_Localized: Fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055110
+    m_Localized: Music volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055109
+    m_Localized: Sound volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055108
+    m_Localized: Main volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055107
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055106
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055105
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055104
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23477248098394112
+    m_Localized: Assist Mode
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1

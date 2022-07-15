@@ -1,0 +1,125 @@
+name: Build & deploy
+
+env:
+  BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+  BUILD_NAME: ${{ secrets.BUILD_NAME }}
+
+on:
+  workflow_dispatch: {}
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  testAndBuild:
+    name: ${{ matrix.targetPlatform }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - ./
+        unityVersion:
+          - 2020.3.31f1
+        targetPlatform:
+          - StandaloneOSX
+          - StandaloneWindows64
+          - StandaloneLinux64
+          - WebGL
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create LFS file list
+        run: |
+          git config --global core.safecrlf false
+          git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v2
+        if: ${{ !env.ACT }}
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      - name: Set RELEASE_VERSION
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+      - name: Log RELEASE_VERSION
+        run: echo RELEASE_VERSION -> ${{ env.RELEASE_VERSION }}
+
+      - uses: actions/cache@v2
+        if: ${{ !env.ACT }}
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+
+      - uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          projectPath: ${{ matrix.projectPath }}
+          unityVersion: ${{ matrix.unityVersion }}
+          targetPlatform: ${{ matrix.targetPlatform }}
+          buildName: ${{ env.BUILD_NAME }}
+          buildMethod: CustomUnityBuilderAction.Builder.BuildProject
+          versioning: Custom
+          version: ${{ env.RELEASE_VERSION }}
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
+
+      - name: Deploy (Windows)
+        if: contains(env.RELEASE_VERSION, '.') && matrix.targetPlatform == 'StandaloneWindows64'
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ env.BUTLER_CREDENTIALS }}
+          CHANNEL: windows
+          ITCH_USER: ${{ secrets.BUTLER_USER }}
+          ITCH_GAME: ${{ secrets.BUTLER_GAME }}
+          PACKAGE: build/StandaloneWindows64
+          VERSION: ${{ env.RELEASE_VERSION }}
+
+      - name: Deploy (MacOS)
+        if: contains(env.RELEASE_VERSION, '.') && matrix.targetPlatform == 'StandaloneOSX'
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ env.BUTLER_CREDENTIALS }}
+          CHANNEL: mac
+          ITCH_USER: ${{ secrets.BUTLER_USER }}
+          ITCH_GAME: ${{ secrets.BUTLER_GAME }}
+          PACKAGE: build/StandaloneOSX
+          VERSION: ${{ env.RELEASE_VERSION }}
+
+      - name: Deploy (Linux)
+        if: contains(env.RELEASE_VERSION, '.') && matrix.targetPlatform == 'StandaloneLinux64'
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ env.BUTLER_CREDENTIALS }}
+          CHANNEL: linux
+          ITCH_USER: ${{ secrets.BUTLER_USER }}
+          ITCH_GAME: ${{ secrets.BUTLER_GAME }}
+          PACKAGE: build/StandaloneLinux64
+          VERSION: ${{ env.RELEASE_VERSION }}
+
+      - name: Deploy (WebGL)
+        if: contains(env.RELEASE_VERSION, '.') && matrix.targetPlatform == 'WebGL'
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ env.BUTLER_CREDENTIALS }}
+          CHANNEL: webgl
+          ITCH_USER: ${{ secrets.BUTLER_USER }}
+          ITCH_GAME: ${{ secrets.BUTLER_GAME }}
+          PACKAGE: build/WebGL
+          VERSION: ${{ env.RELEASE_VERSION }}

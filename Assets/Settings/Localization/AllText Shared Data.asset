@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: AllText Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: AllText
+  m_TableCollectionNameGuidString: b290e49b81a464c3dac81c3936fc860c
+  m_Entries:
+  - m_Id: 18029022411055104
+    m_Key: UI/Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055105
+    m_Key: UI/Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055106
+    m_Key: UI/Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055107
+    m_Key: UI/Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055108
+    m_Key: UI/MainVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055109
+    m_Key: UI/SoundVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055110
+    m_Key: UI/MusicVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055111
+    m_Key: UI/Cheat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055112
+    m_Key: UI/Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055113
+    m_Key: UI/Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055114
+    m_Key: UI/LevelSelection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055115
+    m_Key: UI/CreatedBy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055116
+    m_Key: UI/ThanksForPlaying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055117
+    m_Key: UI/Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055118
+    m_Key: UI/Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055119
+    m_Key: UI/Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055120
+    m_Key: UI/Intro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055121
+    m_Key: UI/Ending
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055122
+    m_Key: UI/Inputs/LeftStick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055123
+    m_Key: UI/Inputs/DPad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055124
+    m_Key: UI/Inputs/ActionLeft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055125
+    m_Key: UI/Inputs/ActionDown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055126
+    m_Key: UI/Inputs/ActionRight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055127
+    m_Key: UI/Inputs/ActionUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055128
+    m_Key: UI/Inputs/Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055129
+    m_Key: UI/Inputs/Keyboard/E
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055130
+    m_Key: UI/Inputs/Keyboard/Space
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18029022411055131
+    m_Key: UI/Inputs/Keyboard/ArrowDown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23477248098394112
+    m_Key: UI/AssistMode
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1644801889519

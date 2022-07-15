@@ -1,0 +1,169 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9faba923454a5cad26655791da1fbd, type: 3}
+  m_Name: Game Config
+  m_EditorClassIdentifier: 
+  DebugStateMachine: 1
+  DebugLevels: 1
+  LockFPS: 60
+  Player: {fileID: 4542784427072963798, guid: dd90378df9535114b878de1eed390362, type: 3}
+  Levels:
+  - Level0
+  - Level1
+  - Level2
+  - Level3
+  - Level4
+  - Level5
+  TileToEntity:
+    m_keys: []
+    m_values: []
+  WallTiles:
+  - {fileID: 11400000, guid: d9a27a41ccf04324ab580fc76b19c18b, type: 2}
+  - {fileID: 11400000, guid: 62d213db094bd014b94174fb171eb842, type: 2}
+  - {fileID: 11400000, guid: 0ed92e02648657044a447e8c56a149cd, type: 2}
+  - {fileID: 11400000, guid: 6364f11c49f9bd947bf998920763378d, type: 2}
+  GameBus: bus:/Game
+  MusicBus: bus:/Game/Music
+  SoundBus: bus:/Game/SFX
+  SnapshotPause:
+    Guid:
+      Data1: -1278127128
+      Data2: 1231949388
+      Data3: -1522833268
+      Data4: 1467254247
+    Path: snapshot:/Pause
+  SoundMenuConfirm:
+    Guid:
+      Data1: -2062663162
+      Data2: 1235688488
+      Data3: -1040239977
+      Data4: -1758971917
+    Path: event:/SFX/confirm
+  MusicTitle:
+    Guid:
+      Data1: 417054959
+      Data2: 1074934067
+      Data3: -1398191685
+      Data4: -1791515730
+    Path: event:/Music/8-bit
+  MusicMain:
+    Guid:
+      Data1: -1174056290
+      Data2: 1151490832
+      Data3: 1883430327
+      Data4: -1301782348
+    Path: event:/Music/Adventure_Cinematic
+  MusicEnd:
+    Guid:
+      Data1: -1290846362
+      Data2: 1112183588
+      Data3: -1956139124
+      Data4: -1756293030
+    Path: event:/Music/Chill
+  PlayerFootsteps:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  HeartBeat:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayerDash:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayerDeath:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayerYawn:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayerAttack:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayerDamage:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  EnemyStun:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  EnemyDamage:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  VillagerEnemyMovement:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PriestEnemyAttack:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  StageClear:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  PlayerHeal:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  BatProjectileExplode:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
