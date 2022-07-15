@@ -50,6 +50,22 @@ namespace Game.Core
 			return default;
 		}
 
+		public void UpdateRequest(DiceRequest req)
+		{
+			UnityEngine.Debug.Log(Utils.DiceRequestToString(req));
+			if (Time.time >= req.Timestamp)
+				GameManager.Game.UI.AddDebugLine(Utils.DiceRequestToString(req));
+		}
+
+		public void Tick()
+		{
+			GameManager.Game.UI.SetDebugText("");
+			foreach (var req in GameManager.Game.State.Requests)
+			{
+				UpdateRequest(req);
+			}
+		}
+
 		public UniTask Hide(float duration = 0.5f)
 		{
 			_root.SetActive(false);

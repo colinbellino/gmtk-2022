@@ -70,5 +70,14 @@ namespace Game.Core
 			perlin.m_AmplitudeGain = 0f;
 			// Gamepad.current?.SetMotorSpeeds(0f, 0f);
 		}
+
+		public static string DiceRequestToString(DiceRequest req)
+		{
+			if (req.Bonus > 0)
+				return $"{req.Quantity}D{req.Die} +{req.Bonus}";
+			else if (req.Bonus < 0)
+				return $"{req.Quantity}D{req.Die} {req.Bonus}";
+			return $"{req.Quantity}D{req.Die}";
+		}
 	}
 }

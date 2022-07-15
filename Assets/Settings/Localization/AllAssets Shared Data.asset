@@ -11,30 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
   m_Name: AllAssets Shared Data
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   m_TableCollectionName: AllAssets
   m_TableCollectionNameGuidString: b767614e4faa66e4aaa4dc3ffba20916
-  m_Entries:
-  - m_Id: 74456588288
-    m_Key: UI/Start
-    m_Metadata:
-      m_Items: []
-  - m_Id: 187639881728
-    m_Key: UI/Continue
-    m_Metadata:
-      m_Items: []
-  - m_Id: 211660660736
-    m_Key: UI/Options
-    m_Metadata:
-      m_Items: []
-  - m_Id: 229897494528
-    m_Key: UI/Credits
-    m_Metadata:
-      m_Items: []
-  - m_Id: 243604480000
-    m_Key: UI/Quit
-    m_Metadata:
-      m_Items: []
+  m_Entries: []
   m_Metadata:
     m_Items:
     - id: 0

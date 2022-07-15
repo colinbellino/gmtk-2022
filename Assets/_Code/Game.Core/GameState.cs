@@ -30,6 +30,18 @@ namespace Game.Core
 
 		public PlayerSettings PlayerSettings;
 		public PlayerSaveData PlayerSaveData;
+
+		public List<DiceRequest> Requests;
+	}
+
+	public class DiceRequest
+	{
+		public int Id;
+		public int Die;
+		public int Quantity;
+		public int Bonus;
+		public float Timestamp;
+		public bool Shown;
 	}
 
 	public enum InputTypes { Keyboard, XInputController, DualShockGamepad }

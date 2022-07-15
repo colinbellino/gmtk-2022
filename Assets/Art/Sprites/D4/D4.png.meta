@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7be2e4dc68dff2a43b84b5dad06dc8cb
+guid: 945eb2c379502f346a34dec9b8f25cc7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2608369237575831947
-    second: dice0
+      213: -4576663537404748207
+    second: D40
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -82,7 +82,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dice0
+      name: D40
       rect:
         serializedVersion: 2
         x: 1
@@ -96,8 +96,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 57e6c378ff53dcbd0800000000000000
-      internalID: -2608369237575831947
+      spriteID: 15ed18cc2cc6c70c0800000000000000
+      internalID: -4576663537404748207
       vertices: []
       indices: 
       edges: []

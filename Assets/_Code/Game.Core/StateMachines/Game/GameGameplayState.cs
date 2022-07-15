@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using FMOD.Studio;
 using UnityEngine;
@@ -14,23 +15,6 @@ namespace Game.Core.StateMachines.Game
 		{
 			GameManager.Game.State.Running = true;
 
-			var player = GameObject.Instantiate(GameManager.Game.Config.Player);
-			player.transform.position = LevelHelpers.GetRoomCenter(GameManager.Game.State.Level.CurrentRoom);
-			GameManager.Game.State.Player = player;
-			GameManager.Game.State.Level.CurrentRoom.Explored = true;
-
-			GameManager.Game.CameraRig.transform.position = LevelHelpers.GetRoomCenter(GameManager.Game.State.Level.CurrentRoom);
-
-			GameManager.Game.GameplayUI.SetHealth(GameManager.Game.State.Player.Health.currentHP, GameManager.Game.State.Player.Health.getMaxHP());
-			GameManager.Game.GameplayUI.SetMiniMap(GameManager.Game.State.Level);
-			_ = GameManager.Game.GameplayUI.Show();
-			GameManager.Game.State.Player.Health.CurrentHPChanged += GameManager.Game.GameplayUI.SetHealth;
-
-			GameManager.Game.PauseUI.BackClicked += ResumeGame;
-			_ = GameManager.Game.UI.FadeIn(Color.clear);
-
-			LevelHelpers.ActivateRoom(GameManager.Game.State.Level.CurrentRoom);
-
 			GameManager.Game.Controls.Gameplay.Enable();
 			GameManager.Game.Controls.Gameplay.Move.performed += OnMovePerformed;
 
@@ -39,22 +23,26 @@ namespace Game.Core.StateMachines.Game
 			if (state == PLAYBACK_STATE.STOPPED || state == PLAYBACK_STATE.STOPPING)
 				GameManager.Game.State.LevelMusic.start();
 
+			GameManager.Game.State.Requests = new List<DiceRequest> {
+				new DiceRequest { Id = 0, Quantity = 1, Die = 6, Timestamp = Time.time + 0f },
+				new DiceRequest { Id = 1, Quantity = 2, Die = 3, Timestamp = Time.time + 0.6f },
+				new DiceRequest { Id = 2, Quantity = 1, Die = 10, Bonus = 2, Timestamp = Time.time + 2f },
+				new DiceRequest { Id = 3, Quantity = 1, Die = 6, Bonus = -2, Timestamp = Time.time + 3f },
+			};
+
 			if (Utils.IsDevBuild())
 			{
 				GameManager.Game.UI.SetDebugText("");
-				GameManager.Game.UI.AddDebugLine("F1:  Load next level");
-				GameManager.Game.UI.AddDebugLine("F2:  Kill all enemies");
-				GameManager.Game.UI.AddDebugLine("F4:  Damage player");
-				GameManager.Game.UI.AddDebugLine("F5:  Heal player");
-				GameManager.Game.UI.AddDebugLine("R:   Restart level");
+				// 	GameManager.Game.UI.AddDebugLine("F1:  Load next level");
+				// 	GameManager.Game.UI.AddDebugLine("F2:  Kill all enemies");
+				// 	GameManager.Game.UI.AddDebugLine("F4:  Damage player");
+				// 	GameManager.Game.UI.AddDebugLine("F5:  Heal player");
+				// 	GameManager.Game.UI.AddDebugLine("R:   Restart level");
 			}
 		}
 
 		public void Tick()
 		{
-			var player = GameManager.Game.State.Player;
-			var level = GameManager.Game.State.Level;
-
 			if (GameManager.Game.State.Running)
 			{
 				if (GameManager.Game.Controls.Global.Pause.WasPerformedThisFrame())
@@ -95,82 +83,9 @@ namespace Game.Core.StateMachines.Game
 						NextLevel();
 						return;
 					}
-
-					if (Keyboard.current.f2Key.wasReleasedThisFrame)
-					{
-						// Kill all enemies! Mohahaha
-						UnityEngine.Debug.Log("Killing all enemies.");
-						foreach (var room in level.Rooms)
-						{
-							foreach (var entity in room.Entities)
-							{
-								var health = entity.GetComponent<Health>();
-								if (health != null)
-									health.DealDamage(health.getMaxHP(), new Vector3(0, 0, 0));
-							}
-						}
-						return;
-					}
-
-					if (Keyboard.current.f4Key.wasReleasedThisFrame)
-					{
-						UnityEngine.Debug.Log("Stop hitting yourself.");
-						player.Health.DealDamage(200, Vector3.zero);
-					}
-					if (Keyboard.current.f5Key.wasReleasedThisFrame)
-					{
-						UnityEngine.Debug.Log("Thanks for the fish.");
-						player.Health.Heal(player.Health.getMaxHP());
-					}
 				}
 
-				var allEnemiesAreDead = true;
-				foreach (var room in level.Rooms)
-				{
-					foreach (var entity in room.Entities)
-					{
-						var health = entity.GetComponent<Health>();
-						if (health != null && health.currentHP > 0)
-						{
-							allEnemiesAreDead = false;
-							break;
-						}
-					}
-				}
-				if (allEnemiesAreDead)
-				{
-					NextLevel();
-					return;
-				}
-
-				// Room transitions
-				{
-					var roomCenter = LevelHelpers.GetRoomCenter(level.CurrentRoom);
-					var roomBounds = new Bounds(roomCenter, GameConfig.ROOM_SIZE);
-					if (roomBounds.Contains(player.transform.position) == false)
-					{
-						var direction = Utils.SnapTo(player.transform.position - roomCenter, 90f);
-						direction.y = -direction.y; // Reverse the Y axis because unity's is bottom > top and ours is top > bottom
-
-						var nextRoom = LevelHelpers.GetRoomInDirection(direction, level);
-						if (nextRoom != null)
-						{
-							LevelHelpers.TransitionToRoom(level, nextRoom);
-							GameManager.Game.GameplayUI.SetMiniMap(level, allEnemiesAreDead);
-							var destination = LevelHelpers.GetRoomCenter(level.CurrentRoom);
-							GameManager.Game.CameraRig.transform.DOMove(destination, 0.3f);
-						}
-					}
-				}
-
-				GameManager.Game.GameplayUI.SetDash(player.DashProgress);
-
-				if (player.IsFullyDead)
-				{
-					UnityEngine.Debug.Log("The player died, restarting the level.");
-					FSM.Fire(GameFSM.Triggers.Retry);
-					return;
-				}
+				GameManager.Game.GameplayUI.Tick();
 			}
 		}
 

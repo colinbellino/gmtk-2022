@@ -11,6 +11,7 @@ namespace Game.Core
 		[Header("DEBUG")]
 		public bool DebugStateMachine;
 		public bool DebugLevels;
+		public bool DebugSkipTitle;
 		public int LockFPS = 60;
 
 		[Header("CONTENT")]

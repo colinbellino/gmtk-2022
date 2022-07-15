@@ -13,6 +13,12 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Enter()
 		{
+			if (GameManager.Game.Config.DebugSkipTitle)
+			{
+				StartGame();
+				return;
+			}
+
 			GameManager.Game.UI.StartButton.onClick.AddListener(StartGame);
 			GameManager.Game.UI.OptionsButton.onClick.AddListener(ToggleOptions);
 			GameManager.Game.UI.CreditsButton.onClick.AddListener(StartCredits);
