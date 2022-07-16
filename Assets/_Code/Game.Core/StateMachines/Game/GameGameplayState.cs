@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Unity.Mathematics;
 
 namespace Game.Core.StateMachines.Game
 {
@@ -24,7 +25,13 @@ namespace Game.Core.StateMachines.Game
 			if (state == PLAYBACK_STATE.STOPPED || state == PLAYBACK_STATE.STOPPING)
 				Globals.State.LevelMusic.start();
 
-			var level = Globals.Config.Levels[Globals.State.CurrentLevelIndex];
+			var levelIndex = Globals.State.CurrentLevelIndex;
+			if (Globals.State.CurrentSave.ClearedLevels != null && Globals.State.CurrentSave.ClearedLevels.Count > 0)
+				levelIndex = math.min(Globals.State.CurrentSave.ClearedLevels.LastOrDefault() + 1, Globals.Config.Levels.Length - 1);
+
+			// UnityEngine.Debug.Log("levelIndex: " + levelIndex);
+
+			var level = Globals.Config.Levels[levelIndex];
 			Globals.State.Score = 0;
 			Globals.State.Requests = new List<DiceRequest>(level.Requests);
 			var t = Time.time;
@@ -178,6 +185,8 @@ namespace Game.Core.StateMachines.Game
 		private async void NextLevel()
 		{
 			Globals.State.Running = false;
+			if (Globals.State.CurrentSave.ClearedLevels == null)
+				Globals.State.CurrentSave.ClearedLevels = new HashSet<int>();
 			Globals.State.CurrentSave.ClearedLevels.Add(Globals.State.CurrentLevelIndex);
 			Save.SaveGame(Globals.State.CurrentSave);
 			Globals.State.CurrentLevelIndex += 1;
