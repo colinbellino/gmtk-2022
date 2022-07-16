@@ -26,7 +26,7 @@ namespace Game.Core.StateMachines.Game
 			Globals.State.TimeScaleCurrent = Globals.State.TimeScaleDefault = 1f;
 			Globals.State.Random = new Unity.Mathematics.Random();
 			Globals.State.Random.InitState((uint)Random.Range(0, int.MaxValue));
-			// Globals.State.Bag = new DiceBag();
+			Globals.State.CurrentLevelIndex = 0;
 
 			while (LocalizationSettings.InitializationOperation.IsDone == false)
 				await UniTask.NextFrame();

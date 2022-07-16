@@ -24,27 +24,16 @@ namespace Game.Core.StateMachines.Game
 			if (state == PLAYBACK_STATE.STOPPED || state == PLAYBACK_STATE.STOPPING)
 				Globals.State.LevelMusic.start();
 
-			// Globals.State.Requests = new List<DiceRoll> {
-			// 	new DiceRoll { Id = 0, Quantity = 1, Die = DieTypes.D6,   Modifier = +0,  Timestamp = Time.time + 0f, Duration = 5f },
-			// 	new DiceRoll { Id = 1, Quantity = 2, Die = DieTypes.D4,   Modifier = +0,  Timestamp = Time.time + 1.6f, Duration = 5f },
-			// 	new DiceRoll { Id = 2, Quantity = 1, Die = DieTypes.D10,  Modifier = +2,  Timestamp = Time.time + 2f, Duration = 5f },
-			// 	new DiceRoll { Id = 3, Quantity = 3, Die = DieTypes.D6,   Modifier = +0,  Timestamp = Time.time + 3f, Duration = 5f },
-			// 	new DiceRoll { Id = 0, Quantity = 1, Die = DieTypes.D100, Modifier = +0,  Timestamp = Time.time + 3 + 0f, Duration = 5f },
-			// 	new DiceRoll { Id = 1, Quantity = 2, Die = DieTypes.D12,  Modifier = +0,  Timestamp = Time.time + 3 + 1.6f, Duration = 5f },
-			// 	new DiceRoll { Id = 2, Quantity = 2, Die = DieTypes.D10,  Modifier = +2,  Timestamp = Time.time + 3 + 2f, Duration = 5f },
-			// 	new DiceRoll { Id = 3, Quantity = 5, Die = DieTypes.D4,   Modifier = +0,  Timestamp = Time.time + 3 + 3f, Duration = 5f },
-			// };
-
-			Globals.State.CurrentLevelIndex = 0;
-
+			var level = Globals.Config.Levels[Globals.State.CurrentLevelIndex];
 			Globals.State.Score = 0;
-			Globals.State.Requests = new List<DiceRequest>(Globals.Config.Levels[Globals.State.CurrentLevelIndex].Requests);
+			Globals.State.Requests = new List<DiceRequest>(level.Requests);
 			var t = Time.time;
 			foreach (var req in Globals.State.Requests)
 			{
 				req.Timestamp = t + req.Offset;
-				t = req.Timestamp;
+				t = req.Timestamp + Utils.GetDuration(req);
 			}
+			Globals.State.Timer = Time.time + level.Timer;
 			Globals.State.QueuedRequests = Globals.State.Requests.Select((r, i) => i).ToList();
 			Globals.State.ActiveRequests = new List<int> { };
 			Globals.State.CompletedRequests = new List<int> { };
@@ -61,6 +50,7 @@ namespace Game.Core.StateMachines.Game
 			}
 
 			Globals.State.Running = true;
+			// Globals.State.StartedAt = Time.time;
 		}
 
 		public void Tick()
@@ -95,7 +85,6 @@ namespace Game.Core.StateMachines.Game
 				if (Globals.Controls.Gameplay.Confirm.WasPerformedThisFrame())
 				{
 					GameObject.FindObjectOfType<Bag>().SubmitBag();
-					return;
 				}
 
 				if (Globals.Controls.Gameplay.Reset.WasPerformedThisFrame())
@@ -137,6 +126,12 @@ namespace Game.Core.StateMachines.Game
 				}
 
 				Globals.GameplayUI.Tick();
+
+				if (Time.time >= Globals.State.Timer)
+				{
+					NextLevel();
+					return;
+				}
 			}
 		}
 
@@ -181,11 +176,19 @@ namespace Game.Core.StateMachines.Game
 		private async void NextLevel()
 		{
 			Globals.State.Running = false;
+			Globals.State.PlayerSaveData.ClearedLevels.Add(Globals.State.CurrentLevelIndex);
 			Save.SavePlayerSaveData(Globals.State.PlayerSaveData);
+			Globals.State.CurrentLevelIndex += 1;
 
 			AudioHelpers.PlayOneShot(Globals.Config.StageClear);
 
 			await UniTask.Delay(1000);
+
+			if (Globals.State.CurrentLevelIndex >= Globals.Config.Levels.Length)
+			{
+				Victory();
+				return;
+			}
 
 			Globals.State.Running = false;
 			FSM.Fire(GameFSM.Triggers.NextLevel);

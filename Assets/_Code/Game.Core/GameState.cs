@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using FMOD.Studio;
-using UnityEngine;
 
 namespace Game.Core
 {
@@ -31,6 +30,7 @@ namespace Game.Core
 		public List<int> CompletedRequests;
 		public List<int> FailedRequests;
 		public int Score;
+		public float Timer;
 	}
 
 	[Serializable]
@@ -39,7 +39,7 @@ namespace Game.Core
 		public DiceRoll Roll;
 		public bool FromDM;
 		public float Offset;
-		[HideInInspector] public float Timestamp;
+		[NonSerialized] public float Timestamp;
 	}
 
 	public enum DieTypes

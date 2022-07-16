@@ -95,6 +95,15 @@ namespace Game.Core
 			return $"{quantity}D{(int)die}";
 		}
 
+		public static string FormatTimer(float value)
+		{
+			if (value < 0)
+				return "00:00";
+			var minutes = (int)(value / 60);
+			var seconds = (int)(value % 60);
+			return $"{minutes:00}:{seconds:00}";
+		}
+
 		public static float GetDuration(DiceRequest req)
 		{
 			var duration = 5f;
