@@ -52,8 +52,12 @@ namespace Game.Core
 
 		public void UpdateRequest(DiceRequest req)
 		{
-			var progress = (Time.time - req.Timestamp) / req.Duration * 100;
-			Globals.UI.AddDebugLine(Utils.DiceRequestToString(req) + " (" + (int)progress + "%)");
+			var progress = (Time.time - req.Timestamp) / Utils.GetDuration(req) * 100;
+			var color = Color.white;
+			if (req.FromDM)
+				color = Color.red;
+			var text = Utils.DiceRequestToString(req) + " (" + (int)progress + "%)";
+			Globals.UI.AddDebugLine($"<color=#{ColorUtility.ToHtmlStringRGBA(color)}>{text}</color>");
 		}
 
 		public void Tick()

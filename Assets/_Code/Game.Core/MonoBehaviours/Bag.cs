@@ -81,14 +81,14 @@ namespace Game.Core
 				bag.Quantity += 1;
 			}
 
-			bag.Bonus = _bonuses.Count;
+			bag.Modifier = _bonuses.Count;
 
 			var activeIds = Globals.State.ActiveRequests;
 
 			var matchIndex = activeIds.FindIndex(reqIndex =>
 			{
 				var req = Globals.State.Requests[reqIndex];
-				return req.Die == bag.Die && req.Quantity == bag.Quantity && req.Bonus == bag.Bonus;
+				return req.Roll.Type == bag.Die && req.Roll.Quantity == bag.Quantity && req.Roll.Modifier == bag.Modifier;
 			});
 			if (matchIndex == -1)
 			{
@@ -106,13 +106,13 @@ namespace Game.Core
 
 				// Calculate score based on difficulty
 				var score = 100;
-				if (bag.Bonus != 0)
+				if (bag.Modifier != 0)
 					score += 100;
 				if (bag.Quantity != 1)
 					score += 100;
 
 				Globals.State.Score += score;
-				UnityEngine.Debug.Log("matched request: " + Utils.DiceRequestToString(req) + " (" + req.Id + ")");
+				UnityEngine.Debug.Log("Matched request: " + Utils.DiceRequestToString(req));
 			}
 
 			Empty();

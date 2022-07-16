@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FMOD.Studio;
+using UnityEngine;
 
 namespace Game.Core
 {
@@ -23,12 +24,22 @@ namespace Game.Core
 		public PlayerSettings PlayerSettings;
 		public PlayerSaveData PlayerSaveData;
 
+		public int CurrentLevelIndex;
 		public List<DiceRequest> Requests;
 		public List<int> QueuedRequests;
 		public List<int> ActiveRequests;
 		public List<int> CompletedRequests;
 		public List<int> FailedRequests;
 		public int Score;
+	}
+
+	[Serializable]
+	public class DiceRequest
+	{
+		public DiceRoll Roll;
+		public bool FromDM;
+		public float Offset;
+		[HideInInspector] public float Timestamp;
 	}
 
 	public enum DieTypes
@@ -46,18 +57,7 @@ namespace Game.Core
 	{
 		public DieTypes Die;
 		public int Quantity;
-		public int Bonus;
-	}
-
-	public class DiceRequest
-	{
-		public int Id;
-		public DieTypes Die;
-		public int Quantity;
-		public int Bonus;
-		public float Timestamp;
-		public float Duration;
-		public bool Shown;
+		public int Modifier;
 	}
 
 	public enum InputTypes { Keyboard, XInputController, DualShockGamepad }

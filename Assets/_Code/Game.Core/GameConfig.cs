@@ -14,6 +14,7 @@ namespace Game.Core
 
 		[Header("CONTENT")]
 		public DieTypeToSprite DieSprites;
+		public Level[] Levels;
 
 		[Header("AUDIO")]
 		public string GameBus = "bus:/Game";

@@ -24,18 +24,27 @@ namespace Game.Core.StateMachines.Game
 			if (state == PLAYBACK_STATE.STOPPED || state == PLAYBACK_STATE.STOPPING)
 				Globals.State.LevelMusic.start();
 
-			Globals.State.Requests = new List<DiceRequest> {
-				new DiceRequest { Id = 0, Quantity = 1, Die = DieTypes.D6,   Bonus = +0,  Timestamp = Time.time + 0f, Duration = 5f },
-				new DiceRequest { Id = 1, Quantity = 2, Die = DieTypes.D4,   Bonus = +0,  Timestamp = Time.time + 1.6f, Duration = 5f },
-				new DiceRequest { Id = 2, Quantity = 1, Die = DieTypes.D10,  Bonus = +2,  Timestamp = Time.time + 2f, Duration = 5f },
-				new DiceRequest { Id = 3, Quantity = 3, Die = DieTypes.D6,   Bonus = +0,  Timestamp = Time.time + 3f, Duration = 5f },
-				new DiceRequest { Id = 0, Quantity = 1, Die = DieTypes.D100, Bonus = +0,  Timestamp = Time.time + 3 + 0f, Duration = 5f },
-				new DiceRequest { Id = 1, Quantity = 2, Die = DieTypes.D12,  Bonus = +0,  Timestamp = Time.time + 3 + 1.6f, Duration = 5f },
-				new DiceRequest { Id = 2, Quantity = 2, Die = DieTypes.D10,  Bonus = +2,  Timestamp = Time.time + 3 + 2f, Duration = 5f },
-				new DiceRequest { Id = 3, Quantity = 5, Die = DieTypes.D4,   Bonus = +0,  Timestamp = Time.time + 3 + 3f, Duration = 5f },
-			};
+			// Globals.State.Requests = new List<DiceRoll> {
+			// 	new DiceRoll { Id = 0, Quantity = 1, Die = DieTypes.D6,   Modifier = +0,  Timestamp = Time.time + 0f, Duration = 5f },
+			// 	new DiceRoll { Id = 1, Quantity = 2, Die = DieTypes.D4,   Modifier = +0,  Timestamp = Time.time + 1.6f, Duration = 5f },
+			// 	new DiceRoll { Id = 2, Quantity = 1, Die = DieTypes.D10,  Modifier = +2,  Timestamp = Time.time + 2f, Duration = 5f },
+			// 	new DiceRoll { Id = 3, Quantity = 3, Die = DieTypes.D6,   Modifier = +0,  Timestamp = Time.time + 3f, Duration = 5f },
+			// 	new DiceRoll { Id = 0, Quantity = 1, Die = DieTypes.D100, Modifier = +0,  Timestamp = Time.time + 3 + 0f, Duration = 5f },
+			// 	new DiceRoll { Id = 1, Quantity = 2, Die = DieTypes.D12,  Modifier = +0,  Timestamp = Time.time + 3 + 1.6f, Duration = 5f },
+			// 	new DiceRoll { Id = 2, Quantity = 2, Die = DieTypes.D10,  Modifier = +2,  Timestamp = Time.time + 3 + 2f, Duration = 5f },
+			// 	new DiceRoll { Id = 3, Quantity = 5, Die = DieTypes.D4,   Modifier = +0,  Timestamp = Time.time + 3 + 3f, Duration = 5f },
+			// };
+
+			Globals.State.CurrentLevelIndex = 0;
 
 			Globals.State.Score = 0;
+			Globals.State.Requests = new List<DiceRequest>(Globals.Config.Levels[Globals.State.CurrentLevelIndex].Requests);
+			var t = Time.time;
+			foreach (var req in Globals.State.Requests)
+			{
+				req.Timestamp = t + req.Offset;
+				t = req.Timestamp;
+			}
 			Globals.State.QueuedRequests = Globals.State.Requests.Select((r, i) => i).ToList();
 			Globals.State.ActiveRequests = new List<int> { };
 			Globals.State.CompletedRequests = new List<int> { };
@@ -120,11 +129,10 @@ namespace Game.Core.StateMachines.Game
 				{
 					var reqIndex = Globals.State.ActiveRequests[i];
 					var req = Globals.State.Requests[reqIndex];
-					if (Time.time >= req.Timestamp + req.Duration)
+					if (Time.time >= req.Timestamp + Utils.GetDuration(req))
 					{
 						Globals.State.FailedRequests.Add(reqIndex);
 						Globals.State.ActiveRequests.Remove(reqIndex);
-						UnityEngine.Debug.Log("done");
 					}
 				}
 

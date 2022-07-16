@@ -25,6 +25,8 @@ MonoBehaviour:
     - {fileID: 3061380380992212203, guid: 40369df1ab342824d8dba40747871faa, type: 3}
     - {fileID: 666943068460106415, guid: 81a71e5effc62a14aaab5094bf15bad8, type: 3}
     - {fileID: 6030542078464411445, guid: e13ef28b892fa174d9a328c3ccb10abe, type: 3}
+  Levels:
+  - {fileID: 11400000, guid: 8cec1549e53f15b47a8e16a45010110d, type: 2}
   GameBus: bus:/Game
   MusicBus: bus:/Game/Music
   SoundBus: bus:/Game/SFX

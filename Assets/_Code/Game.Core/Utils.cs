@@ -73,12 +73,17 @@ namespace Game.Core
 
 		public static string DiceRequestToString(DiceBag bag)
 		{
-			return DiceRequestToString(bag.Die, bag.Quantity, bag.Bonus);
+			return DiceRequestToString(bag.Die, bag.Quantity, bag.Modifier);
 		}
 
 		public static string DiceRequestToString(DiceRequest req)
 		{
-			return DiceRequestToString(req.Die, req.Quantity, req.Bonus);
+			return DiceRequestToString(req.Roll.Type, req.Roll.Quantity, req.Roll.Modifier);
+		}
+
+		public static string DiceRequestToString(DiceRoll roll)
+		{
+			return DiceRequestToString(roll.Type, roll.Quantity, roll.Modifier);
 		}
 
 		public static string DiceRequestToString(DieTypes die, int quantity, int bonus)
@@ -88,6 +93,15 @@ namespace Game.Core
 			else if (bonus < 0)
 				return $"{quantity}D{(int)die} {bonus}";
 			return $"{quantity}D{(int)die}";
+		}
+
+		public static float GetDuration(DiceRequest req)
+		{
+			var duration = 5f;
+			if (req.FromDM)
+				duration /= 2;
+
+			return duration;
 		}
 	}
 }
