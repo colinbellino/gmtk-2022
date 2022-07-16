@@ -9,6 +9,7 @@ namespace Game.Core
 
 		private Color _defaultColor;
 		private List<Die> _dice = new List<Die>();
+		private List<DieBonus> _bonuses = new List<DieBonus>();
 
 		private void Awake()
 		{
@@ -34,7 +35,6 @@ namespace Game.Core
 
 			// UnityEngine.Debug.Log(die + " => " + name);
 			_dice.Add(die);
-			// SubmitBag();
 		}
 
 		public void RemoveDie(Die die)
@@ -44,19 +44,35 @@ namespace Game.Core
 
 			// UnityEngine.Debug.Log(die + " <= " + name);
 			_dice.Remove(die);
-			// SubmitBag();
+		}
+
+		public void AddBonus(DieBonus bonus)
+		{
+			if (_bonuses.Contains(bonus))
+				return;
+
+			// UnityEngine.Debug.Log(bonus + " => " + name);
+			_bonuses.Add(bonus);
+		}
+
+		public void RemoveBonus(DieBonus bonus)
+		{
+			if (_bonuses.Contains(bonus) == false)
+				return;
+
+			// UnityEngine.Debug.Log(bonus + " <= " + name);
+			_bonuses.Remove(bonus);
 		}
 
 		public void SubmitBag()
 		{
-			UnityEngine.Debug.Log("SubmitBag");
 			var bag = new DiceBag();
 
 			foreach (var die in _dice)
 			{
 				if (bag.Die > 0 && bag.Die != die.DieType)
 				{
-					DestroyDice();
+					Empty();
 					return;
 				}
 
@@ -64,8 +80,9 @@ namespace Game.Core
 				bag.Quantity += 1;
 			}
 
+			bag.Bonus = _bonuses.Count;
+
 			var activeIds = GameManager.Game.State.ActiveRequests;
-			UnityEngine.Debug.Log("Bag: " + Utils.DiceRequestToString(bag));
 
 			var matchIndex = activeIds.FindIndex(reqIndex =>
 			{
@@ -74,6 +91,7 @@ namespace Game.Core
 			});
 			if (matchIndex == -1)
 			{
+				UnityEngine.Debug.Log("Bag: " + Utils.DiceRequestToString(bag));
 				// UnityEngine.Debug.Log("no requests matched");
 			}
 			else
@@ -82,17 +100,20 @@ namespace Game.Core
 				GameManager.Game.State.ActiveRequests.RemoveAt(matchIndex);
 				GameManager.Game.State.CompletedRequests.Add(matchIndex);
 				UnityEngine.Debug.Log("matched request: " + Utils.DiceRequestToString(req) + " (" + req.Id + ")");
-
-				DestroyDice();
 			}
+
+			Empty();
 		}
 
-		private void DestroyDice()
+		private void Empty()
 		{
 			foreach (var die in _dice)
 				GameObject.Destroy(die.gameObject);
-
 			_dice.Clear();
+
+			foreach (var bonus in _bonuses)
+				GameObject.Destroy(bonus.gameObject);
+			_bonuses.Clear();
 		}
 	}
 }

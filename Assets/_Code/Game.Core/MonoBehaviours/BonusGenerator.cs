@@ -3,11 +3,9 @@ using UnityEngine.EventSystems;
 
 namespace Game.Core
 {
-	public class DieGenerator : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+	public class BonusGenerator : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 	{
-		[SerializeField] private DieTypes DieType;
-
-		private Die _drag;
+		private DieBonus _drag;
 
 		public void OnPointerDown(PointerEventData eventData)
 		{
@@ -16,9 +14,9 @@ namespace Game.Core
 
 		public void OnBeginDrag(PointerEventData eventData)
 		{
-			// UnityEngine.Debug.Log(name + " OnBeginDrag " + eventData);
-			_drag = GameObject.Instantiate(Resources.Load<Die>("Die"), transform.position, Quaternion.identity);
-			_drag.Init(DieType);
+			UnityEngine.Debug.Log(name + " OnBeginDrag " + eventData);
+			_drag = GameObject.Instantiate(Resources.Load<DieBonus>("DieBonus"), transform.position, Quaternion.identity);
+			_drag.Init();
 			_drag.OnBeginDrag(eventData);
 		}
 
