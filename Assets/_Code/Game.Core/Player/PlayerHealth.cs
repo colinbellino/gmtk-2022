@@ -57,7 +57,7 @@ public class PlayerHealth : Game.Core.Health
 	public override void DealDamage(int damageDone, Vector3 damageSourceDirection, bool screenshake = true)
 	{
 		// Player can't take damage in assist mode
-		if (Globals.State.PlayerSettings.AssistMode)
+		if (Globals.State.Settings.AssistMode)
 		{
 			return;
 		}

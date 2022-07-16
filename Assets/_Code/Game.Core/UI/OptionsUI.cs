@@ -78,11 +78,11 @@ namespace Game.Core
 
 			_optionsRoot.SetActive(true);
 
-			_gameVolumeSlider.value = Globals.State.PlayerSettings.GameVolume;
-			_soundVolumeSlider.value = Globals.State.PlayerSettings.SoundVolume;
-			_musicVolumeSlider.value = Globals.State.PlayerSettings.MusicVolume;
-			_fullscreenToggle.isOn = Globals.State.PlayerSettings.FullScreen;
-			_assistToggle.isOn = Globals.State.PlayerSettings.AssistMode;
+			_gameVolumeSlider.value = Globals.State.Settings.VolumeGame;
+			_soundVolumeSlider.value = Globals.State.Settings.VolumeSound;
+			_musicVolumeSlider.value = Globals.State.Settings.VolumeMusic;
+			_fullscreenToggle.isOn = Globals.State.Settings.FullScreen;
+			_assistToggle.isOn = Globals.State.Settings.AssistMode;
 
 			// We have a button in the browser to do this in WebGL.
 			if (Utils.IsWebGL())
@@ -114,54 +114,54 @@ namespace Game.Core
 
 		private void SetGameVolume(float value)
 		{
-			Globals.State.PlayerSettings.GameVolume = value;
+			Globals.State.Settings.VolumeGame = value;
 			AudioHelpers.SetVolume(Globals.Config.GameBus, value);
-			Save.SavePlayerSettings(Globals.State.PlayerSettings);
+			Save.SaveSettings(Globals.State.Settings);
 		}
 
 		private void SetSoundVolume(float value)
 		{
-			Globals.State.PlayerSettings.SoundVolume = value;
+			Globals.State.Settings.VolumeSound = value;
 			AudioHelpers.SetVolume(Globals.Config.SoundBus, value);
-			Save.SavePlayerSettings(Globals.State.PlayerSettings);
+			Save.SaveSettings(Globals.State.Settings);
 		}
 
 		private void SetMusicVolume(float value)
 		{
-			Globals.State.PlayerSettings.MusicVolume = value;
+			Globals.State.Settings.VolumeMusic = value;
 			AudioHelpers.SetVolume(Globals.Config.MusicBus, value);
-			Save.SavePlayerSettings(Globals.State.PlayerSettings);
+			Save.SaveSettings(Globals.State.Settings);
 		}
 
 		private void ToggleFullscreen(bool value)
 		{
-			Globals.State.PlayerSettings.FullScreen = value;
+			Globals.State.Settings.FullScreen = value;
 			Screen.fullScreen = value;
-			Save.SavePlayerSettings(Globals.State.PlayerSettings);
+			Save.SaveSettings(Globals.State.Settings);
 		}
 
 		private void ToggleAssistMode(bool value)
 		{
-			Globals.State.PlayerSettings.AssistMode = value;
-			Save.SavePlayerSettings(Globals.State.PlayerSettings);
+			Globals.State.Settings.AssistMode = value;
+			Save.SaveSettings(Globals.State.Settings);
 		}
 
 		private void OnResolutionChanged(int index)
 		{
 			var resolution = _resolutions[index];
-			Globals.State.PlayerSettings.ResolutionWidth = resolution.width;
-			Globals.State.PlayerSettings.ResolutionHeight = resolution.height;
-			Globals.State.PlayerSettings.ResolutionRefreshRate = resolution.refreshRate;
+			Globals.State.Settings.ResolutionWidth = resolution.width;
+			Globals.State.Settings.ResolutionHeight = resolution.height;
+			Globals.State.Settings.ResolutionRefreshRate = resolution.refreshRate;
 			Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode, resolution.refreshRate);
-			Save.SavePlayerSettings(Globals.State.PlayerSettings);
+			Save.SaveSettings(Globals.State.Settings);
 		}
 
 		private void OnLanguageChanged(int index)
 		{
 			var location = LocalizationSettings.AvailableLocales.Locales[index];
-			Globals.State.PlayerSettings.LocaleCode = location.Identifier.Code;
+			Globals.State.Settings.LocaleCode = location.Identifier.Code;
 			LocalizationSettings.SelectedLocale = location;
-			Save.SavePlayerSettings(Globals.State.PlayerSettings);
+			Save.SaveSettings(Globals.State.Settings);
 		}
 
 		private async void Back()

@@ -20,8 +20,8 @@ namespace Game.Core
 		public EventInstance EndMusic;
 		public EventInstance PauseSnapshot;
 
-		public PlayerSettings PlayerSettings;
-		public PlayerSaveData PlayerSaveData;
+		public GameSettings Settings;
+		public GameSave CurrentSave;
 
 		public int CurrentLevelIndex;
 		public List<DiceRequest> Requests;
@@ -62,14 +62,14 @@ namespace Game.Core
 
 	public enum InputTypes { Keyboard, XInputController, DualShockGamepad }
 
-	[Serializable]
-	public struct PlayerSettings
+	[System.Serializable]
+	public struct GameSettings
 	{
 		public string LocaleCode;
 
-		public float GameVolume;
-		public float SoundVolume;
-		public float MusicVolume;
+		public float VolumeGame;
+		public float VolumeSound;
+		public float VolumeMusic;
 
 		public bool FullScreen;
 		public int ResolutionWidth;
@@ -80,8 +80,8 @@ namespace Game.Core
 		public bool AssistMode;
 	}
 
-	[Serializable]
-	public struct PlayerSaveData
+	[System.Serializable]
+	public struct GameSave
 	{
 		public HashSet<int> ClearedLevels;
 	}

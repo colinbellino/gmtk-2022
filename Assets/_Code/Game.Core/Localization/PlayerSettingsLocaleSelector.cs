@@ -16,13 +16,13 @@ namespace UnityEngine.Localization.Settings
 			{
 				var selectedLocale = settings.GetSelectedLocale();
 				if (selectedLocale != null)
-					Globals.State.PlayerSettings.LocaleCode = selectedLocale.Identifier.Code;
+					Globals.State.Settings.LocaleCode = selectedLocale.Identifier.Code;
 			}
 		}
 
 		public Locale GetStartupLocale(ILocalesProvider availableLocales)
 		{
-			var code = Globals.State.PlayerSettings.LocaleCode;
+			var code = Globals.State.Settings.LocaleCode;
 			if (string.IsNullOrEmpty(code) == false)
 			{
 				return availableLocales.GetLocale(code);

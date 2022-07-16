@@ -58,7 +58,7 @@ namespace Game.Core
 
 		public static async UniTask Shake(float gain, int duration)
 		{
-			if (Globals.State.PlayerSettings.Screenshake == false)
+			if (Globals.State.Settings.Screenshake == false)
 				return;
 
 			var perlin = Globals.CameraRig.VirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();

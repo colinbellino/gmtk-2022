@@ -39,6 +39,8 @@ namespace Game.Core.StateMachines.Game
 			Globals.State.CompletedRequests = new List<int> { };
 			Globals.State.FailedRequests = new List<int> { };
 
+			Save.SaveGame(Globals.State.CurrentSave);
+
 			if (Utils.IsDevBuild())
 			{
 				Globals.UI.SetDebugText("");
@@ -78,7 +80,7 @@ namespace Game.Core.StateMachines.Game
 					{
 						Globals.OptionsUI.Hide();
 						Globals.PauseUI.SelectOptionsGameObject();
-						Save.SavePlayerSettings(Globals.State.PlayerSettings);
+						Save.SaveSettings(Globals.State.Settings);
 					}
 				}
 
@@ -176,8 +178,8 @@ namespace Game.Core.StateMachines.Game
 		private async void NextLevel()
 		{
 			Globals.State.Running = false;
-			Globals.State.PlayerSaveData.ClearedLevels.Add(Globals.State.CurrentLevelIndex);
-			Save.SavePlayerSaveData(Globals.State.PlayerSaveData);
+			Globals.State.CurrentSave.ClearedLevels.Add(Globals.State.CurrentLevelIndex);
+			Save.SaveGame(Globals.State.CurrentSave);
 			Globals.State.CurrentLevelIndex += 1;
 
 			AudioHelpers.PlayOneShot(Globals.Config.StageClear);

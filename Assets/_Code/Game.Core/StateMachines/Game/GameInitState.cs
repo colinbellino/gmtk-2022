@@ -31,9 +31,30 @@ namespace Game.Core.StateMachines.Game
 			while (LocalizationSettings.InitializationOperation.IsDone == false)
 				await UniTask.NextFrame();
 
-			Globals.State.PlayerSettings = Save.LoadPlayerSettings();
-			Globals.State.PlayerSaveData = Save.LoadPlayerSaveData();
-			SetPlayerSettings(Globals.State.PlayerSettings);
+			{
+				if (Save.LoadGame(ref Globals.State.CurrentSave) == false)
+					Debug.LogWarning("[Game] Couldn't load player save.");
+
+				if (Save.LoadSettings(ref Globals.State.Settings) == false)
+				{
+					Globals.State.Settings = new GameSettings
+					{
+						VolumeGame = 1,
+						VolumeSound = 1,
+						VolumeMusic = 1,
+						FullScreen = Screen.fullScreen,
+						ResolutionWidth = Screen.currentResolution.width,
+						ResolutionHeight = Screen.currentResolution.height,
+						ResolutionRefreshRate = Screen.currentResolution.refreshRate,
+						LocaleCode = LocalizationSettings.SelectedLocale.Identifier.Code,
+						Screenshake = true,
+					};
+					Debug.LogWarning("[Game] Couldn't load player settings, saving default one.");
+					Save.SaveSettings(Globals.State.Settings);
+				}
+			}
+
+			ApplySettings(Globals.State.Settings);
 
 			Globals.Controls.Global.Enable();
 
@@ -78,15 +99,15 @@ namespace Game.Core.StateMachines.Game
 
 		public UniTask Exit() { return default; }
 
-		private void SetPlayerSettings(PlayerSettings playerSettings)
+		private void ApplySettings(GameSettings settings)
 		{
-			AudioHelpers.SetVolume(Globals.Config.GameBus, playerSettings.GameVolume);
-			AudioHelpers.SetVolume(Globals.Config.MusicBus, playerSettings.MusicVolume);
-			AudioHelpers.SetVolume(Globals.Config.SoundBus, playerSettings.SoundVolume);
-			LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.GetLocale(playerSettings.LocaleCode);
+			AudioHelpers.SetVolume(Globals.Config.GameBus, settings.VolumeGame);
+			AudioHelpers.SetVolume(Globals.Config.MusicBus, settings.VolumeMusic);
+			AudioHelpers.SetVolume(Globals.Config.SoundBus, settings.VolumeSound);
+			LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.GetLocale(settings.LocaleCode);
 			// Ignore resolution for WebGL since we always start in windowed mode with a fixed size.
 			if (IsWebGL() == false)
-				Screen.SetResolution(playerSettings.ResolutionWidth, playerSettings.ResolutionHeight, playerSettings.FullScreen, playerSettings.ResolutionRefreshRate);
+				Screen.SetResolution(settings.ResolutionWidth, settings.ResolutionHeight, settings.FullScreen, settings.ResolutionRefreshRate);
 		}
 	}
 }

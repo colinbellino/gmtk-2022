@@ -81,7 +81,7 @@ namespace Game.Core
 			if (silence)
 				AudioHelpers.SetVolume(Globals.Config.GameBus, 0);
 			else
-				AudioHelpers.SetVolume(Globals.Config.GameBus, Globals.State.PlayerSettings.GameVolume);
+				AudioHelpers.SetVolume(Globals.Config.GameBus, Globals.State.Settings.VolumeGame);
 		}
 	}
 }

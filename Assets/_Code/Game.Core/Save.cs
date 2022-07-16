@@ -1,95 +1,61 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Localization.Settings;
 
 namespace Game.Core
 {
 	public static class Save
 	{
-		private static string _playerSettingsPath = Application.persistentDataPath + "/Settings.bin";
-		private static string _playerSettingsKey = "PlayerSettings";
-		private static string _playerSaveDataPath = Application.persistentDataPath + "/Save0.bin";
-		private static string _playerDataKey = "PlayerSave0";
+		private static readonly string SETTINGS_KEY = "Settings";
+		private static readonly string SAVE_KEY = "Save0";
 
-		public static PlayerSettings LoadPlayerSettings()
+		private static readonly string SETTINGS_PATH = Application.persistentDataPath + "/Settings.bin";
+		private static readonly string SAVE_PATH = Application.persistentDataPath + "/Save0.bin";
+
+		public static bool LoadSettings(ref GameSettings settings)
 		{
-			var data = new PlayerSettings
-			{
-				GameVolume = 1,
-				SoundVolume = 1,
-				MusicVolume = 1,
-				FullScreen = Screen.fullScreen,
-				ResolutionWidth = Screen.currentResolution.width,
-				ResolutionHeight = Screen.currentResolution.height,
-				ResolutionRefreshRate = Screen.currentResolution.refreshRate,
-				LocaleCode = LocalizationSettings.SelectedLocale.Identifier.Code,
-				Screenshake = true,
-			};
-
 			if (Utils.IsWebGL())
 			{
-				UnityEngine.Debug.Log("Loading player settings: " + _playerSettingsKey);
-				if (PlayerPrefsSerializer.Deserialize(_playerSettingsKey, ref data) == false)
-					UnityEngine.Debug.LogWarning("Couldn't load player settings.");
-			}
-			else
-			{
-				UnityEngine.Debug.Log("Loading player settings: " + _playerSettingsPath);
-				if (BinaryFileSerializer.Deserialize(_playerSettingsPath, ref data) == false)
-					UnityEngine.Debug.LogWarning("Couldn't load player settings.");
+				Debug.Log("[Save] Loading player settings (WebGL): " + SETTINGS_KEY);
+				return PlayerPrefsSerializer.Deserialize(SETTINGS_KEY, ref settings);
 			}
 
-			return data;
+			Debug.Log("[Save] Loading player settings (Binary): " + SETTINGS_PATH);
+			return BinaryFileSerializer.Deserialize(SETTINGS_PATH, ref settings);
 		}
 
-		public static void SavePlayerSettings(PlayerSettings data)
+		public static bool SaveSettings(GameSettings settings)
 		{
 			if (Utils.IsWebGL())
 			{
-				PlayerPrefsSerializer.Serialize(data, _playerSettingsKey);
-				UnityEngine.Debug.Log("Saving player settings: " + _playerSettingsKey);
+				Debug.Log("[Save] Saving player settings (WebGL): " + SETTINGS_KEY);
+				return PlayerPrefsSerializer.Serialize(settings, SETTINGS_KEY);
 			}
-			else
-			{
-				BinaryFileSerializer.Serialize(data, _playerSettingsPath);
-				UnityEngine.Debug.Log("Saving player settings: " + _playerSettingsPath);
-			}
+
+			Debug.Log("[Save] Saving player settings (Binary): " + SETTINGS_PATH);
+			return BinaryFileSerializer.Serialize(settings, SETTINGS_PATH);
 		}
 
-		public static PlayerSaveData LoadPlayerSaveData()
+		public static bool LoadGame(ref GameSave save)
 		{
-			var data = new PlayerSaveData
-			{
-				ClearedLevels = new HashSet<int>(),
-			};
-
 			if (Utils.IsWebGL())
 			{
-				UnityEngine.Debug.Log("Loading player data: " + _playerDataKey);
-				if (PlayerPrefsSerializer.Deserialize(_playerDataKey, ref data) == false)
-					UnityEngine.Debug.LogWarning("Couldn't load player data.");
-			}
-			else
-			{
-				if (BinaryFileSerializer.Deserialize(_playerSaveDataPath, ref data) == false)
-					UnityEngine.Debug.LogWarning("Couldn't load player data.");
+				Debug.Log("[Save] Loading player data (WebGL): " + SAVE_KEY);
+				return PlayerPrefsSerializer.Deserialize(SAVE_KEY, ref save);
 			}
 
-			return data;
+			Debug.Log("[Save] Loading player data (Binary): " + SAVE_PATH);
+			return BinaryFileSerializer.Deserialize(SAVE_PATH, ref save);
 		}
 
-		public static void SavePlayerSaveData(PlayerSaveData data)
+		public static bool SaveGame(GameSave save)
 		{
 			if (Utils.IsWebGL())
 			{
-				PlayerPrefsSerializer.Serialize(data, _playerDataKey);
-				UnityEngine.Debug.Log("Saving player data: " + _playerDataKey);
+				Debug.Log("[Save] Saving player data (WebGL): " + SAVE_KEY);
+				return PlayerPrefsSerializer.Serialize(save, SAVE_KEY);
 			}
-			else
-			{
-				BinaryFileSerializer.Serialize(data, _playerSaveDataPath);
-				UnityEngine.Debug.Log("Saving player data: " + _playerSaveDataPath);
-			}
+
+			Debug.Log("[Save] Saving player data (Binary): " + SAVE_PATH);
+			return BinaryFileSerializer.Serialize(save, SAVE_PATH);
 		}
 	}
 }
