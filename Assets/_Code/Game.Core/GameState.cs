@@ -27,7 +27,7 @@ namespace Game.Core
 		public List<int> QueuedRequests;
 		public List<int> ActiveRequests;
 		public List<int> CompletedRequests;
-		// public DiceBag Bag;
+		public int Score;
 	}
 
 	public enum DieTypes

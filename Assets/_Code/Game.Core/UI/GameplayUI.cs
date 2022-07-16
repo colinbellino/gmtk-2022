@@ -58,6 +58,8 @@ namespace Game.Core
 		public void Tick()
 		{
 			GameManager.Game.UI.SetDebugText("");
+			GameManager.Game.UI.AddDebugLine("Score: " + GameManager.Game.State.Score + "\n");
+			GameManager.Game.UI.AddDebugLine("Requests: " + GameManager.Game.State.CompletedRequests.Count + "/" + GameManager.Game.State.Requests.Count);
 			foreach (var reqIndex in GameManager.Game.State.ActiveRequests)
 			{
 				var req = GameManager.Game.State.Requests[reqIndex];

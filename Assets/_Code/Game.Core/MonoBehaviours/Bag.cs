@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Game.Core
@@ -91,14 +92,26 @@ namespace Game.Core
 			});
 			if (matchIndex == -1)
 			{
-				UnityEngine.Debug.Log("Bag: " + Utils.DiceRequestToString(bag));
+				UnityEngine.Debug.Log("Invalid bag: " + Utils.DiceRequestToString(bag));
 				// UnityEngine.Debug.Log("no requests matched");
+
+				var score = 200;
+				GameManager.Game.State.Score = math.max(0, GameManager.Game.State.Score - score);
 			}
 			else
 			{
 				var req = GameManager.Game.State.Requests[GameManager.Game.State.ActiveRequests[matchIndex]];
 				GameManager.Game.State.ActiveRequests.RemoveAt(matchIndex);
 				GameManager.Game.State.CompletedRequests.Add(matchIndex);
+
+				// Calculate score based on difficulty
+				var score = 100;
+				if (bag.Bonus != 0)
+					score += 100;
+				if (bag.Quantity != 1)
+					score += 100;
+
+				GameManager.Game.State.Score += score;
 				UnityEngine.Debug.Log("matched request: " + Utils.DiceRequestToString(req) + " (" + req.Id + ")");
 			}
 

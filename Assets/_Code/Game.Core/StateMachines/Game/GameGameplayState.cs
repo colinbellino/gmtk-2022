@@ -31,10 +31,11 @@ namespace Game.Core.StateMachines.Game
 				new DiceRequest { Id = 3, Quantity = 3, Die = DieTypes.D6,   Bonus = +0,  Timestamp = Time.time + 3f },
 				new DiceRequest { Id = 0, Quantity = 1, Die = DieTypes.D100, Bonus = +0,  Timestamp = Time.time + 3 + 0f },
 				new DiceRequest { Id = 1, Quantity = 2, Die = DieTypes.D12,  Bonus = +0,  Timestamp = Time.time + 3 + 1.6f },
-				new DiceRequest { Id = 2, Quantity = 1, Die = DieTypes.D10,  Bonus = +2,  Timestamp = Time.time + 3 + 2f },
+				new DiceRequest { Id = 2, Quantity = 2, Die = DieTypes.D10,  Bonus = +2,  Timestamp = Time.time + 3 + 2f },
 				new DiceRequest { Id = 3, Quantity = 5, Die = DieTypes.D4,   Bonus = +0,  Timestamp = Time.time + 3 + 3f },
 			};
 
+			GameManager.Game.State.Score = 0;
 			GameManager.Game.State.QueuedRequests = GameManager.Game.State.Requests.Select((r, i) => i).ToList();
 			GameManager.Game.State.ActiveRequests = new List<int> { };
 			GameManager.Game.State.CompletedRequests = new List<int> { };
