@@ -25,20 +25,21 @@ namespace Game.Core.StateMachines.Game
 				Globals.State.LevelMusic.start();
 
 			Globals.State.Requests = new List<DiceRequest> {
-				new DiceRequest { Id = 0, Quantity = 1, Die = DieTypes.D6,   Bonus = +0,  Timestamp = Time.time + 0f },
-				new DiceRequest { Id = 1, Quantity = 2, Die = DieTypes.D4,   Bonus = +0,  Timestamp = Time.time + 1.6f },
-				new DiceRequest { Id = 2, Quantity = 1, Die = DieTypes.D10,  Bonus = +2,  Timestamp = Time.time + 2f },
-				new DiceRequest { Id = 3, Quantity = 3, Die = DieTypes.D6,   Bonus = +0,  Timestamp = Time.time + 3f },
-				new DiceRequest { Id = 0, Quantity = 1, Die = DieTypes.D100, Bonus = +0,  Timestamp = Time.time + 3 + 0f },
-				new DiceRequest { Id = 1, Quantity = 2, Die = DieTypes.D12,  Bonus = +0,  Timestamp = Time.time + 3 + 1.6f },
-				new DiceRequest { Id = 2, Quantity = 2, Die = DieTypes.D10,  Bonus = +2,  Timestamp = Time.time + 3 + 2f },
-				new DiceRequest { Id = 3, Quantity = 5, Die = DieTypes.D4,   Bonus = +0,  Timestamp = Time.time + 3 + 3f },
+				new DiceRequest { Id = 0, Quantity = 1, Die = DieTypes.D6,   Bonus = +0,  Timestamp = Time.time + 0f, Duration = 5f },
+				new DiceRequest { Id = 1, Quantity = 2, Die = DieTypes.D4,   Bonus = +0,  Timestamp = Time.time + 1.6f, Duration = 5f },
+				new DiceRequest { Id = 2, Quantity = 1, Die = DieTypes.D10,  Bonus = +2,  Timestamp = Time.time + 2f, Duration = 5f },
+				new DiceRequest { Id = 3, Quantity = 3, Die = DieTypes.D6,   Bonus = +0,  Timestamp = Time.time + 3f, Duration = 5f },
+				new DiceRequest { Id = 0, Quantity = 1, Die = DieTypes.D100, Bonus = +0,  Timestamp = Time.time + 3 + 0f, Duration = 5f },
+				new DiceRequest { Id = 1, Quantity = 2, Die = DieTypes.D12,  Bonus = +0,  Timestamp = Time.time + 3 + 1.6f, Duration = 5f },
+				new DiceRequest { Id = 2, Quantity = 2, Die = DieTypes.D10,  Bonus = +2,  Timestamp = Time.time + 3 + 2f, Duration = 5f },
+				new DiceRequest { Id = 3, Quantity = 5, Die = DieTypes.D4,   Bonus = +0,  Timestamp = Time.time + 3 + 3f, Duration = 5f },
 			};
 
 			Globals.State.Score = 0;
 			Globals.State.QueuedRequests = Globals.State.Requests.Select((r, i) => i).ToList();
 			Globals.State.ActiveRequests = new List<int> { };
 			Globals.State.CompletedRequests = new List<int> { };
+			Globals.State.FailedRequests = new List<int> { };
 
 			if (Utils.IsDevBuild())
 			{
@@ -112,6 +113,18 @@ namespace Game.Core.StateMachines.Game
 					{
 						Globals.State.ActiveRequests.Add(reqIndex);
 						Globals.State.QueuedRequests.Remove(reqIndex);
+					}
+				}
+
+				for (int i = Globals.State.ActiveRequests.Count - 1; i >= 0; i--)
+				{
+					var reqIndex = Globals.State.ActiveRequests[i];
+					var req = Globals.State.Requests[reqIndex];
+					if (Time.time >= req.Timestamp + req.Duration)
+					{
+						Globals.State.FailedRequests.Add(reqIndex);
+						Globals.State.ActiveRequests.Remove(reqIndex);
+						UnityEngine.Debug.Log("done");
 					}
 				}
 

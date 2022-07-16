@@ -52,7 +52,8 @@ namespace Game.Core
 
 		public void UpdateRequest(DiceRequest req)
 		{
-			Globals.UI.AddDebugLine(Utils.DiceRequestToString(req) + " (" + req.Id + ")");
+			var progress = (Time.time - req.Timestamp) / req.Duration * 100;
+			Globals.UI.AddDebugLine(Utils.DiceRequestToString(req) + " (" + (int)progress + "%)");
 		}
 
 		public void Tick()

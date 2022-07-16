@@ -27,6 +27,7 @@ namespace Game.Core
 		public List<int> QueuedRequests;
 		public List<int> ActiveRequests;
 		public List<int> CompletedRequests;
+		public List<int> FailedRequests;
 		public int Score;
 	}
 
@@ -55,6 +56,7 @@ namespace Game.Core
 		public int Quantity;
 		public int Bonus;
 		public float Timestamp;
+		public float Duration;
 		public bool Shown;
 	}
 
