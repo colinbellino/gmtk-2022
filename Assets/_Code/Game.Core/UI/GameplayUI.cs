@@ -52,17 +52,17 @@ namespace Game.Core
 
 		public void UpdateRequest(DiceRequest req)
 		{
-			GameManager.Game.UI.AddDebugLine(Utils.DiceRequestToString(req) + " (" + req.Id + ")");
+			Globals.UI.AddDebugLine(Utils.DiceRequestToString(req) + " (" + req.Id + ")");
 		}
 
 		public void Tick()
 		{
-			GameManager.Game.UI.SetDebugText("");
-			GameManager.Game.UI.AddDebugLine("Score: " + GameManager.Game.State.Score + "\n");
-			GameManager.Game.UI.AddDebugLine("Requests: " + GameManager.Game.State.CompletedRequests.Count + "/" + GameManager.Game.State.Requests.Count);
-			foreach (var reqIndex in GameManager.Game.State.ActiveRequests)
+			Globals.UI.SetDebugText("");
+			Globals.UI.AddDebugLine("Score: " + Globals.State.Score + "\n");
+			Globals.UI.AddDebugLine("Requests: " + Globals.State.CompletedRequests.Count + "/" + Globals.State.Requests.Count);
+			foreach (var reqIndex in Globals.State.ActiveRequests)
 			{
-				var req = GameManager.Game.State.Requests[reqIndex];
+				var req = Globals.State.Requests[reqIndex];
 				UpdateRequest(req);
 			}
 		}

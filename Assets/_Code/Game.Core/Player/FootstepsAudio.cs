@@ -16,7 +16,7 @@ public class FootstepsAudio : MonoBehaviour
 
 	private void Update()
 	{
-		rawMovementInput = GameManager.Game.Controls.Gameplay.Move.ReadValue<Vector2>();
+		rawMovementInput = Globals.Controls.Gameplay.Move.ReadValue<Vector2>();
 		if (rawMovementInput != Vector2.zero)
 		{
 			isMoving = true;
@@ -36,7 +36,7 @@ public class FootstepsAudio : MonoBehaviour
 	{
 		if (isMoving && !playerController.getIsDashing())
 		{
-			AudioHelpers.PlayOneShot(GameManager.Game.Config.PlayerFootsteps, transform.position);
+			AudioHelpers.PlayOneShot(Globals.Config.PlayerFootsteps, transform.position);
 		}
 	}
 }

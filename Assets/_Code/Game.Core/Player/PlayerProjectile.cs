@@ -23,16 +23,16 @@ public class PlayerProjectile : MonoBehaviour
 
 	void OnEnable()
 	{
-		GameManager.Game.Controls.Gameplay.Shoot.performed += GetShootInput;
+		Globals.Controls.Gameplay.Shoot.performed += GetShootInput;
 	}
 	void OnDisable()
 	{
-		GameManager.Game.Controls.Gameplay.Shoot.performed -= GetShootInput;
+		Globals.Controls.Gameplay.Shoot.performed -= GetShootInput;
 	}
 
 	void Update()
 	{
-		mousePosition = GameManager.Game.Controls.Global.MousePosition.ReadValue<Vector2>();
+		mousePosition = Globals.Controls.Global.MousePosition.ReadValue<Vector2>();
 		worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
 		if (shootCounter > 0)
@@ -55,13 +55,13 @@ public class PlayerProjectile : MonoBehaviour
 
 	private void GetShootInput(InputAction.CallbackContext context)
 	{
-		if (GameManager.Game.State.Paused)
+		if (Globals.State.Paused)
 			return;
 
 		if (shootCounter <= 0 && !playerHealth.getDead())
 		{
 			GameObject projectile = Instantiate(batProjectile, transform.position, transform.rotation);
-			AudioHelpers.PlayOneShot(GameManager.Game.Config.PlayerAttack);
+			AudioHelpers.PlayOneShot(Globals.Config.PlayerAttack);
 			shootCounter = shootCooldown;
 		}
 	}

@@ -13,15 +13,15 @@ namespace Game.Core.StateMachines.Game
 		{
 			_readyTimestamp = Time.time + 1f;
 
-			GameManager.Game.UI.SetDebugText("");
+			Globals.UI.SetDebugText("");
 
-			await GameManager.Game.UI.ShowCredits();
-			await GameManager.Game.UI.FadeIn(Color.clear);
+			await Globals.UI.ShowCredits();
+			await Globals.UI.FadeIn(Color.clear);
 		}
 
 		public void Tick()
 		{
-			if (Time.time >= _readyTimestamp && GameManager.Game.Controls.Global.Cancel.WasPerformedThisFrame() || GameManager.Game.Controls.Global.Confirm.WasPerformedThisFrame())
+			if (Time.time >= _readyTimestamp && Globals.Controls.Global.Cancel.WasPerformedThisFrame() || Globals.Controls.Global.Confirm.WasPerformedThisFrame())
 			{
 				FSM.Fire(GameFSM.Triggers.Done);
 			}
@@ -31,9 +31,9 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Exit()
 		{
-			GameManager.Game.State.EndMusic.stop(STOP_MODE.ALLOWFADEOUT);
-			await GameManager.Game.UI.FadeIn(Color.black);
-			await GameManager.Game.UI.HideCredits();
+			Globals.State.EndMusic.stop(STOP_MODE.ALLOWFADEOUT);
+			await Globals.UI.FadeIn(Color.black);
+			await Globals.UI.HideCredits();
 		}
 	}
 }

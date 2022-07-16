@@ -10,13 +10,13 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Enter()
 		{
-			await GameManager.Game.UI.ShowIntro(0);
-			await GameManager.Game.UI.FadeIn(Color.clear);
+			await Globals.UI.ShowIntro(0);
+			await Globals.UI.FadeIn(Color.clear);
 		}
 
 		public void Tick()
 		{
-			if (GameManager.Game.Controls.Global.Cancel.WasPerformedThisFrame() || GameManager.Game.Controls.Global.Confirm.WasPerformedThisFrame())
+			if (Globals.Controls.Global.Cancel.WasPerformedThisFrame() || Globals.Controls.Global.Confirm.WasPerformedThisFrame())
 			{
 				FSM.Fire(GameFSM.Triggers.Done);
 			}
@@ -26,9 +26,9 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Exit()
 		{
-			await GameManager.Game.UI.FadeIn(Color.black);
-			await GameManager.Game.UI.HideIntro(0);
-			GameManager.Game.State.TitleMusic.stop(STOP_MODE.ALLOWFADEOUT);
+			await Globals.UI.FadeIn(Color.black);
+			await Globals.UI.HideIntro(0);
+			Globals.State.TitleMusic.stop(STOP_MODE.ALLOWFADEOUT);
 		}
 	}
 }

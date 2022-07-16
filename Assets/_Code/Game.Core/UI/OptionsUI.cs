@@ -74,15 +74,15 @@ namespace Game.Core
 
 		public async UniTask Show(float duration = 0.5f)
 		{
-			GameManager.Game.Controls.Global.Cancel.performed += CancelInputPerformed;
+			Globals.Controls.Global.Cancel.performed += CancelInputPerformed;
 
 			_optionsRoot.SetActive(true);
 
-			_gameVolumeSlider.value = GameManager.Game.State.PlayerSettings.GameVolume;
-			_soundVolumeSlider.value = GameManager.Game.State.PlayerSettings.SoundVolume;
-			_musicVolumeSlider.value = GameManager.Game.State.PlayerSettings.MusicVolume;
-			_fullscreenToggle.isOn = GameManager.Game.State.PlayerSettings.FullScreen;
-			_assistToggle.isOn = GameManager.Game.State.PlayerSettings.AssistMode;
+			_gameVolumeSlider.value = Globals.State.PlayerSettings.GameVolume;
+			_soundVolumeSlider.value = Globals.State.PlayerSettings.SoundVolume;
+			_musicVolumeSlider.value = Globals.State.PlayerSettings.MusicVolume;
+			_fullscreenToggle.isOn = Globals.State.PlayerSettings.FullScreen;
+			_assistToggle.isOn = Globals.State.PlayerSettings.AssistMode;
 
 			// We have a button in the browser to do this in WebGL.
 			if (Utils.IsWebGL())
@@ -98,7 +98,7 @@ namespace Game.Core
 
 		public UniTask Hide(float duration = 0.5f)
 		{
-			GameManager.Game.Controls.Global.Cancel.performed -= CancelInputPerformed;
+			Globals.Controls.Global.Cancel.performed -= CancelInputPerformed;
 
 			_optionsRoot.SetActive(false);
 			return default;
@@ -114,54 +114,54 @@ namespace Game.Core
 
 		private void SetGameVolume(float value)
 		{
-			GameManager.Game.State.PlayerSettings.GameVolume = value;
-			AudioHelpers.SetVolume(GameManager.Game.Config.GameBus, value);
-			Save.SavePlayerSettings(GameManager.Game.State.PlayerSettings);
+			Globals.State.PlayerSettings.GameVolume = value;
+			AudioHelpers.SetVolume(Globals.Config.GameBus, value);
+			Save.SavePlayerSettings(Globals.State.PlayerSettings);
 		}
 
 		private void SetSoundVolume(float value)
 		{
-			GameManager.Game.State.PlayerSettings.SoundVolume = value;
-			AudioHelpers.SetVolume(GameManager.Game.Config.SoundBus, value);
-			Save.SavePlayerSettings(GameManager.Game.State.PlayerSettings);
+			Globals.State.PlayerSettings.SoundVolume = value;
+			AudioHelpers.SetVolume(Globals.Config.SoundBus, value);
+			Save.SavePlayerSettings(Globals.State.PlayerSettings);
 		}
 
 		private void SetMusicVolume(float value)
 		{
-			GameManager.Game.State.PlayerSettings.MusicVolume = value;
-			AudioHelpers.SetVolume(GameManager.Game.Config.MusicBus, value);
-			Save.SavePlayerSettings(GameManager.Game.State.PlayerSettings);
+			Globals.State.PlayerSettings.MusicVolume = value;
+			AudioHelpers.SetVolume(Globals.Config.MusicBus, value);
+			Save.SavePlayerSettings(Globals.State.PlayerSettings);
 		}
 
 		private void ToggleFullscreen(bool value)
 		{
-			GameManager.Game.State.PlayerSettings.FullScreen = value;
+			Globals.State.PlayerSettings.FullScreen = value;
 			Screen.fullScreen = value;
-			Save.SavePlayerSettings(GameManager.Game.State.PlayerSettings);
+			Save.SavePlayerSettings(Globals.State.PlayerSettings);
 		}
 
 		private void ToggleAssistMode(bool value)
 		{
-			GameManager.Game.State.PlayerSettings.AssistMode = value;
-			Save.SavePlayerSettings(GameManager.Game.State.PlayerSettings);
+			Globals.State.PlayerSettings.AssistMode = value;
+			Save.SavePlayerSettings(Globals.State.PlayerSettings);
 		}
 
 		private void OnResolutionChanged(int index)
 		{
 			var resolution = _resolutions[index];
-			GameManager.Game.State.PlayerSettings.ResolutionWidth = resolution.width;
-			GameManager.Game.State.PlayerSettings.ResolutionHeight = resolution.height;
-			GameManager.Game.State.PlayerSettings.ResolutionRefreshRate = resolution.refreshRate;
+			Globals.State.PlayerSettings.ResolutionWidth = resolution.width;
+			Globals.State.PlayerSettings.ResolutionHeight = resolution.height;
+			Globals.State.PlayerSettings.ResolutionRefreshRate = resolution.refreshRate;
 			Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode, resolution.refreshRate);
-			Save.SavePlayerSettings(GameManager.Game.State.PlayerSettings);
+			Save.SavePlayerSettings(Globals.State.PlayerSettings);
 		}
 
 		private void OnLanguageChanged(int index)
 		{
 			var location = LocalizationSettings.AvailableLocales.Locales[index];
-			GameManager.Game.State.PlayerSettings.LocaleCode = location.Identifier.Code;
+			Globals.State.PlayerSettings.LocaleCode = location.Identifier.Code;
 			LocalizationSettings.SelectedLocale = location;
-			Save.SavePlayerSettings(GameManager.Game.State.PlayerSettings);
+			Save.SavePlayerSettings(Globals.State.PlayerSettings);
 		}
 
 		private async void Back()

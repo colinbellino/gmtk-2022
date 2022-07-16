@@ -13,41 +13,41 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Enter()
 		{
-			if (GameManager.Game.Config.DebugSkipTitle)
+			if (Globals.Config.DebugSkipTitle)
 			{
 				FSM.Fire(GameFSM.Triggers.StartGame);
 				return;
 			}
 
-			GameManager.Game.UI.StartButton.onClick.AddListener(StartGame);
-			GameManager.Game.UI.OptionsButton.onClick.AddListener(ToggleOptions);
-			GameManager.Game.UI.CreditsButton.onClick.AddListener(StartCredits);
-			GameManager.Game.UI.QuitButton.onClick.AddListener(QuitGame);
-			GameManager.Game.OptionsUI.BackClicked += OnOptionsBackClicked;
+			Globals.UI.StartButton.onClick.AddListener(StartGame);
+			Globals.UI.OptionsButton.onClick.AddListener(ToggleOptions);
+			Globals.UI.CreditsButton.onClick.AddListener(StartCredits);
+			Globals.UI.QuitButton.onClick.AddListener(QuitGame);
+			Globals.OptionsUI.BackClicked += OnOptionsBackClicked;
 
-			_ = GameManager.Game.UI.HideCredits(0);
+			_ = Globals.UI.HideCredits(0);
 
-			GameManager.Game.State.TitleMusic.getPlaybackState(out var state);
+			Globals.State.TitleMusic.getPlaybackState(out var state);
 			if (state != PLAYBACK_STATE.PLAYING)
-				GameManager.Game.State.TitleMusic.start();
+				Globals.State.TitleMusic.start();
 
-			_ = GameManager.Game.UI.FadeIn(Color.clear);
+			_ = Globals.UI.FadeIn(Color.clear);
 
 			// UnityEngine.Debug.Log("FIXME:");
-			// if (GameManager.Game.State.PlayerSaveData.ClearedLevels.Count > 0)
-			// 	Localization.SetImageKey(GameManager.Game.UI.StartButton.gameObject, "UI/Continue");
+			// if (Globals.State.PlayerSaveData.ClearedLevels.Count > 0)
+			// 	Localization.SetImageKey(Globals.UI.StartButton.gameObject, "UI/Continue");
 			// else
-			// 	Localization.SetImageKey(GameManager.Game.UI.StartButton.gameObject, "UI/Start");
+			// 	Localization.SetImageKey(Globals.UI.StartButton.gameObject, "UI/Start");
 
-			await GameManager.Game.UI.ShowTitle();
+			await Globals.UI.ShowTitle();
 
 			if (Utils.IsDevBuild())
 			{
-				GameManager.Game.UI.SetDebugText("");
+				Globals.UI.SetDebugText("");
 
 				// TODO: Remove this
 				// UnityEngine.Debug.Log("Skipping player save");
-				// GameManager.Game.State.PlayerSaveData.ClearedLevels = new System.Collections.Generic.HashSet<int>();
+				// Globals.State.PlayerSaveData.ClearedLevels = new System.Collections.Generic.HashSet<int>();
 				// StartGame();
 			}
 		}
@@ -58,16 +58,16 @@ namespace Game.Core.StateMachines.Game
 			{
 				if (Keyboard.current.tabKey.wasPressedThisFrame)
 				{
-					if (GameManager.Game.ControlsUI.IsOpened)
-						_ = GameManager.Game.ControlsUI.Hide();
+					if (Globals.ControlsUI.IsOpened)
+						_ = Globals.ControlsUI.Hide();
 					else
-						_ = GameManager.Game.ControlsUI.Show();
+						_ = Globals.ControlsUI.Show();
 				}
 			}
 
-			if (GameManager.Game.Controls.Global.Cancel.WasReleasedThisFrame())
+			if (Globals.Controls.Global.Cancel.WasReleasedThisFrame())
 			{
-				if (GameManager.Game.OptionsUI.IsOpened == false)
+				if (Globals.OptionsUI.IsOpened == false)
 					QuitGame();
 			}
 
@@ -77,12 +77,12 @@ namespace Game.Core.StateMachines.Game
 				// {
 				// 	if (Keyboard.current.leftShiftKey.isPressed)
 				// 	{
-				// 		GameManager.Game.State.TakeScreenshots = true;
+				// 		Globals.State.TakeScreenshots = true;
 				// 		UnityEngine.Debug.Log("Taking screenshots!");
 				// 	}
 
 				// 	UnityEngine.Debug.Log("Starting in replay mode.");
-				// 	GameManager.Game.State.IsReplaying = true;
+				// 	Globals.State.IsReplaying = true;
 				// 	LoadLevel(0);
 				// }
 			}
@@ -92,35 +92,35 @@ namespace Game.Core.StateMachines.Game
 
 		public UniTask Exit()
 		{
-			GameManager.Game.UI.StartButton.onClick.RemoveListener(StartGame);
-			GameManager.Game.UI.OptionsButton.onClick.RemoveListener(ToggleOptions);
-			GameManager.Game.UI.CreditsButton.onClick.RemoveListener(StartCredits);
-			GameManager.Game.UI.QuitButton.onClick.RemoveListener(QuitGame);
-			GameManager.Game.OptionsUI.BackClicked -= OnOptionsBackClicked;
+			Globals.UI.StartButton.onClick.RemoveListener(StartGame);
+			Globals.UI.OptionsButton.onClick.RemoveListener(ToggleOptions);
+			Globals.UI.CreditsButton.onClick.RemoveListener(StartCredits);
+			Globals.UI.QuitButton.onClick.RemoveListener(QuitGame);
+			Globals.OptionsUI.BackClicked -= OnOptionsBackClicked;
 
 			return default;
 		}
 
 		private async void StartGame()
 		{
-			GameManager.Game.State.TitleMusic.stop(STOP_MODE.ALLOWFADEOUT);
+			Globals.State.TitleMusic.stop(STOP_MODE.ALLOWFADEOUT);
 
-			await GameManager.Game.UI.FadeIn(Color.black);
-			await GameManager.Game.UI.HideTitle(0);
-			await GameManager.Game.OptionsUI.Hide(0);
+			await Globals.UI.FadeIn(Color.black);
+			await Globals.UI.HideTitle(0);
+			await Globals.OptionsUI.Hide(0);
 
 			FSM.Fire(GameFSM.Triggers.StartGame);
 		}
 
 		private void ToggleOptions()
 		{
-			_ = GameManager.Game.OptionsUI.Show();
+			_ = Globals.OptionsUI.Show();
 		}
 
 		private async void StartCredits()
 		{
-			await GameManager.Game.UI.HideTitle();
-			await GameManager.Game.UI.FadeIn(Color.black);
+			await Globals.UI.HideTitle();
+			await Globals.UI.FadeIn(Color.black);
 
 			FSM.Fire(GameFSM.Triggers.CreditsRequested);
 		}
@@ -132,7 +132,7 @@ namespace Game.Core.StateMachines.Game
 
 		private void OnOptionsBackClicked()
 		{
-			GameManager.Game.UI.SelectTitleOptionsGameObject();
+			Globals.UI.SelectTitleOptionsGameObject();
 		}
 	}
 }

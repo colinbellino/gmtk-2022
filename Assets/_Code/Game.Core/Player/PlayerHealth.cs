@@ -15,7 +15,8 @@ public class PlayerHealth : Game.Core.Health
 	[SerializeField] private Material onHitFlashMaterial;
 	[SerializeField] private GameObject healEffect;
 
-	protected override void Awake() {
+	protected override void Awake()
+	{
 		base.Awake();
 
 		redColorValue = entitySR.color.r;
@@ -25,7 +26,7 @@ public class PlayerHealth : Game.Core.Health
 	protected override void Death()
 	{
 		base.Death();
-		AudioHelpers.PlayOneShot(GameManager.Game.Config.PlayerDeath);
+		AudioHelpers.PlayOneShot(Globals.Config.PlayerDeath);
 	}
 
 	protected override void Update()
@@ -42,35 +43,46 @@ public class PlayerHealth : Game.Core.Health
 			}
 		}
 
-		if (invincibilityCounter > 0) {
+		if (invincibilityCounter > 0)
+		{
 			invincibilityCounter -= Time.deltaTime;
 
-			if (invincibilityCounter <= 0) {
+			if (invincibilityCounter <= 0)
+			{
 
 			}
 		}
 	}
 
-	public override void DealDamage(int damageDone, Vector3 damageSourceDirection, bool screenshake = true) {
+	public override void DealDamage(int damageDone, Vector3 damageSourceDirection, bool screenshake = true)
+	{
 		// Player can't take damage in assist mode
-		if (GameManager.Game.State.PlayerSettings.AssistMode) {
+		if (Globals.State.PlayerSettings.AssistMode)
+		{
 			return;
 		}
 
-		if (invincibilityCounter <= 0) {
-			if (currentHP - damageDone < 0) {
+		if (invincibilityCounter <= 0)
+		{
+			if (currentHP - damageDone < 0)
+			{
 				setCurrentHP(0);
-			} else {
+			}
+			else
+			{
 				setCurrentHP(currentHP - damageDone);
 			}
 
-			if (currentHP > 0) {
-				if (screenshake) {
-					AudioHelpers.PlayOneShot(GameManager.Game.Config.PlayerDamage);
+			if (currentHP > 0)
+			{
+				if (screenshake)
+				{
+					AudioHelpers.PlayOneShot(Globals.Config.PlayerDamage);
 					_ = Utils.Shake(0.3f, 100);
 				}
 
-				if (damageSourceDirection.magnitude > 0) {
+				if (damageSourceDirection.magnitude > 0)
+				{
 					knockbackDirection = (transform.position - damageSourceDirection).normalized;
 					knockbackCounter = knockBackDuration;
 
@@ -86,17 +98,22 @@ public class PlayerHealth : Game.Core.Health
 	{
 		_ = Utils.Shake(0.1f, 100);
 		GameObject.Instantiate(healEffect, transform.position, Quaternion.identity, transform);
-		AudioHelpers.PlayOneShot(GameManager.Game.Config.PlayerHeal);
-		if (currentHP + healAmount > maxHP) {
+		AudioHelpers.PlayOneShot(Globals.Config.PlayerHeal);
+		if (currentHP + healAmount > maxHP)
+		{
 			setCurrentHP(maxHP);
-		} else {
+		}
+		else
+		{
 			setCurrentHP(currentHP + healAmount);
 		}
 	}
 
-	private void CallHeartbeat() {
-		if ((float)currentHP / (float)maxHP < 0.3) {
-			AudioHelpers.PlayOneShot(GameManager.Game.Config.HeartBeat, transform.position);
+	private void CallHeartbeat()
+	{
+		if ((float)currentHP / (float)maxHP < 0.3)
+		{
+			AudioHelpers.PlayOneShot(Globals.Config.HeartBeat, transform.position);
 		}
 	}
 }

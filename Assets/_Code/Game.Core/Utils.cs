@@ -58,10 +58,10 @@ namespace Game.Core
 
 		public static async UniTask Shake(float gain, int duration)
 		{
-			if (GameManager.Game.State.PlayerSettings.Screenshake == false)
+			if (Globals.State.PlayerSettings.Screenshake == false)
 				return;
 
-			var perlin = GameManager.Game.CameraRig.VirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+			var perlin = Globals.CameraRig.VirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 			perlin.m_AmplitudeGain = gain;
 			// Gamepad.current?.SetMotorSpeeds(gain / 8f, gain / 4f);
 

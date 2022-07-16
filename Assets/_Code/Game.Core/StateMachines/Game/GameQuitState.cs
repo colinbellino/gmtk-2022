@@ -11,7 +11,7 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Enter()
 		{
-			GameManager.Game.Controls.Disable();
+			Globals.Controls.Disable();
 			AudioHelpers.StopEverything();
 
 			if (Utils.IsWebGL())

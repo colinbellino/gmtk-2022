@@ -13,17 +13,17 @@ namespace Game.Core.StateMachines.Game
 		{
 			_readyTimestamp = Time.time + 1f;
 
-			await GameManager.Game.UI.ShowEnding(0);
-			await GameManager.Game.UI.FadeIn(Color.clear);
+			await Globals.UI.ShowEnding(0);
+			await Globals.UI.FadeIn(Color.clear);
 
-			GameManager.Game.State.EndMusic.getPlaybackState(out var state);
+			Globals.State.EndMusic.getPlaybackState(out var state);
 			if (state != PLAYBACK_STATE.PLAYING)
-				GameManager.Game.State.EndMusic.start();
+				Globals.State.EndMusic.start();
 		}
 
 		public void Tick()
 		{
-			if (Time.time >= _readyTimestamp && GameManager.Game.Controls.Global.Cancel.WasPerformedThisFrame() || GameManager.Game.Controls.Global.Confirm.WasPerformedThisFrame())
+			if (Time.time >= _readyTimestamp && Globals.Controls.Global.Cancel.WasPerformedThisFrame() || Globals.Controls.Global.Confirm.WasPerformedThisFrame())
 			{
 				FSM.Fire(GameFSM.Triggers.Done);
 			}
@@ -33,8 +33,8 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Exit()
 		{
-			await GameManager.Game.UI.FadeIn(Color.black);
-			await GameManager.Game.UI.HideEnding(0);
+			await Globals.UI.FadeIn(Color.black);
+			await Globals.UI.HideEnding(0);
 		}
 	}
 }

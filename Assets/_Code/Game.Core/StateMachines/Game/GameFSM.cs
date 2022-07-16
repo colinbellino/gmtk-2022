@@ -16,10 +16,8 @@ namespace Game.Core.StateMachines.Game
 		private readonly StateMachine<States, Triggers> _machine;
 		private IState _currentState;
 
-		public GameFSM(bool debug, GameSingleton game)
+		public GameFSM(bool debug)
 		{
-			Assert.IsNotNull(game);
-
 			_debug = debug;
 			_states = new Dictionary<States, IState>
 			{

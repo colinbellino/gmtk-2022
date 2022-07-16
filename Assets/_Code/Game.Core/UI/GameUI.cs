@@ -70,11 +70,11 @@ namespace Game.Core
 			EventSystem.current.SetSelectedGameObject(StartButton.gameObject);
 
 			_titleRoot.SetActive(true);
-			// await _titleWrapper.DOLocalMoveY(0, duration / GameManager.Game.State.TimeScaleCurrent);
+			// await _titleWrapper.DOLocalMoveY(0, duration / Globals.State.TimeScaleCurrent);
 		}
 		public async UniTask HideTitle(float duration = 0.5f)
 		{
-			// await _titleWrapper.DOLocalMoveY(156, duration / GameManager.Game.State.TimeScaleCurrent);
+			// await _titleWrapper.DOLocalMoveY(156, duration / Globals.State.TimeScaleCurrent);
 			_titleRoot.SetActive(false);
 		}
 		public void SelectTitleOptionsGameObject()
@@ -87,12 +87,12 @@ namespace Game.Core
 			await UniTask.NextFrame();
 			// _levelNameRoot.SetActive(true);
 			// _levelNameText.text = title;
-			// await _levelNameText.rectTransform.DOLocalMoveY(-80, duration / GameManager.Game.State.TimeScaleCurrent);
+			// await _levelNameText.rectTransform.DOLocalMoveY(-80, duration / Globals.State.TimeScaleCurrent);
 		}
 		public async UniTask HideLevelName(float duration = 0.25f)
 		{
 			await UniTask.NextFrame();
-			// await _levelNameText.rectTransform.DOLocalMoveY(-130, duration / GameManager.Game.State.TimeScaleCurrent);
+			// await _levelNameText.rectTransform.DOLocalMoveY(-130, duration / Globals.State.TimeScaleCurrent);
 			// _levelNameRoot.SetActive(false);
 		}
 
@@ -154,7 +154,7 @@ namespace Game.Core
 				_fadeToBlackImage.color = _fadeTweener.endValue;
 				_fadeTweener.Kill(true);
 			}
-			_fadeTweener = _fadeToBlackImage.DOColor(color, duration / GameManager.Game.State.TimeScaleCurrent);
+			_fadeTweener = _fadeToBlackImage.DOColor(color, duration / Globals.State.TimeScaleCurrent);
 			await _fadeTweener;
 		}
 
@@ -171,7 +171,7 @@ namespace Game.Core
 
 			text.maxVisibleCharacters = 0;
 
-			await UniTask.Delay(TimeSpan.FromSeconds(duration / GameManager.Game.State.TimeScaleCurrent));
+			await UniTask.Delay(TimeSpan.FromSeconds(duration / Globals.State.TimeScaleCurrent));
 
 			var totalInvisibleCharacters = text.textInfo.characterCount;
 			var counter = 0;
@@ -187,26 +187,26 @@ namespace Game.Core
 
 				counter += 1;
 
-				await UniTask.Delay(TimeSpan.FromMilliseconds(10 / GameManager.Game.State.TimeScaleCurrent));
+				await UniTask.Delay(TimeSpan.FromMilliseconds(10 / Globals.State.TimeScaleCurrent));
 			}
 
 			var buttons = panel.GetComponentsInChildren<Button>();
 			for (int i = 0; i < buttons.Length; i++)
 			{
-				_ = buttons[i].image.DOFade(1f, duration / GameManager.Game.State.TimeScaleCurrent);
+				_ = buttons[i].image.DOFade(1f, duration / Globals.State.TimeScaleCurrent);
 			}
 		}
 
 		private async UniTask FadeOutPanel(Image panel, float duration)
 		{
-			_ = panel.DOFade(0f, duration / GameManager.Game.State.TimeScaleCurrent);
+			_ = panel.DOFade(0f, duration / Globals.State.TimeScaleCurrent);
 
 			foreach (var graphic in panel.GetComponentsInChildren<Graphic>())
 			{
-				_ = graphic.DOFade(0f, duration / GameManager.Game.State.TimeScaleCurrent);
+				_ = graphic.DOFade(0f, duration / Globals.State.TimeScaleCurrent);
 			}
 
-			await UniTask.Delay(TimeSpan.FromSeconds(duration / GameManager.Game.State.TimeScaleCurrent));
+			await UniTask.Delay(TimeSpan.FromSeconds(duration / Globals.State.TimeScaleCurrent));
 			panel.gameObject.SetActive(false);
 		}
 	}

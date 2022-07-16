@@ -24,7 +24,7 @@ namespace Game.Core
 			_optionsButton.onClick.AddListener(OpenOptions);
 			_backButton.onClick.AddListener(BackToGame);
 			_quitButton.onClick.AddListener(QuitGame);
-			GameManager.Game.OptionsUI.BackClicked += OnOptionsBackClicked;
+			Globals.OptionsUI.BackClicked += OnOptionsBackClicked;
 
 			await Hide();
 		}
@@ -49,14 +49,14 @@ namespace Game.Core
 			EventSystem.current.SetSelectedGameObject(_optionsButton.gameObject);
 		}
 
-		private void OpenLevelSelect() => GameManager.Game.GameFSM.Fire(StateMachines.Game.GameFSM.Triggers.LevelSelectionRequested);
+		private void OpenLevelSelect() => Globals.GameFSM.Fire(StateMachines.Game.GameFSM.Triggers.LevelSelectionRequested);
 
-		private void OpenOptions() => _ = GameManager.Game.OptionsUI.Show();
+		private void OpenOptions() => _ = Globals.OptionsUI.Show();
 
 		private void QuitGame()
 		{
-			GameManager.Game.State.LevelMusic.stop(STOP_MODE.ALLOWFADEOUT);
-			GameManager.Game.GameFSM.Fire(StateMachines.Game.GameFSM.Triggers.Quit);
+			Globals.State.LevelMusic.stop(STOP_MODE.ALLOWFADEOUT);
+			Globals.GameFSM.Fire(StateMachines.Game.GameFSM.Triggers.Quit);
 		}
 
 		private void BackToGame()

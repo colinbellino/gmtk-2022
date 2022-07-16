@@ -9,15 +9,15 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Enter()
 		{
-			// var levelName = GameManager.Game.State.AllLevels[GameManager.Game.State.CurrentLevelIndex];
+			// var levelName = Globals.State.AllLevels[Globals.State.CurrentLevelIndex];
 			// var levelData = await Utils.ReadStreamingAsset($"/Levels~/{levelName}.txt");
 			// var level = LevelHelpers.InstantiateLevel(levelData);
 			// level.StartRoom = LevelHelpers.GetStartRoom(level);
 			// level.CurrentRoom = level.StartRoom;
 
-			// GameManager.Game.CameraRig.transform.position = LevelHelpers.GetRoomOrigin(level.CurrentRoom);
+			// Globals.CameraRig.transform.position = LevelHelpers.GetRoomOrigin(level.CurrentRoom);
 
-			// GameManager.Game.State.Level = level;
+			// Globals.State.Level = level;
 
 			await UniTask.NextFrame();
 

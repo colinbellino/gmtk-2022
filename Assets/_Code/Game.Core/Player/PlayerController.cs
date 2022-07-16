@@ -52,13 +52,13 @@ namespace Game.Core
 
 		void OnEnable()
 		{
-			GameManager.Game.Controls.Gameplay.Dash.performed += GetDashInput;
+			Globals.Controls.Gameplay.Dash.performed += GetDashInput;
 			Health.CurrentHPChanged += OnCurrentHPChanged;
 		}
 
 		void OnDisable()
 		{
-			GameManager.Game.Controls.Gameplay.Dash.performed -= GetDashInput;
+			Globals.Controls.Gameplay.Dash.performed -= GetDashInput;
 			Health.CurrentHPChanged -= OnCurrentHPChanged;
 		}
 
@@ -79,7 +79,7 @@ namespace Game.Core
 			else
 			{
 				entitiesCollider.enabled = true;
-				rawMovementInput = GameManager.Game.Controls.Gameplay.Move.ReadValue<Vector2>();
+				rawMovementInput = Globals.Controls.Gameplay.Move.ReadValue<Vector2>();
 			}
 
 			if (rawMovementInput.magnitude > 0 && Time.time >= _dustTimestamp)
@@ -153,7 +153,7 @@ namespace Game.Core
 			{
 				isDashing = true;
 				dashCounter = dashCooldown;
-				AudioHelpers.PlayOneShot(GameManager.Game.Config.PlayerDash, transform.position);
+				AudioHelpers.PlayOneShot(Globals.Config.PlayerDash, transform.position);
 				afterImage.Activate(true);
 			}
 		}

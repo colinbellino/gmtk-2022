@@ -23,7 +23,7 @@ namespace Game.Core
 
 		public async UniTask Show(float duration = 0.5f)
 		{
-			GameManager.Game.Controls.Global.Cancel.performed += CancelInputPerformed;
+			Globals.Controls.Global.Cancel.performed += CancelInputPerformed;
 			_closeButton.onClick.AddListener(CloseButtonClick);
 
 			SetInputType(0);
@@ -36,7 +36,7 @@ namespace Game.Core
 
 		public UniTask Hide(float duration = 0.5f)
 		{
-			GameManager.Game.Controls.Global.Cancel.performed -= CancelInputPerformed;
+			Globals.Controls.Global.Cancel.performed -= CancelInputPerformed;
 			_closeButton.onClick.RemoveListener(CloseButtonClick);
 
 			_root.SetActive(false);

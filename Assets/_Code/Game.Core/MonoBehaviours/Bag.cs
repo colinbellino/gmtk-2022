@@ -83,11 +83,11 @@ namespace Game.Core
 
 			bag.Bonus = _bonuses.Count;
 
-			var activeIds = GameManager.Game.State.ActiveRequests;
+			var activeIds = Globals.State.ActiveRequests;
 
 			var matchIndex = activeIds.FindIndex(reqIndex =>
 			{
-				var req = GameManager.Game.State.Requests[reqIndex];
+				var req = Globals.State.Requests[reqIndex];
 				return req.Die == bag.Die && req.Quantity == bag.Quantity && req.Bonus == bag.Bonus;
 			});
 			if (matchIndex == -1)
@@ -96,13 +96,13 @@ namespace Game.Core
 				// UnityEngine.Debug.Log("no requests matched");
 
 				var score = 200;
-				GameManager.Game.State.Score = math.max(0, GameManager.Game.State.Score - score);
+				Globals.State.Score = math.max(0, Globals.State.Score - score);
 			}
 			else
 			{
-				var req = GameManager.Game.State.Requests[GameManager.Game.State.ActiveRequests[matchIndex]];
-				GameManager.Game.State.ActiveRequests.RemoveAt(matchIndex);
-				GameManager.Game.State.CompletedRequests.Add(matchIndex);
+				var req = Globals.State.Requests[Globals.State.ActiveRequests[matchIndex]];
+				Globals.State.ActiveRequests.RemoveAt(matchIndex);
+				Globals.State.CompletedRequests.Add(matchIndex);
 
 				// Calculate score based on difficulty
 				var score = 100;
@@ -111,7 +111,7 @@ namespace Game.Core
 				if (bag.Quantity != 1)
 					score += 100;
 
-				GameManager.Game.State.Score += score;
+				Globals.State.Score += score;
 				UnityEngine.Debug.Log("matched request: " + Utils.DiceRequestToString(req) + " (" + req.Id + ")");
 			}
 

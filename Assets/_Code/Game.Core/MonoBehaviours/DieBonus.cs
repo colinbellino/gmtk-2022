@@ -32,7 +32,7 @@ namespace Game.Core
 
 		public void OnDrag(PointerEventData eventData)
 		{
-			var worldPosition = GameManager.Game.CameraRig.Camera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, GameManager.Game.CameraRig.Camera.nearClipPlane));
+			var worldPosition = Globals.CameraRig.Camera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, Globals.CameraRig.Camera.nearClipPlane));
 			transform.position = new Vector3(worldPosition.x, worldPosition.y, transform.localPosition.z);
 			// UnityEngine.Debug.Log(name + " OnDrag " + eventData);
 

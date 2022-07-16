@@ -11,55 +11,55 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Enter()
 		{
-			GameManager.Game.UI.SetDebugText("");
+			Globals.UI.SetDebugText("");
 
-			_ = GameManager.Game.UI.FadeIn(Color.black, 0);
+			_ = Globals.UI.FadeIn(Color.black, 0);
 
 			FMODUnity.RuntimeManager.LoadBank("SFX", loadSamples: true);
 
-			GameManager.Game.State.Version = Application.version;
-			GameManager.Game.State.Commit = await ReadStreamingAsset("/commit.txt");
-			GameManager.Game.State.TitleMusic = FMODUnity.RuntimeManager.CreateInstance(GameManager.Game.Config.MusicTitle);
-			GameManager.Game.State.LevelMusic = FMODUnity.RuntimeManager.CreateInstance(GameManager.Game.Config.MusicMain);
-			GameManager.Game.State.EndMusic = FMODUnity.RuntimeManager.CreateInstance(GameManager.Game.Config.MusicEnd);
-			GameManager.Game.State.PauseSnapshot = FMODUnity.RuntimeManager.CreateInstance(GameManager.Game.Config.SnapshotPause);
-			GameManager.Game.State.TimeScaleCurrent = GameManager.Game.State.TimeScaleDefault = 1f;
-			GameManager.Game.State.Random = new Unity.Mathematics.Random();
-			GameManager.Game.State.Random.InitState((uint)Random.Range(0, int.MaxValue));
-			// GameManager.Game.State.Bag = new DiceBag();
+			Globals.State.Version = Application.version;
+			Globals.State.Commit = await ReadStreamingAsset("/commit.txt");
+			Globals.State.TitleMusic = FMODUnity.RuntimeManager.CreateInstance(Globals.Config.MusicTitle);
+			Globals.State.LevelMusic = FMODUnity.RuntimeManager.CreateInstance(Globals.Config.MusicMain);
+			Globals.State.EndMusic = FMODUnity.RuntimeManager.CreateInstance(Globals.Config.MusicEnd);
+			Globals.State.PauseSnapshot = FMODUnity.RuntimeManager.CreateInstance(Globals.Config.SnapshotPause);
+			Globals.State.TimeScaleCurrent = Globals.State.TimeScaleDefault = 1f;
+			Globals.State.Random = new Unity.Mathematics.Random();
+			Globals.State.Random.InitState((uint)Random.Range(0, int.MaxValue));
+			// Globals.State.Bag = new DiceBag();
 
 			while (LocalizationSettings.InitializationOperation.IsDone == false)
 				await UniTask.NextFrame();
 
-			GameManager.Game.State.PlayerSettings = Save.LoadPlayerSettings();
-			GameManager.Game.State.PlayerSaveData = Save.LoadPlayerSaveData();
-			SetPlayerSettings(GameManager.Game.State.PlayerSettings);
+			Globals.State.PlayerSettings = Save.LoadPlayerSettings();
+			Globals.State.PlayerSaveData = Save.LoadPlayerSaveData();
+			SetPlayerSettings(Globals.State.PlayerSettings);
 
-			GameManager.Game.Controls.Global.Enable();
+			Globals.Controls.Global.Enable();
 
-			GameManager.Game.UI.SetVersion($"{GameManager.Game.State.Version} - {GameManager.Game.State.Commit}");
-			await GameManager.Game.UI.Init();
-			await GameManager.Game.PauseUI.Init();
-			await GameManager.Game.OptionsUI.Init();
-			// await GameManager.Game.ControlsUI.Init();
-			await GameManager.Game.GameplayUI.Init();
+			Globals.UI.SetVersion($"{Globals.State.Version} - {Globals.State.Commit}");
+			await Globals.UI.Init();
+			await Globals.PauseUI.Init();
+			await Globals.OptionsUI.Init();
+			// await Globals.ControlsUI.Init();
+			await Globals.GameplayUI.Init();
 
-			GameManager.Game.UI.ShowDebug();
+			Globals.UI.ShowDebug();
 
 			if (IsDevBuild())
 			{
-				// if (GameManager.Game.Config.DebugLevels)
+				// if (Globals.Config.DebugLevels)
 				// {
-				// 	GameManager.Game.State.DebugLevels = Resources.LoadAll<Level>("Levels/Debug");
-				// 	GameManager.Game.State.AllLevels = new Level[GameManager.Game.Config.Levels.Length + GameManager.Game.State.DebugLevels.Length];
-				// 	GameManager.Game.Config.Levels.CopyTo(GameManager.Game.State.AllLevels, 0);
-				// 	GameManager.Game.State.DebugLevels.CopyTo(GameManager.Game.State.AllLevels, GameManager.Game.Config.Levels.Length);
+				// 	Globals.State.DebugLevels = Resources.LoadAll<Level>("Levels/Debug");
+				// 	Globals.State.AllLevels = new Level[Globals.Config.Levels.Length + Globals.State.DebugLevels.Length];
+				// 	Globals.Config.Levels.CopyTo(Globals.State.AllLevels, 0);
+				// 	Globals.State.DebugLevels.CopyTo(Globals.State.AllLevels, Globals.Config.Levels.Length);
 				// }
 
-				if (GameManager.Game.Config.LockFPS > 0)
+				if (Globals.Config.LockFPS > 0)
 				{
-					Debug.Log($"Locking FPS to {GameManager.Game.Config.LockFPS}");
-					Application.targetFrameRate = GameManager.Game.Config.LockFPS;
+					Debug.Log($"Locking FPS to {Globals.Config.LockFPS}");
+					Application.targetFrameRate = Globals.Config.LockFPS;
 					QualitySettings.vSyncCount = 1;
 				}
 				else
@@ -80,9 +80,9 @@ namespace Game.Core.StateMachines.Game
 
 		private void SetPlayerSettings(PlayerSettings playerSettings)
 		{
-			AudioHelpers.SetVolume(GameManager.Game.Config.GameBus, playerSettings.GameVolume);
-			AudioHelpers.SetVolume(GameManager.Game.Config.MusicBus, playerSettings.MusicVolume);
-			AudioHelpers.SetVolume(GameManager.Game.Config.SoundBus, playerSettings.SoundVolume);
+			AudioHelpers.SetVolume(Globals.Config.GameBus, playerSettings.GameVolume);
+			AudioHelpers.SetVolume(Globals.Config.MusicBus, playerSettings.MusicVolume);
+			AudioHelpers.SetVolume(Globals.Config.SoundBus, playerSettings.SoundVolume);
 			LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.GetLocale(playerSettings.LocaleCode);
 			// Ignore resolution for WebGL since we always start in windowed mode with a fixed size.
 			if (IsWebGL() == false)

@@ -3,8 +3,8 @@ using Game.Core;
 
 public class EnemyHealth : Game.Core.Health
 {
-   [SerializeField] private int drainHealthToPlayerAmt;
-   [SerializeField] private int damageToPlayer;
+	[SerializeField] private int drainHealthToPlayerAmt;
+	[SerializeField] private int damageToPlayer;
 	[SerializeField] private SpriteRenderer weaponSprite;
 	private int drainHealthToPlayer = 0;
 
@@ -15,31 +15,40 @@ public class EnemyHealth : Game.Core.Health
 
 	private bool drained;
 
-	void OnEnable() {
-		if (dead) {
+	void OnEnable()
+	{
+		if (dead)
+		{
 			entityAnimator.SetBool("isDead", true);
-		} else {
+		}
+		else
+		{
 			currentHP = maxHP;
 		}
 	}
 
-   protected override void Update() {
-      base.Update();
-   }
+	protected override void Update()
+	{
+		base.Update();
+	}
 
-   protected override void Death() {
-      base.Death();
+	protected override void Death()
+	{
+		base.Death();
 
-		AudioHelpers.PlayOneShot(GameManager.Game.Config.EnemyStun);
+		AudioHelpers.PlayOneShot(Globals.Config.EnemyStun);
 		enterStunState();
-   }
+	}
 
-	public override void DealDamage(int damageDone, Vector3 damageSourceDirection, bool screenshake = true) {
+	public override void DealDamage(int damageDone, Vector3 damageSourceDirection, bool screenshake = true)
+	{
 		setCurrentHP(currentHP - damageDone);
-		AudioHelpers.PlayOneShot(GameManager.Game.Config.EnemyDamage);
+		AudioHelpers.PlayOneShot(Globals.Config.EnemyDamage);
 
-		if (currentHP > 0) {
-			if (damageSourceDirection.magnitude > 0) {
+		if (currentHP > 0)
+		{
+			if (damageSourceDirection.magnitude > 0)
+			{
 				knockbackDirection = (transform.position - damageSourceDirection).normalized;
 				knockbackCounter = knockBackDuration;
 				entitySR.material = onHitFlashMaterial;
@@ -47,14 +56,17 @@ public class EnemyHealth : Game.Core.Health
 		}
 	}
 
-   public int GetDrainHealthToPlayer() {
-      return drainHealthToPlayer;
-   }
-   public int GetDamageToPlayer() {
-      return damageToPlayer;
-   }
+	public int GetDrainHealthToPlayer()
+	{
+		return drainHealthToPlayer;
+	}
+	public int GetDamageToPlayer()
+	{
+		return damageToPlayer;
+	}
 
-	private void enterStunState() {
+	private void enterStunState()
+	{
 		stunEffectObject = GameObject.Instantiate(stunEffectPrefab, transform);
 		stunEffectObject.transform.localPosition = new Vector3(0f, 0.1f);
 
@@ -64,10 +76,12 @@ public class EnemyHealth : Game.Core.Health
 		drainHealthToPlayer = drainHealthToPlayerAmt;
 	}
 
-	public bool getDrained() {
+	public bool getDrained()
+	{
 		return drained;
 	}
-	public void setDrained(bool drained) {
+	public void setDrained(bool drained)
+	{
 		this.drained = drained;
 	}
 }

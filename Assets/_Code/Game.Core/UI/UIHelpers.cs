@@ -7,7 +7,7 @@ namespace Game.Core
 	{
 		public static void PlayButtonClip()
 		{
-			AudioHelpers.PlayOneShot(GameManager.Game.Config.SoundMenuConfirm);
+			AudioHelpers.PlayOneShot(Globals.Config.SoundMenuConfirm);
 		}
 
 		public void SetSelectedGameObject()

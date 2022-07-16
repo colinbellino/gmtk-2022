@@ -1,18 +1,26 @@
-using System.Linq;
 using Cysharp.Threading.Tasks;
 using Game.Core.StateMachines.Game;
 using Game.Inputs;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.DualShock;
-using UnityEngine.InputSystem.XInput;
 
 namespace Game.Core
 {
+	public static class Globals
+	{
+		public static GameConfig Config;
+		public static GameUI UI;
+		public static PauseUI PauseUI;
+		public static OptionsUI OptionsUI;
+		public static ControlsUI ControlsUI;
+		public static GameplayUI GameplayUI;
+		public static CameraRig CameraRig;
+		public static GameControls Controls;
+		public static GameState State;
+		public static GameFSM GameFSM;
+	}
+
 	public class GameManager : MonoBehaviour
 	{
-		public static GameSingleton Game { get; private set; }
-
 		[SerializeField] private GameConfig _config;
 		[SerializeField] private CameraRig _cameraRig;
 		[SerializeField] private GameUI _gameUI;
@@ -25,19 +33,18 @@ namespace Game.Core
 		{
 			try
 			{
-				Game = new GameSingleton();
-				Game.Config = _config;
-				Game.Controls = new GameControls();
-				Game.CameraRig = _cameraRig;
-				Game.UI = _gameUI;
-				Game.PauseUI = _pauseUI;
-				Game.OptionsUI = _optionsUI;
-				Game.ControlsUI = _controlsUI;
-				Game.GameplayUI = _gameplayUI;
-				Game.State = new GameState();
-				Game.GameFSM = new GameFSM(_config.DebugStateMachine, Game);
+				Globals.Config = _config;
+				Globals.Controls = new GameControls();
+				Globals.CameraRig = _cameraRig;
+				Globals.UI = _gameUI;
+				Globals.PauseUI = _pauseUI;
+				Globals.OptionsUI = _optionsUI;
+				Globals.ControlsUI = _controlsUI;
+				Globals.GameplayUI = _gameplayUI;
+				Globals.State = new GameState();
+				Globals.GameFSM = new GameFSM(_config.DebugStateMachine);
 
-				await Game.GameFSM.Start();
+				await Globals.GameFSM.Start();
 			}
 			catch (System.Exception exc)
 			{
@@ -47,14 +54,14 @@ namespace Game.Core
 
 		private void Update()
 		{
-			Time.timeScale = Game.State.TimeScaleCurrent;
-			Game?.GameFSM.Tick();
+			Time.timeScale = Globals.State.TimeScaleCurrent;
+			Globals.GameFSM.Tick();
 		}
 
 		private void LateUpdate()
 		{
 			// Stick the UI to the camera
-			Game.UI.transform.position = Game.CameraRig.transform.position + Game.CameraRig.Camera.transform.localPosition;
+			Globals.UI.transform.position = Globals.CameraRig.transform.position + Globals.CameraRig.Camera.transform.localPosition;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
@@ -72,9 +79,9 @@ namespace Game.Core
 		private void Silence(bool silence)
 		{
 			if (silence)
-				AudioHelpers.SetVolume(Game.Config.GameBus, 0);
+				AudioHelpers.SetVolume(Globals.Config.GameBus, 0);
 			else
-				AudioHelpers.SetVolume(Game.Config.GameBus, Game.State.PlayerSettings.GameVolume);
+				AudioHelpers.SetVolume(Globals.Config.GameBus, Globals.State.PlayerSettings.GameVolume);
 		}
 	}
 }
