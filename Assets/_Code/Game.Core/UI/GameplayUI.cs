@@ -52,15 +52,15 @@ namespace Game.Core
 
 		public void UpdateRequest(DiceRequest req)
 		{
-			if (Time.time >= req.Timestamp)
-				GameManager.Game.UI.AddDebugLine(Utils.DiceRequestToString(req));
+			GameManager.Game.UI.AddDebugLine(Utils.DiceRequestToString(req) + " (" + req.Id + ")");
 		}
 
 		public void Tick()
 		{
 			GameManager.Game.UI.SetDebugText("");
-			foreach (var req in GameManager.Game.State.Requests)
+			foreach (var reqIndex in GameManager.Game.State.ActiveRequests)
 			{
+				var req = GameManager.Game.State.Requests[reqIndex];
 				UpdateRequest(req);
 			}
 		}

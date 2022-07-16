@@ -71,13 +71,23 @@ namespace Game.Core
 			// Gamepad.current?.SetMotorSpeeds(0f, 0f);
 		}
 
+		public static string DiceRequestToString(DiceBag bag)
+		{
+			return DiceRequestToString(bag.Die, bag.Quantity, bag.Bonus);
+		}
+
 		public static string DiceRequestToString(DiceRequest req)
 		{
-			if (req.Bonus > 0)
-				return $"{req.Quantity}D{req.Die} +{req.Bonus}";
-			else if (req.Bonus < 0)
-				return $"{req.Quantity}D{req.Die} {req.Bonus}";
-			return $"{req.Quantity}D{req.Die}";
+			return DiceRequestToString(req.Die, req.Quantity, req.Bonus);
+		}
+
+		public static string DiceRequestToString(DieTypes die, int quantity, int bonus)
+		{
+			if (bonus > 0)
+				return $"{quantity}D{(int)die} +{bonus}";
+			else if (bonus < 0)
+				return $"{quantity}D{(int)die} {bonus}";
+			return $"{quantity}D{(int)die}";
 		}
 	}
 }

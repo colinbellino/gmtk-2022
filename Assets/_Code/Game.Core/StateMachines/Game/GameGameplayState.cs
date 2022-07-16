@@ -24,11 +24,15 @@ namespace Game.Core.StateMachines.Game
 				GameManager.Game.State.LevelMusic.start();
 
 			GameManager.Game.State.Requests = new List<DiceRequest> {
-				new DiceRequest { Id = 0, Quantity = 1, Die = 6, Timestamp = Time.time + 0f },
-				new DiceRequest { Id = 1, Quantity = 2, Die = 3, Timestamp = Time.time + 0.6f },
-				new DiceRequest { Id = 2, Quantity = 1, Die = 10, Bonus = 2, Timestamp = Time.time + 2f },
-				new DiceRequest { Id = 3, Quantity = 1, Die = 6, Bonus = -2, Timestamp = Time.time + 3f },
+				new DiceRequest { Id = 0, Quantity = 1, Die = DieTypes.D6, Timestamp = Time.time + 0f },
+				new DiceRequest { Id = 1, Quantity = 2, Die = DieTypes.D4, Timestamp = Time.time + 0.6f },
+				new DiceRequest { Id = 2, Quantity = 1, Die = DieTypes.D10, Bonus = 2, Timestamp = Time.time + 2f },
+				new DiceRequest { Id = 3, Quantity = 1, Die = DieTypes.D6, Bonus = -2, Timestamp = Time.time + 3f },
 			};
+
+			GameManager.Game.State.QueuedRequests = new List<int> { 0, 1, 2, 3 };
+			GameManager.Game.State.ActiveRequests = new List<int> { };
+			GameManager.Game.State.CompletedRequests = new List<int> { };
 
 			if (Utils.IsDevBuild())
 			{
@@ -82,6 +86,18 @@ namespace Game.Core.StateMachines.Game
 					{
 						NextLevel();
 						return;
+					}
+				}
+
+				var s = GameManager.Game.State;
+				for (int i = GameManager.Game.State.QueuedRequests.Count - 1; i >= 0; i--)
+				{
+					var reqIndex = GameManager.Game.State.QueuedRequests[i];
+					var req = GameManager.Game.State.Requests[reqIndex];
+					if (Time.time >= req.Timestamp)
+					{
+						GameManager.Game.State.ActiveRequests.Add(reqIndex);
+						GameManager.Game.State.QueuedRequests.Remove(reqIndex);
 					}
 				}
 
