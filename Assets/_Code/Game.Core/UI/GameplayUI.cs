@@ -102,51 +102,5 @@ namespace Game.Core
 		{
 			_dashCurrentFill.sizeDelta = new Vector2(value * _currentDashDefaultWidth, _dashCurrentFill.sizeDelta.y);
 		}
-
-		public void SetMiniMap(Level level, bool mustReturnToStart = false)
-		{
-			_mapGridLayoutGroup.constraintCount = level.Width;
-
-			for (int roomIndex = 0; roomIndex < _mapRooms.Length; roomIndex++)
-			{
-				var roomRect = _mapRooms[roomIndex];
-
-				roomRect.Find("Background").GetComponent<Image>().color = Color.black;
-				roomRect.Find("Icon").GetComponent<Image>().color = Color.clear;
-
-				if (roomIndex >= level.Rooms.Count)
-				{
-					roomRect.gameObject.SetActive(false);
-					continue;
-				}
-
-				roomRect.gameObject.SetActive(true);
-				var room = level.Rooms[roomIndex];
-				if (room.Instance == null)
-				{
-					roomRect.Find("Background").GetComponent<Image>().color = Color.clear;
-					roomRect.Find("Color").GetComponent<Image>().color = Color.clear;
-				}
-				else
-				{
-					roomRect.Find("Color").GetComponent<Image>().color = _mapColorDefault;
-
-					if (room.Explored)
-					{
-						roomRect.Find("Color").GetComponent<Image>().color = _mapColorExplored;
-					}
-					if (room == level.StartRoom)
-					{
-						roomRect.Find("Icon").GetComponent<Image>().color = _mapColorStart;
-						if (mustReturnToStart)
-							roomRect.Find("Color").GetComponent<Image>().DOColor(Color.white, 1f).SetLoops(-1, LoopType.Yoyo);
-					}
-					if (room == level.CurrentRoom)
-					{
-						roomRect.Find("Color").GetComponent<Image>().color = _mapColorCurrent;
-					}
-				}
-			}
-		}
 	}
 }

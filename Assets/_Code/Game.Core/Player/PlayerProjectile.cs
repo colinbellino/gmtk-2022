@@ -15,44 +15,46 @@ public class PlayerProjectile : MonoBehaviour
 	private Vector3 aimDirection;
 	private Vector2 aimInput;
 
-	void Awake() {
+	void Awake()
+	{
 		playerHealth = GetComponentInParent<PlayerHealth>();
 		handSR = GetComponentInChildren<SpriteRenderer>();
 	}
 
-	void OnEnable() {
+	void OnEnable()
+	{
 		GameManager.Game.Controls.Gameplay.Shoot.performed += GetShootInput;
 	}
-	void OnDisable() {
+	void OnDisable()
+	{
 		GameManager.Game.Controls.Gameplay.Shoot.performed -= GetShootInput;
 	}
 
-	void Update() {
+	void Update()
+	{
 		mousePosition = GameManager.Game.Controls.Global.MousePosition.ReadValue<Vector2>();
 		worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-		if (shootCounter > 0) {
+		if (shootCounter > 0)
+		{
 			shootCounter -= Time.deltaTime;
 		}
 
-		if (handSR.transform.position.x < playerHealth.transform.position.x) {
+		if (handSR.transform.position.x < playerHealth.transform.position.x)
+		{
 			handSR.flipY = true;
-		} else {
-			handSR.flipY = false;
 		}
-
-		if (GameManager.Game.State.CurrentInputType == InputTypes.Keyboard) {
-			aimDirection = worldMousePosition - transform.position;
-		} else {
-			aimInput = GameManager.Game.Controls.Gameplay.Aim.ReadValue<Vector2>();
-			aimDirection = aimInput;
+		else
+		{
+			handSR.flipY = false;
 		}
 
 		float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
 		transform.localRotation = Quaternion.Euler(0, 0, angle);
 	}
 
-	private void GetShootInput(InputAction.CallbackContext context) {
+	private void GetShootInput(InputAction.CallbackContext context)
+	{
 		if (GameManager.Game.State.Paused)
 			return;
 

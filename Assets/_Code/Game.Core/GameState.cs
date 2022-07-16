@@ -15,18 +15,10 @@ namespace Game.Core
 		public float TimeScaleCurrent;
 		public float TimeScaleDefault;
 
-		public InputTypes CurrentInputType;
-
 		public EventInstance TitleMusic;
 		public EventInstance LevelMusic;
 		public EventInstance EndMusic;
 		public EventInstance PauseSnapshot;
-
-		public int CurrentLevelIndex;
-		public Level Level;
-		public PlayerController Player;
-		public string[] DebugLevels;
-		public string[] AllLevels;
 
 		public PlayerSettings PlayerSettings;
 		public PlayerSaveData PlayerSaveData;
@@ -35,7 +27,7 @@ namespace Game.Core
 		public List<int> QueuedRequests;
 		public List<int> ActiveRequests;
 		public List<int> CompletedRequests;
-		public DiceBag Bag;
+		// public DiceBag Bag;
 	}
 
 	public enum DieTypes

@@ -1,7 +1,6 @@
 ﻿using System;
 using FMODUnity;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace Game.Core
 {
@@ -10,15 +9,11 @@ namespace Game.Core
 	{
 		[Header("DEBUG")]
 		public bool DebugStateMachine;
-		public bool DebugLevels;
 		public bool DebugSkipTitle;
 		public int LockFPS = 60;
 
 		[Header("CONTENT")]
-		public PlayerController Player;
-		public string[] Levels = new string[0];
-		public TileToEntity TileToEntity;
-		public Tile[] WallTiles;
+		public DieTypeToSprite DieSprites;
 
 		[Header("AUDIO")]
 		public string GameBus = "bus:/Game";
@@ -48,14 +43,5 @@ namespace Game.Core
 	}
 
 	[Serializable]
-	public class TileToEntity : SerializableDictionary<TileBase, Entity> { }
-
-	[Serializable]
-	public class TileToInfo : SerializableDictionary<TileBase, TileInfo> { }
-
-	[Serializable]
-	public class TileInfo
-	{
-		public bool Walkable;
-	}
+	public class DieTypeToSprite : SerializableDictionary<DieTypes, Sprite> { }
 }

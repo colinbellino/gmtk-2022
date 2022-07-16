@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WebGLQuit.unity
     guid: 3286644f5dcf2974eb734955985e0cb8
+  - enabled: 1
+    path: Assets/Scenes/Gameplay.unity
+    guid: 0ad0f11d6976604479ce2fcbc72493e6
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 6c3fc527fedd14917988e7e8b722b610, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: 38d03782d15fb4a8d9406034dd4074eb, type: 2}

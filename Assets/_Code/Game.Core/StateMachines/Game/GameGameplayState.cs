@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Game.Core.StateMachines.Game
 {
@@ -13,7 +13,7 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Enter()
 		{
-			GameManager.Game.State.Running = true;
+			await SceneManager.LoadSceneAsync("Gameplay", LoadSceneMode.Additive);
 
 			GameManager.Game.Controls.Gameplay.Enable();
 			GameManager.Game.Controls.Gameplay.Move.performed += OnMovePerformed;
@@ -25,7 +25,7 @@ namespace Game.Core.StateMachines.Game
 
 			GameManager.Game.State.Requests = new List<DiceRequest> {
 				new DiceRequest { Id = 0, Quantity = 1, Die = DieTypes.D6, Timestamp = Time.time + 0f },
-				new DiceRequest { Id = 1, Quantity = 2, Die = DieTypes.D4, Timestamp = Time.time + 0.6f },
+				new DiceRequest { Id = 1, Quantity = 2, Die = DieTypes.D4, Timestamp = Time.time + 1.6f },
 				new DiceRequest { Id = 2, Quantity = 1, Die = DieTypes.D10, Bonus = 2, Timestamp = Time.time + 2f },
 				new DiceRequest { Id = 3, Quantity = 1, Die = DieTypes.D6, Bonus = -2, Timestamp = Time.time + 3f },
 			};
@@ -43,6 +43,8 @@ namespace Game.Core.StateMachines.Game
 				// 	GameManager.Game.UI.AddDebugLine("F5:  Heal player");
 				// 	GameManager.Game.UI.AddDebugLine("R:   Restart level");
 			}
+
+			GameManager.Game.State.Running = true;
 		}
 
 		public void Tick()
@@ -127,13 +129,7 @@ namespace Game.Core.StateMachines.Game
 			await GameManager.Game.PauseUI.Hide(0);
 			await GameManager.Game.OptionsUI.Hide(0);
 
-			GameObject.Destroy(GameManager.Game.State.Player.gameObject);
-			GameManager.Game.State.Player = null;
-
-			foreach (var room in GameManager.Game.State.Level.Rooms)
-				if (room.Instance != null)
-					GameObject.Destroy(room.Instance.gameObject);
-			GameManager.Game.State.Level = null;
+			await SceneManager.UnloadSceneAsync("Gameplay");
 		}
 
 		private void OnMovePerformed(InputAction.CallbackContext context)
@@ -152,19 +148,11 @@ namespace Game.Core.StateMachines.Game
 		private async void NextLevel()
 		{
 			GameManager.Game.State.Running = false;
-			GameManager.Game.State.PlayerSaveData.ClearedLevels.Add(GameManager.Game.State.CurrentLevelIndex);
 			Save.SavePlayerSaveData(GameManager.Game.State.PlayerSaveData);
-			GameManager.Game.State.CurrentLevelIndex += 1;
 
 			AudioHelpers.PlayOneShot(GameManager.Game.Config.StageClear);
 
 			await UniTask.Delay(1000);
-
-			if (GameManager.Game.State.CurrentLevelIndex >= GameManager.Game.Config.Levels.Length)
-			{
-				Victory();
-				return;
-			}
 
 			GameManager.Game.State.Running = false;
 			FSM.Fire(GameFSM.Triggers.NextLevel);

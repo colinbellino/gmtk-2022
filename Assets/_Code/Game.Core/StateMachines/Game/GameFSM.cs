@@ -8,7 +8,7 @@ namespace Game.Core.StateMachines.Game
 {
 	public class GameFSM
 	{
-		public enum States { Init, Title, SelectLevel, Intro, LoadLevel, Gameplay, Ending, Credits, Quit }
+		public enum States { Init, Title, Gameplay, Ending, Credits, Quit }
 		public enum Triggers { Done, StartGame, Won, Lost, Retry, NextLevel, LevelSelected, LevelSelectionRequested, CreditsRequested, Quit }
 
 		private readonly bool _debug;
@@ -25,9 +25,6 @@ namespace Game.Core.StateMachines.Game
 			{
 				{ States.Init, new GameInitState { FSM = this } },
 				{ States.Title, new GameTitleState { FSM = this } },
-				{ States.SelectLevel, new GameSelectLevelState { FSM = this } },
-				{ States.Intro, new GameIntroState { FSM = this } },
-				{ States.LoadLevel, new GameLoadLevelState { FSM = this } },
 				{ States.Gameplay, new GameGameplayState { FSM = this } },
 				{ States.Ending, new GameEndingState { FSM = this } },
 				{ States.Credits, new GameCreditsState { FSM = this } },
@@ -41,28 +38,13 @@ namespace Game.Core.StateMachines.Game
 				.Permit(Triggers.Done, States.Title);
 
 			_machine.Configure(States.Title)
-				.Permit(Triggers.StartGame, States.LoadLevel)
-				.Permit(Triggers.LevelSelected, States.LoadLevel)
-				.Permit(Triggers.LevelSelectionRequested, States.SelectLevel)
+				.Permit(Triggers.StartGame, States.Gameplay)
 				.Permit(Triggers.CreditsRequested, States.Credits)
 				.Permit(Triggers.Quit, States.Quit);
 
-			_machine.Configure(States.SelectLevel)
-				.Permit(Triggers.LevelSelected, States.LoadLevel)
-				.Permit(Triggers.Quit, States.Title);
-
-			_machine.Configure(States.Intro)
-				.Permit(Triggers.Done, States.LoadLevel);
-
-			_machine.Configure(States.LoadLevel)
-				.Permit(Triggers.Done, States.Gameplay);
-
 			_machine.Configure(States.Gameplay)
 				.Permit(Triggers.Won, States.Ending)
-				.Permit(Triggers.Quit, States.Quit)
-				.Permit(Triggers.NextLevel, States.LoadLevel)
-				.Permit(Triggers.LevelSelectionRequested, States.SelectLevel)
-				.Permit(Triggers.Retry, States.LoadLevel);
+				.Permit(Triggers.Quit, States.Quit);
 
 			_machine.Configure(States.Ending)
 				.Permit(Triggers.Done, States.Credits);

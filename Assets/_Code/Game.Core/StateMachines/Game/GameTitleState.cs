@@ -15,7 +15,7 @@ namespace Game.Core.StateMachines.Game
 		{
 			if (GameManager.Game.Config.DebugSkipTitle)
 			{
-				StartGame();
+				FSM.Fire(GameFSM.Triggers.StartGame);
 				return;
 			}
 
@@ -73,21 +73,6 @@ namespace Game.Core.StateMachines.Game
 
 			if (Utils.IsDevBuild())
 			{
-				if (Keyboard.current.f1Key.wasReleasedThisFrame) { LoadLevel(0); }
-				if (Keyboard.current.f2Key.wasReleasedThisFrame) { LoadLevel(1); }
-				if (Keyboard.current.f3Key.wasReleasedThisFrame) { LoadLevel(2); }
-				if (Keyboard.current.f4Key.wasReleasedThisFrame) { LoadLevel(3); }
-				if (Keyboard.current.f5Key.wasReleasedThisFrame) { LoadLevel(4); }
-				if (Keyboard.current.f6Key.wasReleasedThisFrame) { LoadLevel(5); }
-				if (Keyboard.current.f7Key.wasReleasedThisFrame) { LoadLevel(6); }
-				if (Keyboard.current.f8Key.wasReleasedThisFrame) { LoadLevel(7); }
-				if (Keyboard.current.f8Key.wasReleasedThisFrame) { LoadLevel(7); }
-				if (Keyboard.current.f9Key.wasReleasedThisFrame) { LoadLevel(8); }
-				if (Keyboard.current.f10Key.wasReleasedThisFrame) { LoadLevel(9); }
-				if (Keyboard.current.f11Key.wasReleasedThisFrame) { LoadLevel(10); }
-				if (Keyboard.current.f12Key.wasReleasedThisFrame) { LoadLevel(11); }
-				if (Keyboard.current.lKey.wasReleasedThisFrame) { LoadLevel(GameManager.Game.Config.Levels.Length - 1); }
-
 				// if (Keyboard.current.kKey.wasReleasedThisFrame)
 				// {
 				// 	if (Keyboard.current.leftShiftKey.isPressed)
@@ -116,17 +101,6 @@ namespace Game.Core.StateMachines.Game
 			return default;
 		}
 
-		private async void LoadLevel(int levelIndex)
-		{
-			Debug.Log($"Loading level {levelIndex}.");
-			GameManager.Game.State.CurrentLevelIndex = levelIndex;
-			GameManager.Game.State.TitleMusic.stop(STOP_MODE.ALLOWFADEOUT);
-			await GameManager.Game.UI.FadeIn(Color.black, 0);
-			await GameManager.Game.UI.HideTitle(0);
-			await GameManager.Game.OptionsUI.Hide(0);
-			FSM.Fire(GameFSM.Triggers.LevelSelected);
-		}
-
 		private async void StartGame()
 		{
 			GameManager.Game.State.TitleMusic.stop(STOP_MODE.ALLOWFADEOUT);
@@ -135,7 +109,6 @@ namespace Game.Core.StateMachines.Game
 			await GameManager.Game.UI.HideTitle(0);
 			await GameManager.Game.OptionsUI.Hide(0);
 
-			GameManager.Game.State.CurrentLevelIndex = 0;
 			FSM.Fire(GameFSM.Triggers.StartGame);
 		}
 
