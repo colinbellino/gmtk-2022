@@ -1850,6 +1850,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 309729273}
     m_Modifications:
+    - target: {fileID: 1440915550215677615, guid: 91e4d553c056d4faebad8ae4e65f7750, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812169623155321831, guid: 91e4d553c056d4faebad8ae4e65f7750, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6182542350337161359, guid: 91e4d553c056d4faebad8ae4e65f7750, type: 3}
       propertyPath: m_Name
       value: Gameplay Canvas
@@ -2385,6 +2393,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8140679349346133904, guid: 57b4dd81316854a75b50cd834d02aecc, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8218064835081602368, guid: 57b4dd81316854a75b50cd834d02aecc, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8218064835081602370, guid: 57b4dd81316854a75b50cd834d02aecc, type: 3}

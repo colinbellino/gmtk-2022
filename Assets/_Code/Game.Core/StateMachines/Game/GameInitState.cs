@@ -31,6 +31,7 @@ namespace Game.Core.StateMachines.Game
 			while (LocalizationSettings.InitializationOperation.IsDone == false)
 				await UniTask.NextFrame();
 
+			// Load player data
 			{
 				if (Save.LoadGame(ref Globals.State.CurrentSave) == false)
 					Debug.LogWarning("[Game] Couldn't load player save.");

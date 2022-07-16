@@ -59,22 +59,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 18029022411055121
-    m_Localized: "\u201CC'\xE9tait le dernier du tas!\u201D Larry ricane tout seul
-      en se remettant au lit.\\n\\n\u201CMaintenant, c'est l'heure de la sieste.
-      R\xE9veillez moi quand ces path\xE9tiques mortels auront le niveau bon sang.
-      Et merci beau-cou d'\xEAtre venu!"
+    m_Localized: 'TODO: ending FR'
     m_Metadata:
       m_Items: []
   - m_Id: 18029022411055120
-    m_Localized: "\u201CIl n'est plus possible de dormir quelques si\xE8cles tranquillement
-      par ici?! Moi, Larry le vampire endormi, \xE9tait en train de faire de beaux
-      r\xEAves d'h\xE9morragie et d'h\xE9moglobine quand j'ai \xE9t\xE9 tr\xE8s rudement
-      reveill\xE9 par une foule en col\xE8re qui a encore assailli MON manoir!\u201D\\n\\nIl
-      sauta hors de son cercueil pour s'occuper de ses intrus et se rendit compte
-      qu'il n'avait pas festoy\xE9 depuis des ann\xE9es!\\n\\n\u201CJe suis affam\xE9.\u201D
-      pensa-t-il. \u201CIl vaudrait mieux que je parcours le manoir pour bannir ces
-      envahisseurs imm\xE9diatement... sinon je risquerais bien de mourir de faim!
-      Ah-Ah-Ah\u201D"
+    m_Localized: 'TODO: intro FR'
     m_Metadata:
       m_Items: []
   - m_Id: 18029022411055119

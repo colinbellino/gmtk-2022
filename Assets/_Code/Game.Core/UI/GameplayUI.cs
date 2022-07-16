@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using DG.Tweening.Core;
@@ -11,31 +12,14 @@ namespace Game.Core
 	public class GameplayUI : MonoBehaviour
 	{
 		[SerializeField] private GameObject _root;
-		[SerializeField] private TMPro.TMP_Text _healthText;
-		[SerializeField] private RectTransform _healthCurrentFill;
-		[SerializeField] private RectTransform _healthTempFill;
-		[SerializeField] private RectTransform _dashCurrentFill;
-		[SerializeField] private RectTransform[] _mapRooms;
-		[SerializeField] private GridLayoutGroup _mapGridLayoutGroup;
-		[SerializeField] private Color _mapColorDefault = Color.white;
-		[SerializeField] private Color _mapColorExplored = Color.white;
-		[SerializeField] private Color _mapColorStart = Color.white;
-		[SerializeField] private Color _mapColorCurrent = Color.white;
-
-		private float _currentHealthDefaultWidth;
-		private float _tempHealthDefaultWidth;
-		private float _previousCurrentHealth;
-		private float _tempHealth;
-		private float _currentDashDefaultWidth;
-		private TweenerCore<float, float, FloatOptions> _tempHealthTween;
+		[SerializeField] private RectTransform[] _requests;
+		private Dictionary<int, int> _reqIndexToTransformIndex;
 
 		public bool IsOpened => _root.activeSelf;
 
 		public async UniTask Init()
 		{
-			_currentHealthDefaultWidth = _healthCurrentFill.sizeDelta.x;
-			_tempHealthDefaultWidth = _healthTempFill.sizeDelta.x;
-			_currentDashDefaultWidth = _dashCurrentFill.sizeDelta.x;
+			_reqIndexToTransformIndex = new Dictionary<int, int>();
 			await Hide();
 		}
 
@@ -47,22 +31,40 @@ namespace Game.Core
 			// await UniTask.NextFrame();
 			// EventSystem.current.SetSelectedGameObject(_levelSelectButton.gameObject);
 
+			foreach (var r in _requests)
+				r.gameObject.SetActive(false);
+
 			return default;
 		}
 
-		public void UpdateRequest(DiceRequest req)
+		public void UpdateRequest(int reqIndex, DiceRequest req)
 		{
-			var progress = (Time.time - req.Timestamp) / Utils.GetDuration(req) * 100;
-			var color = Color.white;
-			if (req.FromDM)
-				color = Color.red;
-			var text = Utils.DiceRequestToString(req) + " (" + (int)progress + "%)";
-			Globals.UI.AddDebugLine($"<color=#{ColorUtility.ToHtmlStringRGBA(color)}>{text}</color>");
+			var progress = (Time.time - req.Timestamp) / Utils.GetDuration(req);
+
+			if (Utils.IsDevBuild())
+			{
+				var color = Color.white;
+				if (req.FromDM)
+					color = Color.red;
+				var text = Utils.DiceRequestToString(req) + " (" + (int)(progress * 100) + "%)";
+				Globals.UI.AddDebugLine($"<color=#{ColorUtility.ToHtmlStringRGBA(color)}>{text}</color>");
+			}
+
+			_requests[reqIndex].GetComponentInChildren<TMPro.TMP_Text>().text = Utils.DiceRequestToString(req);
+			{
+				var progressImage = _requests[reqIndex].Find("Progress").GetComponent<Image>();
+				progressImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _requests[reqIndex].rect.width - progress * _requests[reqIndex].rect.width);
+				var color = Color.blue;
+				if (req.FromDM)
+					color = Color.red;
+				progressImage.color = color;
+			}
 		}
 
 		public void Tick()
 		{
 			Globals.UI.SetDebugText("");
+			Globals.UI.AddDebugLine("Level: " + Globals.State.CurrentLevelIndex);
 			Globals.UI.AddDebugLine("Score: " + Globals.State.Score);
 			Globals.UI.AddDebugLine("Timer: " + Utils.FormatTimer(Globals.State.Timer - Time.time));
 			Globals.UI.AddDebugLine("");
@@ -70,7 +72,45 @@ namespace Game.Core
 			foreach (var reqIndex in Globals.State.ActiveRequests)
 			{
 				var req = Globals.State.Requests[reqIndex];
-				UpdateRequest(req);
+				UpdateRequest(reqIndex, req);
+			}
+		}
+
+		public async void AddRequest(int reqIndex, DiceRequest req)
+		{
+			var transformIndex = 0;
+			for (int i = 0; i < _requests.Length; i++)
+			{
+				if (_requests[i].gameObject.activeSelf == false)
+				{
+					transformIndex = i;
+					break;
+				}
+			}
+
+			_reqIndexToTransformIndex.Add(reqIndex, transformIndex);
+			var posY = _requests[transformIndex].rect.position.y;
+			var posX = transformIndex * (_requests[transformIndex].rect.width + 10);
+			await _requests[transformIndex].DOLocalMove(new Vector2(posX, 10), 0.002f);
+			_requests[transformIndex].gameObject.SetActive(true);
+			_ = _requests[transformIndex].DOLocalMove(new Vector2(posX, posY), 0.3f);
+		}
+
+		public async void RemoveRequest(int reqIndex, DiceRequest req)
+		{
+			var transformIndex = _reqIndexToTransformIndex[reqIndex];
+
+			await _requests[transformIndex].DOLocalMoveY(40, 0.2f);
+			_requests[transformIndex].gameObject.SetActive(false);
+
+			var i = 0;
+			foreach (var r in _requests)
+			{
+				if (r.gameObject.activeSelf)
+				{
+					_ = r.DOLocalMoveX(i * (r.rect.width + 10), 0.2f);
+					i += 1;
+				}
 			}
 		}
 
@@ -79,37 +119,6 @@ namespace Game.Core
 			_root.SetActive(false);
 
 			return default;
-		}
-
-		public void SetHealth(int current, int max)
-		{
-			// _healthText.text = $"Health: {current}/{max}";
-
-			var currentPercentage = (float)current / max;
-
-			if (current < _previousCurrentHealth)
-			{
-				var loss = _previousCurrentHealth - current;
-				var tempPercentage = (current + loss) / max;
-				_healthTempFill.sizeDelta = new Vector2(tempPercentage * _tempHealthDefaultWidth, _healthTempFill.sizeDelta.y);
-
-				_tempHealth = current + loss;
-
-				_tempHealthTween = DOTween.To(() => _tempHealth, x => _tempHealth = x, current, 1f)
-					.OnUpdate(() =>
-					{
-						_healthTempFill.sizeDelta = new Vector2(_tempHealth / max * _tempHealthDefaultWidth, _healthTempFill.sizeDelta.y);
-					});
-			}
-
-			_healthCurrentFill.sizeDelta = new Vector2(currentPercentage * _currentHealthDefaultWidth, _healthCurrentFill.sizeDelta.y);
-
-			_previousCurrentHealth = current;
-		}
-
-		public void SetDash(float value)
-		{
-			_dashCurrentFill.sizeDelta = new Vector2(value * _currentDashDefaultWidth, _dashCurrentFill.sizeDelta.y);
 		}
 	}
 }

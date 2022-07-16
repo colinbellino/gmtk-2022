@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using FMOD.Studio;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +15,9 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Enter()
 		{
+			if (Globals.State.CurrentSave.ClearedLevels != null && Globals.State.CurrentSave.ClearedLevels.Count > 0)
+				Globals.State.CurrentLevelIndex = math.min(Globals.State.CurrentSave.ClearedLevels.LastOrDefault() + 1, Globals.Config.Levels.Length - 1);
+
 			if (Globals.Config.DebugSkipTitle)
 			{
 				FSM.Fire(GameFSM.Triggers.StartGame);

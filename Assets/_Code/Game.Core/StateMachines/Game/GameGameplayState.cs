@@ -26,9 +26,6 @@ namespace Game.Core.StateMachines.Game
 				Globals.State.LevelMusic.start();
 
 			var levelIndex = Globals.State.CurrentLevelIndex;
-			if (Globals.State.CurrentSave.ClearedLevels != null && Globals.State.CurrentSave.ClearedLevels.Count > 0)
-				levelIndex = math.min(Globals.State.CurrentSave.ClearedLevels.LastOrDefault() + 1, Globals.Config.Levels.Length - 1);
-
 			// UnityEngine.Debug.Log("levelIndex: " + levelIndex);
 
 			var level = Globals.Config.Levels[levelIndex];
@@ -59,7 +56,8 @@ namespace Game.Core.StateMachines.Game
 			}
 
 			Globals.State.Running = true;
-			// Globals.State.StartedAt = Time.time;
+
+			_ = Globals.GameplayUI.Show();
 		}
 
 		public void Tick()
@@ -118,8 +116,9 @@ namespace Game.Core.StateMachines.Game
 					var req = Globals.State.Requests[reqIndex];
 					if (Time.time >= req.Timestamp)
 					{
-						Globals.State.ActiveRequests.Add(reqIndex);
 						Globals.State.QueuedRequests.Remove(reqIndex);
+						Globals.State.ActiveRequests.Add(reqIndex);
+						Globals.GameplayUI.AddRequest(reqIndex, req);
 					}
 				}
 
@@ -129,8 +128,9 @@ namespace Game.Core.StateMachines.Game
 					var req = Globals.State.Requests[reqIndex];
 					if (Time.time >= req.Timestamp + Utils.GetDuration(req))
 					{
-						Globals.State.FailedRequests.Add(reqIndex);
 						Globals.State.ActiveRequests.Remove(reqIndex);
+						Globals.State.FailedRequests.Add(reqIndex);
+						Globals.GameplayUI.RemoveRequest(reqIndex, req);
 					}
 				}
 

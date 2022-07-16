@@ -230,13 +230,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u201CCan\u2019t a lad just get a couple centuries of sleep around here
-    ?! I, Larry the sleepy vampire, was having sweet dreams of hemorrhages and hemoglobin
-    when I got rudely awoken by yet another angry mob storming MY castle!\u201D\\n\\nHe
-    pops out of his coffin to take care of the intruders when he suddenly realizes
-    he hasn\u2019t feasted in years!\\n\\n\u201CI'm famished.\u201D he thought to
-    himself. \u201CBetter roam the manor and banish these invaders at once... or
-    I'll surely die from hunger! Ah-Ah-Ah\u201D"
+  m_text: 'TODO: intro'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9796fda73f6416646b862d50b5cce8e3, type: 2}
   m_sharedMaterial: {fileID: 9068388157713230954, guid: 9796fda73f6416646b862d50b5cce8e3, type: 2}
