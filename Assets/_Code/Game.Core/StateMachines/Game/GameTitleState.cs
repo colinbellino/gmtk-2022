@@ -15,8 +15,10 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Enter()
 		{
-			if (Globals.State.CurrentSave.ClearedLevels != null && Globals.State.CurrentSave.ClearedLevels.Count > 0)
-				Globals.State.CurrentLevelIndex = math.min(Globals.State.CurrentSave.ClearedLevels.LastOrDefault() + 1, Globals.Config.Levels.Length - 1);
+			// if (Globals.State.CurrentSave.ClearedLevels != null && Globals.State.CurrentSave.ClearedLevels.Count > 0)
+			// 	Globals.State.CurrentLevelIndex = math.min(Globals.State.CurrentSave.ClearedLevels.LastOrDefault() + 1, Globals.Config.Levels.Length - 1);
+
+			_ = Globals.UI.FadeIn(Color.clear);
 
 			if (Globals.Config.DebugSkipTitle)
 			{
@@ -35,8 +37,6 @@ namespace Game.Core.StateMachines.Game
 			Globals.State.TitleMusic.getPlaybackState(out var state);
 			if (state != PLAYBACK_STATE.PLAYING)
 				Globals.State.TitleMusic.start();
-
-			_ = Globals.UI.FadeIn(Color.clear);
 
 			// UnityEngine.Debug.Log("FIXME:");
 			// if (Globals.State.PlayerSaveData.ClearedLevels.Count > 0)
@@ -110,7 +110,7 @@ namespace Game.Core.StateMachines.Game
 		{
 			Globals.State.TitleMusic.stop(STOP_MODE.ALLOWFADEOUT);
 
-			await Globals.UI.FadeIn(Color.black);
+			await Globals.UI.FadeIn(Globals.Config.ColorBackgroundDark);
 			await Globals.UI.HideTitle(0);
 			await Globals.OptionsUI.Hide(0);
 
@@ -125,7 +125,7 @@ namespace Game.Core.StateMachines.Game
 		private async void StartCredits()
 		{
 			await Globals.UI.HideTitle();
-			await Globals.UI.FadeIn(Color.black);
+			await Globals.UI.FadeIn(Globals.Config.ColorBackgroundDark);
 
 			FSM.Fire(GameFSM.Triggers.CreditsRequested);
 		}

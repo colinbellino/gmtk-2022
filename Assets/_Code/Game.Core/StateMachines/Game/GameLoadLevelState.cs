@@ -19,7 +19,7 @@ namespace Game.Core.StateMachines.Game
 
 			// Globals.State.Level = level;
 
-			await UniTask.NextFrame();
+			// await UniTask.NextFrame();
 
 			FSM.Fire(GameFSM.Triggers.Done);
 		}

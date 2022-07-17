@@ -12,6 +12,10 @@ namespace Game.Core
 		public bool DebugSkipTitle;
 		public int LockFPS = 60;
 
+		[Header("Colors")]
+		public Color ColorBackgroundDark;
+		public Color ColorLight;
+
 		[Header("CONTENT")]
 		public DieTypeToSprite DieSprites;
 		public Level[] Levels;

@@ -13,7 +13,7 @@ namespace Game.Core.StateMachines.Game
 		{
 			Globals.UI.SetDebugText("");
 
-			_ = Globals.UI.FadeIn(Color.black, 0);
+			_ = Globals.UI.FadeIn(Globals.Config.ColorBackgroundDark, 0);
 
 			FMODUnity.RuntimeManager.LoadBank("SFX", loadSamples: true);
 
@@ -59,7 +59,7 @@ namespace Game.Core.StateMachines.Game
 
 			Globals.Controls.Global.Enable();
 
-			Globals.UI.SetVersion($"{Globals.State.Version} - {Globals.State.Commit}");
+			Globals.UI.SetVersion($"{Globals.State.Version}_{Globals.State.Commit}");
 			await Globals.UI.Init();
 			await Globals.PauseUI.Init();
 			await Globals.OptionsUI.Init();

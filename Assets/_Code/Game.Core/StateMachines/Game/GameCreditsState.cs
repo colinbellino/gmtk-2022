@@ -32,7 +32,7 @@ namespace Game.Core.StateMachines.Game
 		public async UniTask Exit()
 		{
 			Globals.State.EndMusic.stop(STOP_MODE.ALLOWFADEOUT);
-			await Globals.UI.FadeIn(Color.black);
+			await Globals.UI.FadeIn(Globals.Config.ColorBackgroundDark);
 			await Globals.UI.HideCredits();
 		}
 	}

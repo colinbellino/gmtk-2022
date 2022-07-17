@@ -4,8 +4,6 @@ using FMOD.Studio;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using Unity.Mathematics;
 
 namespace Game.Core.StateMachines.Game
 {
@@ -23,10 +21,7 @@ namespace Game.Core.StateMachines.Game
 			if (state == PLAYBACK_STATE.STOPPED || state == PLAYBACK_STATE.STOPPING)
 				Globals.State.LevelMusic.start();
 
-			var levelIndex = Globals.State.CurrentLevelIndex;
-			// UnityEngine.Debug.Log("levelIndex: " + levelIndex);
-
-			var level = Globals.Config.Levels[levelIndex];
+			var level = Globals.Config.Levels[Globals.State.CurrentLevelIndex];
 			Globals.State.Score = 0;
 			Globals.State.Requests = new List<DiceRequest>(level.Requests);
 			var t = Time.time;
@@ -43,6 +38,11 @@ namespace Game.Core.StateMachines.Game
 
 			Save.SaveGame(Globals.State.CurrentSave);
 
+			Globals.PauseUI.BackClicked += ResumeGame;
+
+			_ = Globals.GameplayUI.Show();
+			await Globals.UI.FadeIn(Color.clear);
+
 			if (Utils.IsDevBuild())
 			{
 				Globals.UI.SetDebugText("");
@@ -54,8 +54,6 @@ namespace Game.Core.StateMachines.Game
 			}
 
 			Globals.State.Running = true;
-
-			_ = Globals.GameplayUI.Show();
 		}
 
 		public async void Tick()
@@ -169,11 +167,13 @@ namespace Game.Core.StateMachines.Game
 			Globals.State.PauseSnapshot.stop(STOP_MODE.ALLOWFADEOUT);
 
 			Globals.PauseUI.BackClicked -= ResumeGame;
-			await Globals.UI.FadeIn(Color.black);
+			await Globals.UI.FadeIn(Globals.Config.ColorBackgroundDark);
 			await Globals.UI.HideLevelName(0);
 			await Globals.GameplayUI.Hide(0);
 			await Globals.PauseUI.Hide(0);
 			await Globals.OptionsUI.Hide(0);
+
+			await Globals.GameplayUI.RemoveRequests(Globals.State.ActiveRequests);
 		}
 
 		private void OnMovePerformed(InputAction.CallbackContext context)
@@ -191,16 +191,15 @@ namespace Game.Core.StateMachines.Game
 
 		private async void NextLevel()
 		{
-			Globals.State.Running = false;
-			if (Globals.State.CurrentSave.ClearedLevels == null)
-				Globals.State.CurrentSave.ClearedLevels = new HashSet<int>();
-			Globals.State.CurrentSave.ClearedLevels.Add(Globals.State.CurrentLevelIndex);
+			// if (Globals.State.CurrentSave.ClearedLevels == null)
+			// 	Globals.State.CurrentSave.ClearedLevels = new HashSet<int>();
+			// Globals.State.CurrentSave.ClearedLevels.Add(Globals.State.CurrentLevelIndex);
 			Save.SaveGame(Globals.State.CurrentSave);
 			Globals.State.CurrentLevelIndex += 1;
 
 			AudioHelpers.PlayOneShot(Globals.Config.StageClear);
 
-			await UniTask.Delay(1000);
+			Globals.State.Running = false;
 
 			if (Globals.State.CurrentLevelIndex >= Globals.Config.Levels.Length)
 			{
@@ -208,7 +207,6 @@ namespace Game.Core.StateMachines.Game
 				return;
 			}
 
-			Globals.State.Running = false;
 			FSM.Fire(GameFSM.Triggers.NextLevel);
 		}
 

@@ -60,7 +60,7 @@ namespace Game.Core
 		}
 		public void SetVersion(string value)
 		{
-			_versionText.text = value;
+			_versionText.text = $"/version/{value}";
 		}
 
 		public async UniTask ShowTitle(float duration = 0.5f)
@@ -148,6 +148,7 @@ namespace Game.Core
 
 		public async UniTask FadeIn(Color color, float duration = 1f)
 		{
+			UnityEngine.Debug.Log("FadeIn " + color);
 			_fadeRoot.SetActive(true);
 			if (_fadeTweener != null)
 			{

@@ -83,6 +83,6 @@ namespace Game.Core
 	[System.Serializable]
 	public struct GameSave
 	{
-		public HashSet<int> ClearedLevels;
+		// public HashSet<int> ClearedLevels;
 	}
 }

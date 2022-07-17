@@ -33,7 +33,7 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Exit()
 		{
-			await Globals.UI.FadeIn(Color.black);
+			await Globals.UI.FadeIn(Globals.Config.ColorBackgroundDark);
 			await Globals.UI.HideEnding(0);
 		}
 	}
