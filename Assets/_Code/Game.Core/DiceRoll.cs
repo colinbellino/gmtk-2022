@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 namespace Game.Core
@@ -11,13 +10,15 @@ namespace Game.Core
 		public DieTypes Type;
 		public int Modifier;
 
+#if UNITY_EDITOR
 		[ContextMenu("Rename")]
 		private void Rename()
 		{
 			var newName = $"{Type} x{Quantity} +{Modifier} - {Name}";
-			string assetPath = AssetDatabase.GetAssetPath(GetInstanceID());
-			AssetDatabase.RenameAsset(assetPath, newName);
-			AssetDatabase.SaveAssets();
+			string assetPath = UnityEditor.AssetDatabase.GetAssetPath(GetInstanceID());
+			UnityEditor.AssetDatabase.RenameAsset(assetPath, newName);
+			UnityEditor.AssetDatabase.SaveAssets();
 		}
+#endif
 	}
 }
