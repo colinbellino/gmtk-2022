@@ -49,7 +49,7 @@ namespace Game.Core.StateMachines.Game
 			if (Utils.IsDevBuild())
 			{
 				Globals.UI.SetDebugText("");
-				// 	Globals.UI.AddDebugLine("F1:  Load next level");
+				Globals.UI.AddDebugLine("F1:  Load next level");
 				// 	Globals.UI.AddDebugLine("F2:  Kill all enemies");
 				// 	Globals.UI.AddDebugLine("F4:  Damage player");
 				// 	Globals.UI.AddDebugLine("F5:  Heal player");
