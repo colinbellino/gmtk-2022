@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,23 +12,22 @@ namespace Game.Core
 
 		private Color _defaultColor;
 		private List<Die> _dice = new List<Die>();
-		private List<DieBonus> _bonuses = new List<DieBonus>();
+		private List<DieModifier> _modifiers = new List<DieModifier>();
 
 		private void Awake()
 		{
 			_defaultColor = _spriteRenderer.color;
 		}
 
-		public void Dehighlight()
-		{
-			_spriteRenderer.color = _defaultColor;
-		}
-
 		public void Highlight()
 		{
-			var color = _defaultColor;
-			color.r = 1;
-			_spriteRenderer.color = color;
+			ColorUtility.TryParseHtmlString("#ffe6cc", out var color);
+			_spriteRenderer.DOColor(color, 0.2f);
+		}
+
+		public void Dehighlight()
+		{
+			_spriteRenderer.DOColor(_defaultColor, 0.2f);
 		}
 
 		public void AddDie(Die die)
@@ -48,22 +48,22 @@ namespace Game.Core
 			_dice.Remove(die);
 		}
 
-		public void AddBonus(DieBonus bonus)
+		public void AddModifier(DieModifier modifier)
 		{
-			if (_bonuses.Contains(bonus))
+			if (_modifiers.Contains(modifier))
 				return;
 
-			// UnityEngine.Debug.Log(bonus + " => " + name);
-			_bonuses.Add(bonus);
+			// UnityEngine.Debug.Log(modifier + " => " + name);
+			_modifiers.Add(modifier);
 		}
 
-		public void RemoveBonus(DieBonus bonus)
+		public void RemoveModifier(DieModifier modifier)
 		{
-			if (_bonuses.Contains(bonus) == false)
+			if (_modifiers.Contains(modifier) == false)
 				return;
 
-			// UnityEngine.Debug.Log(bonus + " <= " + name);
-			_bonuses.Remove(bonus);
+			// UnityEngine.Debug.Log(modifier + " <= " + name);
+			_modifiers.Remove(modifier);
 		}
 
 		public void SubmitBag()
@@ -82,7 +82,7 @@ namespace Game.Core
 				bag.Quantity += 1;
 			}
 
-			bag.Modifier = _bonuses.Count;
+			bag.Modifier = _modifiers.Count;
 
 			var activeIds = Globals.State.ActiveRequests;
 
@@ -127,9 +127,9 @@ namespace Game.Core
 				GameObject.Destroy(die.gameObject);
 			_dice.Clear();
 
-			foreach (var bonus in _bonuses)
-				GameObject.Destroy(bonus.gameObject);
-			_bonuses.Clear();
+			foreach (var modifier in _modifiers)
+				GameObject.Destroy(modifier.gameObject);
+			_modifiers.Clear();
 		}
 	}
 }

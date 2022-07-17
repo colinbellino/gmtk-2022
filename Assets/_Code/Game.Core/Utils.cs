@@ -86,12 +86,12 @@ namespace Game.Core
 			return DiceRequestToString(roll.Type, roll.Quantity, roll.Modifier);
 		}
 
-		public static string DiceRequestToString(DieTypes die, int quantity, int bonus)
+		public static string DiceRequestToString(DieTypes die, int quantity, int modifier)
 		{
-			if (bonus > 0)
-				return $"{quantity}D{(int)die} +{bonus}";
-			else if (bonus < 0)
-				return $"{quantity}D{(int)die} {bonus}";
+			if (modifier > 0)
+				return $"{quantity}D{(int)die} +{modifier}";
+			else if (modifier < 0)
+				return $"{quantity}D{(int)die} {modifier}";
 			return $"{quantity}D{(int)die}";
 		}
 

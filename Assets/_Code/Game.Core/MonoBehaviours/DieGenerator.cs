@@ -17,7 +17,7 @@ namespace Game.Core
 		public void OnBeginDrag(PointerEventData eventData)
 		{
 			// UnityEngine.Debug.Log(name + " OnBeginDrag " + eventData);
-			_drag = GameObject.Instantiate(Resources.Load<Die>("Die"), transform.position, Quaternion.identity);
+			_drag = GameObject.Instantiate(Resources.Load<Die>("Die"), GameObject.Find("UI/Gameplay Canvas/Root/Dice").transform);
 			_drag.Init(DieType);
 			_drag.OnBeginDrag(eventData);
 		}

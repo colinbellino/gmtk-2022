@@ -1,16 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace Game.Core
 {
-	public class Die : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+	public class DieModifier : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 	{
-		[SerializeField] private Image _spriteRenderer;
 		[SerializeField] private RectTransform _rectTransform;
-
-		[HideInInspector] public DieTypes DieType;
 
 		private Bag _bag;
 		private Canvas _canvas;
@@ -20,12 +16,6 @@ namespace Game.Core
 		{
 			_bag = GameObject.FindObjectOfType<Bag>();
 			_canvas = _rectTransform.GetComponentInParent<Canvas>();
-		}
-
-		public void Init(DieTypes type)
-		{
-			DieType = type;
-			_spriteRenderer.sprite = Globals.Config.DieSprites[DieType];
 		}
 
 		public void OnBeginDrag(PointerEventData eventData)
@@ -64,11 +54,11 @@ namespace Game.Core
 			if (_hitBag)
 			{
 				_bag.Dehighlight();
-				_bag.AddDie(this);
+				_bag.AddModifier(this);
 			}
 			else
 			{
-				_bag.RemoveDie(this);
+				_bag.RemoveModifier(this);
 				GameObject.Destroy(gameObject);
 			}
 		}
