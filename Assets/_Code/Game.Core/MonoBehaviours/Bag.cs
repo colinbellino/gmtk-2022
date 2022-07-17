@@ -99,6 +99,7 @@ namespace Game.Core
 
 				var score = Globals.Config.ScoreFail * Globals.Config.ScoreMultiplier;
 				Globals.State.Score = math.max(0, Globals.State.Score - score);
+				// AudioHelpers.PlayOneShot(Globals.Config.SoundRequestFail);
 			}
 			else
 			{
@@ -118,6 +119,8 @@ namespace Game.Core
 
 				Globals.State.Score += score;
 				UnityEngine.Debug.Log("Matched request: " + Utils.DiceRequestToString(req));
+
+				AudioHelpers.PlayOneShot(Globals.Config.SoundRequestSuccess);
 			}
 
 			Empty();

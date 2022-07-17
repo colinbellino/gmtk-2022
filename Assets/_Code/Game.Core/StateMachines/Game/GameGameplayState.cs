@@ -47,10 +47,10 @@ namespace Game.Core.StateMachines.Game
 					req.Roll = rolls[Globals.State.Random.NextInt(0, rolls.Length)];
 					if (Globals.State.Random.NextInt(0, 11) > 9)
 						req.FromDM = true;
-					if (Globals.State.Random.NextInt(0, 11) > 5)
-						req.Offset = Globals.State.Random.NextFloat(-5, 1);
-					else
-						req.Offset = 0.3f;
+					// if (Globals.State.Random.NextInt(0, 11) > 5)
+					req.Offset = Globals.State.Random.NextFloat(-3, 0.3f);
+					// else
+					// 	req.Offset = 0.3f;
 					randomRequests.Add(req);
 
 					// UnityEngine.Debug.Log(Utils.DiceRequestToString(req) + " | offset: " + req.Offset + " | DM: " + req.FromDM);
@@ -167,6 +167,8 @@ namespace Game.Core.StateMachines.Game
 
 							var score = Globals.Config.ScoreFail * Globals.Config.ScoreMultiplier;
 							Globals.State.Score = math.max(0, Globals.State.Score - score);
+
+							AudioHelpers.PlayOneShot(Globals.Config.SoundRequestFail);
 
 							toRemove.Add(reqIndex);
 						}

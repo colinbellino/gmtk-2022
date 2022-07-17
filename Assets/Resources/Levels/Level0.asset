@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4ad3404671d3046b1e0dfa730514fe, type: 3}
   m_Name: Level0
   m_EditorClassIdentifier: 
-  Timer: 29
+  Timer: 27
   Requests:
   - Roll: {fileID: 11400000, guid: 30244fd14ed987b4aaabfbf33360d657, type: 2}
     FromDM: 0
-    Offset: 5
+    Offset: 3
   - Roll: {fileID: 11400000, guid: baad4bedda86e9048b6feae3e2db6fca, type: 2}
     FromDM: 0
     Offset: 0.5
