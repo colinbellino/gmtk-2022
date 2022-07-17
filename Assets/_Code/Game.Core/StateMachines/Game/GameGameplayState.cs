@@ -61,13 +61,15 @@ namespace Game.Core.StateMachines.Game
 
 		public async void Tick()
 		{
-
 			if (Globals.State.Running)
 			{
-				if (Globals.State.Settings.AssistMode)
-					Globals.State.TimeScaleCurrent = 0.5f;
-				else
-					Globals.State.TimeScaleCurrent = Globals.State.TimeScaleDefault;
+				if (Globals.State.Paused == false)
+				{
+					if (Globals.State.Settings.AssistMode)
+						Globals.State.TimeScaleCurrent = 0.5f;
+					else
+						Globals.State.TimeScaleCurrent = Globals.State.TimeScaleDefault;
+				}
 
 				if (Globals.Controls.Global.Pause.WasPerformedThisFrame())
 				{
