@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04844e5ead7fcff4b8503f9ce6e5b775, type: 3}
-  m_Name: D4 x1 +0 - Sickle
+  m_Name: D4 x1 +1 - Dagger +1
   m_EditorClassIdentifier: 
-  Name: Sickle
+  Name: Dagger +1
   Quantity: 1
   Type: 4
-  Modifier: 0
+  Modifier: 1

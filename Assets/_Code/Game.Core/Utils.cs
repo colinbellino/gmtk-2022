@@ -107,7 +107,7 @@ namespace Game.Core
 
 		public static float GetDuration(DiceRequest req)
 		{
-			var duration = 3f;
+			var duration = 5f;
 			duration += req.Roll.Quantity * 2;
 			duration += math.abs(req.Roll.Modifier * 2);
 

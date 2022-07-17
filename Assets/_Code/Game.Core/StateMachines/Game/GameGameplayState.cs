@@ -21,6 +21,9 @@ namespace Game.Core.StateMachines.Game
 			if (state == PLAYBACK_STATE.STOPPED || state == PLAYBACK_STATE.STOPPING)
 				Globals.State.LevelMusic.start();
 
+			_ = Globals.GameplayUI.Show();
+			await Globals.UI.FadeIn(Color.clear);
+
 			if (Globals.State.CurrentLevelIndex >= Globals.Config.Levels.Count())
 				Globals.State.CurrentLevelIndex = 0;
 			var level = Globals.Config.Levels[Globals.State.CurrentLevelIndex];
@@ -42,9 +45,6 @@ namespace Game.Core.StateMachines.Game
 			Save.SaveGame(Globals.State.CurrentSave);
 
 			Globals.PauseUI.BackClicked += ResumeGame;
-
-			_ = Globals.GameplayUI.Show();
-			await Globals.UI.FadeIn(Color.clear);
 
 			if (Utils.IsDevBuild())
 			{

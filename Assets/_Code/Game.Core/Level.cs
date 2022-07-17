@@ -21,6 +21,10 @@ namespace Game.Core
 			UnityEngine.Debug.Log("Timer: " + timer);
 			Timer = (int)math.ceil(timer);
 		}
-	}
 
+		private void OnValidate()
+		{
+			CalculateTimer();
+		}
+	}
 }
