@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -84,7 +85,7 @@ namespace Game.Core
 				UpdateRequest(reqIndex, req);
 			}
 
-			_livesText.text = $"Fails: {Globals.State.FailedRequests.Count}/3";
+			_livesText.text = $"Fails: {math.max(3, Globals.State.FailedRequests.Count)}/3";
 
 			if (_previousScore != Globals.State.Score)
 			{
