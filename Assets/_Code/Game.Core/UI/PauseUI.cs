@@ -55,7 +55,7 @@ namespace Game.Core
 
 		private void QuitGame()
 		{
-			Globals.State.LevelMusic.stop(STOP_MODE.ALLOWFADEOUT);
+			Globals.State.MusicMain.stop(STOP_MODE.ALLOWFADEOUT);
 			Globals.GameFSM.Fire(StateMachines.Game.GameFSM.Triggers.Quit);
 		}
 

@@ -15,9 +15,7 @@ namespace Game.Core
 		public float TimeScaleCurrent;
 		public float TimeScaleDefault;
 
-		public EventInstance TitleMusic;
-		public EventInstance LevelMusic;
-		public EventInstance EndMusic;
+		public EventInstance MusicMain;
 		public EventInstance PauseSnapshot;
 
 		public GameSettings Settings;

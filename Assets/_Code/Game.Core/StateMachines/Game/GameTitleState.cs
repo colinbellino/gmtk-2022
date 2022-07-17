@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using FMOD.Studio;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,9 +14,6 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Enter()
 		{
-			// if (Globals.State.CurrentSave.ClearedLevels != null && Globals.State.CurrentSave.ClearedLevels.Count > 0)
-			// 	Globals.State.CurrentLevelIndex = math.min(Globals.State.CurrentSave.ClearedLevels.LastOrDefault() + 1, Globals.Config.Levels.Length - 1);
-
 			_ = Globals.UI.FadeIn(Color.clear);
 
 			if (Globals.Config.DebugSkipTitle)
@@ -34,27 +30,7 @@ namespace Game.Core.StateMachines.Game
 
 			_ = Globals.UI.HideCredits(0);
 
-			Globals.State.TitleMusic.getPlaybackState(out var state);
-			if (state != PLAYBACK_STATE.PLAYING)
-				Globals.State.TitleMusic.start();
-
-			// UnityEngine.Debug.Log("FIXME:");
-			// if (Globals.State.PlayerSaveData.ClearedLevels.Count > 0)
-			// 	Localization.SetImageKey(Globals.UI.StartButton.gameObject, "UI/Continue");
-			// else
-			// 	Localization.SetImageKey(Globals.UI.StartButton.gameObject, "UI/Start");
-
 			await Globals.UI.ShowTitle();
-
-			if (Utils.IsDevBuild())
-			{
-				Globals.UI.SetDebugText("");
-
-				// TODO: Remove this
-				// UnityEngine.Debug.Log("Skipping player save");
-				// Globals.State.PlayerSaveData.ClearedLevels = new System.Collections.Generic.HashSet<int>();
-				// StartGame();
-			}
 		}
 
 		public void Tick()
@@ -108,7 +84,7 @@ namespace Game.Core.StateMachines.Game
 
 		private async void StartGame()
 		{
-			Globals.State.TitleMusic.stop(STOP_MODE.ALLOWFADEOUT);
+			// Globals.State.MusicTitle.stop(STOP_MODE.ALLOWFADEOUT);
 
 			await Globals.UI.FadeIn(Globals.Config.ColorBackgroundDark);
 			await Globals.UI.HideTitle(0);

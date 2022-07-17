@@ -18,7 +18,6 @@ namespace Game.Core
 				timer += req.Offset + Utils.GetDuration(req);
 			}
 
-			UnityEngine.Debug.Log("Timer: " + timer);
 			Timer = (int)math.ceil(timer);
 		}
 

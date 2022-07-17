@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugStateMachine: 0
   DebugSkipTitle: 1
+  DebugGottaGoFast: 0
   LockFPS: 60
   ColorBackgroundDark: {r: 0.16470589, g: 0.23137255, b: 0.3019608, a: 1}
   ColorLight: {r: 0, g: 0, b: 0, a: 0}
+  MaxFails: 5
+  ScoreFail: 2
+  ScoreMultiplier: 100
   DieSprites:
     m_keys: 0400000006000000080000000a0000000c0000001400000064000000
     m_values:
@@ -47,122 +51,10 @@ MonoBehaviour:
       Data3: -1040239977
       Data4: -1758971917
     Path: event:/SFX/confirm
-  MusicTitle:
-    Guid:
-      Data1: 417054959
-      Data2: 1074934067
-      Data3: -1398191685
-      Data4: -1791515730
-    Path: event:/Music/8-bit
   MusicMain:
     Guid:
-      Data1: -1174056290
-      Data2: 1151490832
-      Data3: 1883430327
-      Data4: -1301782348
-    Path: event:/Music/Adventure_Cinematic
-  MusicEnd:
-    Guid:
-      Data1: -1290846362
-      Data2: 1112183588
-      Data3: -1956139124
-      Data4: -1756293030
-    Path: event:/Music/Chill
-  PlayerFootsteps:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  HeartBeat:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  PlayerDash:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  PlayerDeath:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  PlayerYawn:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  PlayerAttack:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  PlayerDamage:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  EnemyStun:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  EnemyDamage:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  VillagerEnemyMovement:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  PriestEnemyAttack:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  StageClear:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  PlayerHeal:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  BatProjectileExplode:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -214686814
+      Data2: 1244349902
+      Data3: 263401636
+      Data4: 1473150224
+    Path: event:/Music/Chill_EDM

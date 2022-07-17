@@ -34,6 +34,7 @@ namespace Game.Core
 		[SerializeField] public GameObject _introRoot;
 		[Header("Ending")]
 		[SerializeField] public GameObject _endingRoot;
+		[SerializeField] public TMP_Text _endingText;
 		[Header("Transitions")]
 		[SerializeField] private GameObject _fadeRoot;
 		[SerializeField] private Image _fadeToBlackImage;
@@ -137,6 +138,7 @@ namespace Game.Core
 
 		public UniTask ShowEnding(float duration = 0.5f)
 		{
+			_endingText.text = $"Score: {Globals.State.Score}";
 			_endingRoot.SetActive(true);
 			return default;
 		}

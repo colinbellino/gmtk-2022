@@ -85,7 +85,7 @@ namespace Game.Core
 				UpdateRequest(reqIndex, req);
 			}
 
-			_livesText.text = $"Fails: {math.max(3, Globals.State.FailedRequests.Count)}/3";
+			_livesText.text = $"Fails: {math.min(Globals.Config.MaxFails, Globals.State.FailedRequests.Count)}/{Globals.Config.MaxFails}";
 
 			if (_previousScore != Globals.State.Score)
 			{

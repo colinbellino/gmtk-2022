@@ -19,9 +19,7 @@ namespace Game.Core.StateMachines.Game
 
 			Globals.State.Version = Application.version;
 			Globals.State.Commit = await ReadStreamingAsset("/commit.txt");
-			Globals.State.TitleMusic = FMODUnity.RuntimeManager.CreateInstance(Globals.Config.MusicTitle);
-			Globals.State.LevelMusic = FMODUnity.RuntimeManager.CreateInstance(Globals.Config.MusicMain);
-			Globals.State.EndMusic = FMODUnity.RuntimeManager.CreateInstance(Globals.Config.MusicEnd);
+			Globals.State.MusicMain = FMODUnity.RuntimeManager.CreateInstance(Globals.Config.MusicMain);
 			Globals.State.PauseSnapshot = FMODUnity.RuntimeManager.CreateInstance(Globals.Config.SnapshotPause);
 			Globals.State.TimeScaleCurrent = Globals.State.TimeScaleDefault = 1f;
 			Globals.State.Random = new Unity.Mathematics.Random();

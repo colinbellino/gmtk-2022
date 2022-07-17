@@ -28,7 +28,7 @@ namespace Game.Core.StateMachines.Game
 		{
 			await Globals.UI.FadeIn(Globals.Config.ColorBackgroundDark);
 			await Globals.UI.HideIntro(0);
-			Globals.State.TitleMusic.stop(STOP_MODE.ALLOWFADEOUT);
+			// Globals.State.MusicTitle.stop(STOP_MODE.ALLOWFADEOUT);
 		}
 	}
 }

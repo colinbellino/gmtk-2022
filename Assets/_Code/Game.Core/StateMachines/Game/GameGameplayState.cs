@@ -23,10 +23,10 @@ namespace Game.Core.StateMachines.Game
 			Globals.State.FailedRequests = new List<int> { };
 			Globals.State.Score = 0;
 
-			Globals.State.LevelMusic.setPitch(Globals.State.TimeScaleCurrent);
-			Globals.State.LevelMusic.getPlaybackState(out var state);
+			Globals.State.MusicMain.setPitch(Globals.State.TimeScaleCurrent);
+			Globals.State.MusicMain.getPlaybackState(out var state);
 			if (state == PLAYBACK_STATE.STOPPED || state == PLAYBACK_STATE.STOPPING)
-				Globals.State.LevelMusic.start();
+				Globals.State.MusicMain.start();
 
 			_ = Globals.GameplayUI.Show();
 			Globals.GameplayUI.Tick();
@@ -36,6 +36,29 @@ namespace Game.Core.StateMachines.Game
 				Globals.State.CurrentLevelIndex = 0;
 			var level = Globals.Config.Levels[Globals.State.CurrentLevelIndex];
 			Globals.State.Requests = new List<DiceRequest>(level.Requests);
+
+			{
+				var rolls = Resources.LoadAll<DiceRoll>("Dice Rolls");
+				var randomRequestsCount = 10000;
+				var randomRequests = new List<DiceRequest>(randomRequestsCount);
+				for (int i = 0; i < randomRequestsCount; i++)
+				{
+					var req = new DiceRequest();
+					req.Roll = rolls[Globals.State.Random.NextInt(0, rolls.Length)];
+					if (Globals.State.Random.NextInt(0, 11) > 9)
+						req.FromDM = true;
+					if (Globals.State.Random.NextInt(0, 11) > 5)
+						req.Offset = Globals.State.Random.NextFloat(-5, 1);
+					else
+						req.Offset = 0.3f;
+					randomRequests.Add(req);
+
+					// UnityEngine.Debug.Log(Utils.DiceRequestToString(req) + " | offset: " + req.Offset + " | DM: " + req.FromDM);
+				}
+
+				Globals.State.Requests.AddRange(randomRequests);
+			}
+
 			var t = Time.time;
 			foreach (var req in Globals.State.Requests)
 			{
@@ -49,16 +72,6 @@ namespace Game.Core.StateMachines.Game
 
 			Globals.PauseUI.BackClicked += ResumeGame;
 
-			if (Utils.IsDevBuild())
-			{
-				Globals.UI.SetDebugText("");
-				Globals.UI.AddDebugLine("F1:  Load next level");
-				// 	Globals.UI.AddDebugLine("F2:  Kill all enemies");
-				// 	Globals.UI.AddDebugLine("F4:  Damage player");
-				// 	Globals.UI.AddDebugLine("F5:  Heal player");
-				// 	Globals.UI.AddDebugLine("R:   Restart level");
-			}
-
 			Globals.State.Running = true;
 		}
 
@@ -68,7 +81,9 @@ namespace Game.Core.StateMachines.Game
 			{
 				if (Globals.State.Paused == false)
 				{
-					if (Globals.State.Settings.AssistMode)
+					if (Utils.IsDevBuild() && Globals.Config.DebugGottaGoFast)
+						Globals.State.TimeScaleCurrent = 5f;
+					else if (Globals.State.Settings.AssistMode)
 						Globals.State.TimeScaleCurrent = 0.5f;
 					else
 						Globals.State.TimeScaleCurrent = Globals.State.TimeScaleDefault;
@@ -161,15 +176,16 @@ namespace Game.Core.StateMachines.Game
 						await Globals.GameplayUI.RemoveRequests(toRemove);
 				}
 
-				if (Time.time >= Globals.State.Timer)
+				if (Globals.State.FailedRequests.Count > Globals.Config.MaxFails)
 				{
-					// NextLevel();
-					return;
-				}
+					if (Utils.IsDevBuild() && Globals.Config.DebugGottaGoFast == true)
+					{
 
-				if (Globals.State.FailedRequests.Count > 3)
-				{
-					Victory();
+					}
+					else
+					{
+						Victory();
+					}
 				}
 			}
 		}
@@ -208,7 +224,7 @@ namespace Game.Core.StateMachines.Game
 		private void Victory()
 		{
 			UnityEngine.Debug.Log("End of the game reached.");
-			Globals.State.LevelMusic.stop(STOP_MODE.ALLOWFADEOUT);
+			Globals.State.MusicMain.stop(STOP_MODE.ALLOWFADEOUT);
 			FSM.Fire(GameFSM.Triggers.Won);
 		}
 
@@ -219,8 +235,6 @@ namespace Game.Core.StateMachines.Game
 			// Globals.State.CurrentSave.ClearedLevels.Add(Globals.State.CurrentLevelIndex);
 			Save.SaveGame(Globals.State.CurrentSave);
 			Globals.State.CurrentLevelIndex += 1;
-
-			AudioHelpers.PlayOneShot(Globals.Config.StageClear);
 
 			Globals.State.Running = false;
 

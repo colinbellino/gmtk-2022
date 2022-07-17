@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4ad3404671d3046b1e0dfa730514fe, type: 3}
   m_Name: Level0
   m_EditorClassIdentifier: 
-  Timer: 33
+  Timer: 29
   Requests:
   - Roll: {fileID: 11400000, guid: 30244fd14ed987b4aaabfbf33360d657, type: 2}
     FromDM: 0
-    Offset: 0.3
+    Offset: 5
   - Roll: {fileID: 11400000, guid: baad4bedda86e9048b6feae3e2db6fca, type: 2}
     FromDM: 0
-    Offset: 0.3
+    Offset: 0.5
   - Roll: {fileID: 11400000, guid: baad4bedda86e9048b6feae3e2db6fca, type: 2}
     FromDM: 0
-    Offset: 0.3
+    Offset: 0.5
   - Roll: {fileID: 11400000, guid: 4f12409a5b1d3eb46860c2b64aac6430, type: 2}
     FromDM: 0
-    Offset: -6
+    Offset: -5
   - Roll: {fileID: 11400000, guid: 456f5c00ed2ff484787b9b3c809a2ceb, type: 2}
     FromDM: 0
     Offset: 0.3

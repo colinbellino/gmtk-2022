@@ -10,6 +10,7 @@ namespace Game.Core
 		[Header("DEBUG")]
 		public bool DebugStateMachine;
 		public bool DebugSkipTitle;
+		public bool DebugGottaGoFast;
 		public int LockFPS = 60;
 
 		[Header("Colors")]
@@ -17,6 +18,7 @@ namespace Game.Core
 		public Color ColorLight;
 
 		[Header("CONTENT")]
+		public int MaxFails = 5;
 		public int ScoreFail = 2;
 		public int ScoreMultiplier = 100;
 		public DieTypeToSprite DieSprites;
@@ -28,23 +30,7 @@ namespace Game.Core
 		public string SoundBus = "bus:/Game/SFX";
 		public EventReference SnapshotPause;
 		public EventReference SoundMenuConfirm;
-		public EventReference MusicTitle;
 		public EventReference MusicMain;
-		public EventReference MusicEnd;
-		public EventReference PlayerFootsteps;
-		public EventReference HeartBeat;
-		public EventReference PlayerDash;
-		public EventReference PlayerDeath;
-		public EventReference PlayerYawn;
-		public EventReference PlayerAttack;
-		public EventReference PlayerDamage;
-		public EventReference EnemyStun;
-		public EventReference EnemyDamage;
-		public EventReference VillagerEnemyMovement;
-		public EventReference PriestEnemyAttack;
-		public EventReference StageClear;
-		public EventReference PlayerHeal;
-		public EventReference BatProjectileExplode;
 
 		public static Vector3 ROOM_SIZE = new Vector2(15, 9);
 	}
