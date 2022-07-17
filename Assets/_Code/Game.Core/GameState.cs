@@ -81,6 +81,7 @@ namespace Game.Core
 	[System.Serializable]
 	public struct GameSave
 	{
+		public bool FinishedTutorial;
 		// public HashSet<int> ClearedLevels;
 	}
 }

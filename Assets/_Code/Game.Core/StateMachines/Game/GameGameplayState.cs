@@ -35,7 +35,11 @@ namespace Game.Core.StateMachines.Game
 			if (Globals.State.CurrentLevelIndex >= Globals.Config.Levels.Count())
 				Globals.State.CurrentLevelIndex = 0;
 			var level = Globals.Config.Levels[Globals.State.CurrentLevelIndex];
-			Globals.State.Requests = new List<DiceRequest>(level.Requests);
+
+			if (Globals.State.CurrentSave.FinishedTutorial)
+				Globals.State.Requests = new List<DiceRequest>();
+			else
+				Globals.State.Requests = new List<DiceRequest>(level.Requests);
 
 			{
 				var rolls = Resources.LoadAll<DiceRoll>("Dice Rolls");
@@ -135,6 +139,12 @@ namespace Game.Core.StateMachines.Game
 				}
 
 				Globals.GameplayUI.Tick();
+
+				if (Globals.State.CurrentSave.FinishedTutorial == false && Globals.State.CompletedRequests.Count >= 5)
+				{
+					Globals.State.CurrentSave.FinishedTutorial = true;
+					Save.SaveGame(Globals.State.CurrentSave);
+				}
 
 				{
 					var toAdd = new List<int>();
