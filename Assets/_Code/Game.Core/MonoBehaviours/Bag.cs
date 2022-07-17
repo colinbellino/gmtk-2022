@@ -74,6 +74,7 @@ namespace Game.Core
 			{
 				if (bag.Die > 0 && bag.Die != die.DieType)
 				{
+					UnityEngine.Debug.Log("Invalid bag: multiple types of dice.");
 					Empty();
 					return;
 				}
