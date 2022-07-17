@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +12,8 @@ namespace Game.Core
 	{
 		[SerializeField] private GameObject _root;
 		[SerializeField] private RectTransform[] _requests;
+		[SerializeField] private TMP_Text _timerText;
+		[SerializeField] private TMP_Text _scoreText;
 		private Dictionary<int, int> _reqIndexToTransformIndex;
 
 		public bool IsOpened => _root.activeSelf;
@@ -26,10 +27,6 @@ namespace Game.Core
 		public UniTask Show(float duration = 0.5f)
 		{
 			_root.SetActive(true);
-
-			// EventSystem.current.SetSelectedGameObject(null);
-			// await UniTask.NextFrame();
-			// EventSystem.current.SetSelectedGameObject(_levelSelectButton.gameObject);
 
 			foreach (var r in _requests)
 				r.gameObject.SetActive(false);
@@ -50,10 +47,13 @@ namespace Game.Core
 				Globals.UI.AddDebugLine($"<color=#{ColorUtility.ToHtmlStringRGBA(color)}>{text}</color>");
 			}
 
-			_requests[reqIndex].GetComponentInChildren<TMPro.TMP_Text>().text = Utils.DiceRequestToString(req);
+			var transformIndex = _reqIndexToTransformIndex[reqIndex];
+
+			var r = _requests[transformIndex];
+			r.GetComponentInChildren<TMP_Text>().text = Utils.DiceRequestToString(req);
 			{
-				var progressImage = _requests[reqIndex].Find("Progress").GetComponent<Image>();
-				progressImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _requests[reqIndex].rect.width - progress * _requests[reqIndex].rect.width);
+				var progressImage = r.Find("Progress").GetComponent<Image>();
+				progressImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, r.rect.width - progress * r.rect.width);
 				var color = Color.blue;
 				if (req.FromDM)
 					color = Color.red;
@@ -74,6 +74,19 @@ namespace Game.Core
 				var req = Globals.State.Requests[reqIndex];
 				UpdateRequest(reqIndex, req);
 			}
+
+			SetTimer(Utils.FormatTimer(Globals.State.Timer - Time.time));
+			SetScore(Globals.State.Score.ToString());
+		}
+
+		private void SetTimer(string value)
+		{
+			_timerText.text = value;
+		}
+
+		private void SetScore(string value)
+		{
+			_scoreText.text = value;
 		}
 
 		public async void AddRequest(int reqIndex, DiceRequest req)
@@ -90,7 +103,7 @@ namespace Game.Core
 
 			_reqIndexToTransformIndex.Add(reqIndex, transformIndex);
 			var posY = _requests[transformIndex].rect.position.y;
-			var posX = transformIndex * (_requests[transformIndex].rect.width + 10);
+			var posX = (_reqIndexToTransformIndex.Count - 1) * (_requests[transformIndex].rect.width + 10);
 			await _requests[transformIndex].DOLocalMove(new Vector2(posX, 10), 0.002f);
 			_requests[transformIndex].gameObject.SetActive(true);
 			_ = _requests[transformIndex].DOLocalMove(new Vector2(posX, posY), 0.3f);
@@ -112,6 +125,8 @@ namespace Game.Core
 					i += 1;
 				}
 			}
+
+			_reqIndexToTransformIndex.Remove(reqIndex);
 		}
 
 		public UniTask Hide(float duration = 0.5f)

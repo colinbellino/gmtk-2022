@@ -100,9 +100,11 @@ namespace Game.Core
 			}
 			else
 			{
-				var req = Globals.State.Requests[Globals.State.ActiveRequests[matchIndex]];
-				Globals.State.ActiveRequests.RemoveAt(matchIndex);
-				Globals.State.CompletedRequests.Add(matchIndex);
+				var reqIndex = Globals.State.ActiveRequests[matchIndex];
+				var req = Globals.State.Requests[reqIndex];
+				Globals.State.ActiveRequests.Remove(reqIndex);
+				Globals.State.CompletedRequests.Add(reqIndex);
+				Globals.GameplayUI.RemoveRequest(reqIndex, req);
 
 				// Calculate score based on difficulty
 				var score = 100;

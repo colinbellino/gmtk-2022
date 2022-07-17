@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4ad3404671d3046b1e0dfa730514fe, type: 3}
   m_Name: Level1
   m_EditorClassIdentifier: 
-  Timer: 32
+  Timer: 18
   Requests:
   - Roll: {fileID: 11400000, guid: f7b686a369a95cc4092f490050bef675, type: 2}
     FromDM: 0
