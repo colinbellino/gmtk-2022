@@ -109,11 +109,12 @@ namespace Game.Core
 				_ = Globals.GameplayUI.RemoveRequests(new List<int> { reqIndex });
 
 				// Calculate score based on difficulty
-				var score = 100;
-				if (bag.Modifier != 0)
-					score += 100;
-				if (bag.Quantity != 1)
-					score += 100;
+				var score = 1;
+				score += req.Roll.Quantity * 2;
+				score += math.abs(req.Roll.Modifier * 2);
+				if (req.FromDM)
+					score *= 2;
+				score *= 100;
 
 				Globals.State.Score += score;
 				UnityEngine.Debug.Log("Matched request: " + Utils.DiceRequestToString(req));

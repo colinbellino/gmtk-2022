@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4ad3404671d3046b1e0dfa730514fe, type: 3}
   m_Name: Level0
   m_EditorClassIdentifier: 
-  Timer: 16
+  Timer: 20
   Requests:
   - Roll: {fileID: 11400000, guid: 0ffd8f6c07c10c645bf45265c7361056, type: 2}
     FromDM: 0
     Offset: 0
   - Roll: {fileID: 11400000, guid: 1d349dfe101e4e640a2e3554f5b6fb5d, type: 2}
     FromDM: 0
-    Offset: 2
+    Offset: 0
   - Roll: {fileID: 11400000, guid: 8a1ddf8574ddafd45b8a7bbdce600995, type: 2}
     FromDM: 1
-    Offset: 1
+    Offset: 0

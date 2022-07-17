@@ -22,7 +22,8 @@ namespace Game.Core.StateMachines.Game
 				Globals.State.LevelMusic.start();
 
 			var level = Globals.Config.Levels[Globals.State.CurrentLevelIndex];
-			Globals.State.Score = 0;
+			if (Globals.State.CurrentLevelIndex == 0)
+				Globals.State.Score = 0;
 			Globals.State.Requests = new List<DiceRequest>(level.Requests);
 			var t = Time.time;
 			foreach (var req in Globals.State.Requests)

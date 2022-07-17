@@ -75,9 +75,9 @@ namespace Game.Core
 		{
 			Globals.UI.SetDebugText("");
 			Globals.UI.AddDebugLine("Level: " + Globals.State.CurrentLevelIndex);
-			Globals.UI.AddDebugLine("Score: " + Globals.State.Score);
-			Globals.UI.AddDebugLine("Timer: " + Utils.FormatTimer(Globals.State.Timer - Time.time));
-			Globals.UI.AddDebugLine("");
+			// Globals.UI.AddDebugLine("Score: " + Globals.State.Score);
+			// Globals.UI.AddDebugLine("Timer: " + Utils.FormatTimer(Globals.State.Timer - Time.time));
+			// Globals.UI.AddDebugLine("");
 			Globals.UI.AddDebugLine("Requests: " + Globals.State.CompletedRequests.Count + "/" + Globals.State.Requests.Count);
 			foreach (var reqIndex in Globals.State.ActiveRequests)
 			{
