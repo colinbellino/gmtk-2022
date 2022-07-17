@@ -14,6 +14,7 @@ namespace Game.Core
 		[SerializeField] private RectTransform[] _requests;
 		[SerializeField] private TMP_Text _timerText;
 		[SerializeField] private TMP_Text _scoreText;
+		[SerializeField] private Image _dropImage;
 		private Dictionary<int, int> _reqIndexToTransformIndex;
 
 		public bool IsOpened => _root.activeSelf;

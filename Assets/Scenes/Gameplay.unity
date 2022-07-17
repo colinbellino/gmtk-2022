@@ -191,6 +191,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Bag
       objectReference: {fileID: 0}
+    - target: {fileID: 8347075642836357138, guid: 48ecea77fa3eb5540a9227fa75645df6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8347075642836357141, guid: 48ecea77fa3eb5540a9227fa75645df6, type: 3}
       propertyPath: m_RootOrder
       value: 0

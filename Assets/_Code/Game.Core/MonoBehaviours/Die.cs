@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -39,8 +40,13 @@ namespace Game.Core
 			transform.position = new Vector3(worldPosition.x, worldPosition.y, transform.localPosition.z);
 			// UnityEngine.Debug.Log(name + " OnDrag " + eventData);
 
-			var hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition), Mathf.Infinity, LayerMask.GetMask("Bag"));
-			_hitBag = hit.transform != null && hit.transform.root == _bag.transform;
+			// UnityEngine.Debug.Log(RaycastUtilities.PointerIsOverUI(eventData.position));
+			var pointerData = RaycastUtilities.ScreenPosToPointerData(eventData.position);
+			var results = new List<RaycastResult>();
+			EventSystem.current.RaycastAll(pointerData, results);
+			_hitBag = results.Count > 0 &&
+				results[0].gameObject.layer == LayerMask.NameToLayer("Bag") &&
+				results[0].gameObject.GetComponentInParent<Bag>() == _bag;
 
 			if (_hitBag)
 				_bag.Highlight();
@@ -60,7 +66,28 @@ namespace Game.Core
 			else
 			{
 				_bag.RemoveDie(this);
+				GameObject.Destroy(gameObject);
 			}
 		}
+	}
+
+	public static class RaycastUtilities
+	{
+		public static bool PointerIsOverUI(Vector2 screenPos)
+		{
+			var hitObject = UIRaycast(ScreenPosToPointerData(screenPos));
+			return hitObject != null && hitObject.layer == LayerMask.NameToLayer("UI");
+		}
+
+		public static GameObject UIRaycast(PointerEventData pointerData)
+		{
+			var results = new List<RaycastResult>();
+			EventSystem.current.RaycastAll(pointerData, results);
+
+			return results.Count < 1 ? null : results[0].gameObject;
+		}
+
+		public static PointerEventData ScreenPosToPointerData(Vector2 screenPos)
+		   => new PointerEventData(EventSystem.current) { position = screenPos };
 	}
 }

@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.Core
 {
 	public class Bag : MonoBehaviour
 	{
-		[SerializeField] private SpriteRenderer _spriteRenderer;
+		[SerializeField] private Image _spriteRenderer;
 
 		private Color _defaultColor;
 		private List<Die> _dice = new List<Die>();

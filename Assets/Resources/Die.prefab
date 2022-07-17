@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2347096255317636824}
   - component: {fileID: 2347096255317636823}
   - component: {fileID: 2347096255317636822}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Die
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 2347096255710398804}
+  DieType: 0
 --- !u!1 &2347096255710398802
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,7 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2347096255710398803}
   - component: {fileID: 2347096255710398804}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,9 +141,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -876378455
+  m_SortingLayer: 2
+  m_SortingOrder: 2
   m_Sprite: {fileID: 6030542078464411445, guid: e13ef28b892fa174d9a328c3ccb10abe, type: 3}
   m_Color: {r: 0.53459114, g: 0.8906861, b: 1, a: 1}
   m_FlipX: 0

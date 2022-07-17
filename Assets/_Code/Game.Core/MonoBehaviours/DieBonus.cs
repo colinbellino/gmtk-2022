@@ -57,6 +57,7 @@ namespace Game.Core
 			else
 			{
 				_bag.RemoveBonus(this);
+				GameObject.Destroy(gameObject);
 			}
 		}
 	}
