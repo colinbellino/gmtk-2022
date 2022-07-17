@@ -97,7 +97,7 @@ namespace Game.Core
 				UnityEngine.Debug.Log("Invalid bag: " + Utils.DiceRequestToString(bag));
 				// UnityEngine.Debug.Log("no requests matched");
 
-				var score = 200;
+				var score = Globals.Config.ScoreFail * Globals.Config.ScoreMultiplier;
 				Globals.State.Score = math.max(0, Globals.State.Score - score);
 			}
 			else
@@ -114,7 +114,7 @@ namespace Game.Core
 				score += math.abs(req.Roll.Modifier * 2);
 				if (req.FromDM)
 					score *= 2;
-				score *= 100;
+				score *= Globals.Config.ScoreMultiplier;
 
 				Globals.State.Score += score;
 				UnityEngine.Debug.Log("Matched request: " + Utils.DiceRequestToString(req));

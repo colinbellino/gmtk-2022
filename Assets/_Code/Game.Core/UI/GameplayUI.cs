@@ -14,16 +14,18 @@ namespace Game.Core
 		[SerializeField] private RectTransform[] _requests;
 		[SerializeField] private TMP_Text _timerText;
 		[SerializeField] private TMP_Text _scoreText;
-		[SerializeField] private Image _dropImage;
+		[SerializeField] private TMP_Text _livesText;
 		private Dictionary<int, int> _reqIndexToTransformIndex;
 		private float _progressWidth;
 		private float _margin = 4;
+		private int _previousScore = -1;
 
 		public bool IsOpened => _root.activeSelf;
 
 		public async UniTask Init()
 		{
 			_reqIndexToTransformIndex = new Dictionary<int, int>();
+			_previousScore = -1;
 			var progressImage = _requests[0].Find("Progress").GetComponent<Image>();
 			_progressWidth = progressImage.rectTransform.rect.width;
 			await Hide();
@@ -75,9 +77,6 @@ namespace Game.Core
 		{
 			Globals.UI.SetDebugText("");
 			Globals.UI.AddDebugLine("Level: " + Globals.State.CurrentLevelIndex);
-			// Globals.UI.AddDebugLine("Score: " + Globals.State.Score);
-			// Globals.UI.AddDebugLine("Timer: " + Utils.FormatTimer(Globals.State.Timer - Time.time));
-			// Globals.UI.AddDebugLine("");
 			Globals.UI.AddDebugLine("Requests: " + Globals.State.CompletedRequests.Count + "/" + Globals.State.Requests.Count);
 			foreach (var reqIndex in Globals.State.ActiveRequests)
 			{
@@ -85,18 +84,31 @@ namespace Game.Core
 				UpdateRequest(reqIndex, req);
 			}
 
-			SetTimer(Utils.FormatTimer(Globals.State.Timer - Time.time));
-			SetScore(Globals.State.Score.ToString());
+			_livesText.text = $"Fails: {Globals.State.FailedRequests.Count}/3";
+
+			if (_previousScore != Globals.State.Score)
+			{
+				var score = $"{Globals.State.Score:00000}";
+				SetTimer(Utils.FormatTimer(Globals.State.Timer - Time.time));
+				_scoreText.text = score;
+
+				if (_previousScore > -1)
+				{
+					if (Globals.State.Score <= 0)
+						_scoreText.text = $"<color=#c86565>{score}</color>";
+					else if (Globals.State.Score < 200)
+						_scoreText.text = $"<color=#ead5aa>{score}</color>";
+
+					_scoreText.transform.DOShakePosition(0.3f, 1, 10);
+				}
+
+				_previousScore = Globals.State.Score;
+			}
 		}
 
 		private void SetTimer(string value)
 		{
 			_timerText.text = value;
-		}
-
-		private void SetScore(string value)
-		{
-			_scoreText.text = value;
 		}
 
 		public async UniTask AddRequests(List<int> toAdd)

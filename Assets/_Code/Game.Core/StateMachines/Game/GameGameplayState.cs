@@ -4,6 +4,7 @@ using FMOD.Studio;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.InputSystem;
+using Unity.Mathematics;
 
 namespace Game.Core.StateMachines.Game
 {
@@ -16,19 +17,24 @@ namespace Game.Core.StateMachines.Game
 			Globals.Controls.Gameplay.Enable();
 			Globals.Controls.Gameplay.Move.performed += OnMovePerformed;
 
+			Globals.State.Requests = new List<DiceRequest> { };
+			Globals.State.ActiveRequests = new List<int> { };
+			Globals.State.CompletedRequests = new List<int> { };
+			Globals.State.FailedRequests = new List<int> { };
+			Globals.State.Score = 0;
+
 			Globals.State.LevelMusic.setPitch(Globals.State.TimeScaleCurrent);
 			Globals.State.LevelMusic.getPlaybackState(out var state);
 			if (state == PLAYBACK_STATE.STOPPED || state == PLAYBACK_STATE.STOPPING)
 				Globals.State.LevelMusic.start();
 
 			_ = Globals.GameplayUI.Show();
+			Globals.GameplayUI.Tick();
 			await Globals.UI.FadeIn(Color.clear);
 
 			if (Globals.State.CurrentLevelIndex >= Globals.Config.Levels.Count())
 				Globals.State.CurrentLevelIndex = 0;
 			var level = Globals.Config.Levels[Globals.State.CurrentLevelIndex];
-			if (Globals.State.CurrentLevelIndex == 0)
-				Globals.State.Score = 0;
 			Globals.State.Requests = new List<DiceRequest>(level.Requests);
 			var t = Time.time;
 			foreach (var req in Globals.State.Requests)
@@ -38,9 +44,6 @@ namespace Game.Core.StateMachines.Game
 			}
 			Globals.State.Timer = Time.time + level.Timer;
 			Globals.State.QueuedRequests = Globals.State.Requests.Select((r, i) => i).ToList();
-			Globals.State.ActiveRequests = new List<int> { };
-			Globals.State.CompletedRequests = new List<int> { };
-			Globals.State.FailedRequests = new List<int> { };
 
 			Save.SaveGame(Globals.State.CurrentSave);
 
@@ -116,6 +119,8 @@ namespace Game.Core.StateMachines.Game
 					}
 				}
 
+				Globals.GameplayUI.Tick();
+
 				{
 					var toAdd = new List<int>();
 					for (int i = Globals.State.QueuedRequests.Count - 1; i >= 0; i--)
@@ -144,6 +149,10 @@ namespace Game.Core.StateMachines.Game
 						{
 							Globals.State.ActiveRequests.Remove(reqIndex);
 							Globals.State.FailedRequests.Add(reqIndex);
+
+							var score = Globals.Config.ScoreFail * Globals.Config.ScoreMultiplier;
+							Globals.State.Score = math.max(0, Globals.State.Score - score);
+
 							toRemove.Add(reqIndex);
 						}
 					}
@@ -152,12 +161,15 @@ namespace Game.Core.StateMachines.Game
 						await Globals.GameplayUI.RemoveRequests(toRemove);
 				}
 
-				Globals.GameplayUI.Tick();
-
 				if (Time.time >= Globals.State.Timer)
 				{
-					NextLevel();
+					// NextLevel();
 					return;
+				}
+
+				if (Globals.State.FailedRequests.Count > 3)
+				{
+					Victory();
 				}
 			}
 		}

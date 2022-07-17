@@ -17,6 +17,8 @@ namespace Game.Core
 		public Color ColorLight;
 
 		[Header("CONTENT")]
+		public int ScoreFail = 2;
+		public int ScoreMultiplier = 100;
 		public DieTypeToSprite DieSprites;
 		public Level[] Levels;
 
