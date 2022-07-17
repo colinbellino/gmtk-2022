@@ -89,10 +89,10 @@ namespace Game.Core
 		public static string DiceRequestToString(DieTypes die, int quantity, int modifier)
 		{
 			if (modifier > 0)
-				return $"{quantity}D{(int)die} +{modifier}";
+				return $"{quantity}d{(int)die} +{modifier}";
 			else if (modifier < 0)
-				return $"{quantity}D{(int)die} {modifier}";
-			return $"{quantity}D{(int)die}";
+				return $"{quantity}d{(int)die} {modifier}";
+			return $"{quantity}d{(int)die}";
 		}
 
 		public static string FormatTimer(float value)

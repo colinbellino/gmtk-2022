@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9faba923454a5cad26655791da1fbd, type: 3}
   m_Name: Game Config
   m_EditorClassIdentifier: 
-  DebugStateMachine: 1
+  DebugStateMachine: 0
   DebugSkipTitle: 1
   LockFPS: 60
   ColorBackgroundDark: {r: 0.16470589, g: 0.23137255, b: 0.3019608, a: 1}

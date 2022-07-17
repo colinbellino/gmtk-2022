@@ -148,7 +148,6 @@ namespace Game.Core
 
 		public async UniTask FadeIn(Color color, float duration = 1f)
 		{
-			UnityEngine.Debug.Log("FadeIn " + color);
 			_fadeRoot.SetActive(true);
 			if (_fadeTweener != null)
 			{

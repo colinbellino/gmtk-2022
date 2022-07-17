@@ -57,7 +57,8 @@ namespace Game.Core
 				var transformIndex = _reqIndexToTransformIndex[reqIndex];
 
 				var r = _requests[transformIndex];
-				r.GetComponentInChildren<TMP_Text>().text = Utils.DiceRequestToString(req);
+				r.Find("Name").GetComponent<TMP_Text>().text = req.Roll.Name;
+				r.Find("Roll").GetComponent<TMP_Text>().text = Utils.DiceRequestToString(req);
 				{
 					var progressImage = r.Find("Progress").GetComponent<Image>();
 					progressImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _progressWidth - progress * _progressWidth);

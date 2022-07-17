@@ -296,7 +296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 58, y: -32}
+  m_AnchoredPosition: {x: 66, y: -32}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1440915550215677615
@@ -2377,7 +2377,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 14}
+  m_AnchoredPosition: {x: 17.166672, y: 0.8333359}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8609224252466894303
@@ -2718,7 +2718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2776,10 +2776,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (33)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &5040915095231225695 stripped
@@ -2824,7 +2820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2882,10 +2878,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (27)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &4753433391940687925 stripped
@@ -2930,7 +2922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2988,10 +2980,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (45)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &4821114690390951663 stripped
@@ -3036,7 +3024,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3094,10 +3082,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (49)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &4812169623155321831 stripped
@@ -3142,7 +3126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3200,10 +3184,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (18)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &5541542934521909866 stripped
@@ -3248,7 +3228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3306,10 +3286,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (36)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &5546492077423948142 stripped
@@ -3354,7 +3330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3412,10 +3388,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (9)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &5594532249450284726 stripped
@@ -3460,7 +3432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3518,10 +3490,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &5596786165726407661 stripped
@@ -3566,7 +3534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3624,10 +3592,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (29)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &5549948535214378204 stripped
@@ -3672,7 +3636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3730,10 +3694,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &5294653030005182425 stripped
@@ -3778,7 +3738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3836,10 +3796,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (14)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &5277777515967165737 stripped
@@ -3884,7 +3840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3942,10 +3898,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (38)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &6112844096637641392 stripped
@@ -3990,7 +3942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -4048,10 +4000,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (41)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &6057348760935970441 stripped
@@ -4096,7 +4044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -4154,10 +4102,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (12)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &6034640496025767594 stripped
@@ -4202,7 +4146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -4260,10 +4204,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (42)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &6815079558595650669 stripped
@@ -4308,7 +4248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -4366,10 +4306,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (7)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &6360074087041173504 stripped
@@ -4414,7 +4350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -4472,10 +4408,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (17)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &7492585666540745113 stripped
@@ -4520,7 +4452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -4578,10 +4510,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (16)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &6991273954414050330 stripped
@@ -4626,7 +4554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -4684,10 +4612,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &7865748713975427580 stripped
@@ -4732,7 +4656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -4790,10 +4714,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (0)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &7942643971083009632 stripped
@@ -4838,7 +4758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -4896,10 +4816,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (15)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &8498688155794541836 stripped
@@ -4944,7 +4860,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5002,10 +4918,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (20)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &8253081103609666937 stripped
@@ -5050,7 +4962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5108,10 +5020,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (21)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &9061175188574586221 stripped
@@ -5156,7 +5064,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5214,10 +5122,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (37)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &9023549726624241564 stripped
@@ -5262,7 +5166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5320,10 +5224,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (34)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &9160896065387691071 stripped
@@ -5368,7 +5268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5426,10 +5326,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (46)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &8757055288220852315 stripped
@@ -5474,7 +5370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5532,10 +5428,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (25)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &8719597008260396963 stripped
@@ -5580,7 +5472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5638,10 +5530,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (19)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &8895742353778764674 stripped
@@ -5686,7 +5574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5744,10 +5632,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (39)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &8889508792115948872 stripped
@@ -5792,7 +5676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5850,10 +5734,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (13)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &326159312188562368 stripped
@@ -5898,7 +5778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5956,10 +5836,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (30)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &468049992794069133 stripped
@@ -6004,7 +5880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6062,10 +5938,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (22)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &252965987782751125 stripped
@@ -6110,7 +5982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6168,10 +6040,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (32)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &1649031495343226105 stripped
@@ -6216,7 +6084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6274,10 +6142,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (43)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &1719034897265644390 stripped
@@ -6322,7 +6186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6380,10 +6244,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (23)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &2063033801918449515 stripped
@@ -6428,7 +6288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6486,10 +6346,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (48)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &2247525642121038568 stripped
@@ -6534,7 +6390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6592,10 +6448,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (10)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &1870982826096076760 stripped
@@ -6640,7 +6492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6698,10 +6550,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (40)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &2782778384346555427 stripped
@@ -6746,7 +6594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6804,10 +6652,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (44)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &2832161527726071893 stripped
@@ -6852,7 +6696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6910,10 +6754,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &3236110703451369874 stripped
@@ -6958,7 +6798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7016,10 +6856,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (11)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &3264809352778532988 stripped
@@ -7064,7 +6900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7122,10 +6958,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (31)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &3348487679706354114 stripped
@@ -7170,7 +7002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7228,10 +7060,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &3942624250883556611 stripped
@@ -7276,7 +7104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7334,10 +7162,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (24)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &3590523805539704420 stripped
@@ -7382,7 +7206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7440,10 +7264,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (35)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &3648203142959048273 stripped
@@ -7488,7 +7308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7546,10 +7366,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &3605587164723834211 stripped
@@ -7594,7 +7410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7652,10 +7468,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &3703296596870791509 stripped
@@ -7700,7 +7512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7758,10 +7570,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (28)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &4150671111253399910 stripped
@@ -7806,7 +7614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7864,10 +7672,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice Request UI (47)
       objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
 --- !u!224 &4220634612888491213 stripped
@@ -7912,7 +7716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 116
+      value: 132
       objectReference: {fileID: 0}
     - target: {fileID: 4963396124250164843, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7969,10 +7773,6 @@ PrefabInstance:
     - target: {fileID: 6439903893280702323, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
       propertyPath: m_Name
       value: Dice Request UI (26)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7723158216306876172, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.3749981
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0b7b60add1ce74d9ea77b9b31f698c, type: 3}
