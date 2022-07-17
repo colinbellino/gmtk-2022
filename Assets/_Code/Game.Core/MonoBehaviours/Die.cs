@@ -31,6 +31,8 @@ namespace Game.Core
 		public void OnBeginDrag(PointerEventData eventData)
 		{
 			// UnityEngine.Debug.Log(name + " OnBeginDrag " + eventData);
+
+			AudioHelpers.PlayOneShotRandom(Globals.Config.SoundDiceDrag, transform.position);
 		}
 
 		public void OnDrag(PointerEventData eventData)
@@ -60,6 +62,8 @@ namespace Game.Core
 		public void OnEndDrag(PointerEventData eventData)
 		{
 			// UnityEngine.Debug.Log(name + " OnEndDrag " + eventData);
+
+			AudioHelpers.PlayOneShotRandom(Globals.Config.SoundDiceDrop, transform.position);
 
 			if (_hitBag)
 			{

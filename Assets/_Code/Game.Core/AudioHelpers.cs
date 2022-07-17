@@ -18,6 +18,8 @@ namespace Game.Core
 
 		public static void PlayOneShotRandom(EventReference[] eventReferences, Vector3 position = new Vector3())
 		{
+			if (eventReferences.Length == 0)
+				return;
 			var eventReference = eventReferences[UnityEngine.Random.Range(0, eventReferences.Length)];
 			PlayOneShot(eventReference, position);
 		}

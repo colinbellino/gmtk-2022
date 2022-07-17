@@ -29,8 +29,12 @@ namespace Game.Core
 		public string MusicBus = "bus:/Game/Music";
 		public string SoundBus = "bus:/Game/SFX";
 		public EventReference SnapshotPause;
-		public EventReference SoundMenuConfirm;
 		public EventReference MusicMain;
+		public EventReference SoundMenuConfirm;
+		public EventReference[] SoundDiceDrag;
+		public EventReference[] SoundDiceDrop;
+		public EventReference SoundRequestFail;
+		public EventReference SoundRequestSuccess;
 
 		public static Vector3 ROOM_SIZE = new Vector2(15, 9);
 	}

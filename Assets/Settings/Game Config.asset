@@ -44,13 +44,6 @@ MonoBehaviour:
       Data3: -1522833268
       Data4: 1467254247
     Path: snapshot:/Pause
-  SoundMenuConfirm:
-    Guid:
-      Data1: -2062663162
-      Data2: 1235688488
-      Data3: -1040239977
-      Data4: -1758971917
-    Path: event:/SFX/confirm
   MusicMain:
     Guid:
       Data1: -214686814
@@ -58,3 +51,74 @@ MonoBehaviour:
       Data3: 263401636
       Data4: 1473150224
     Path: event:/Music/Chill_EDM
+  SoundMenuConfirm:
+    Guid:
+      Data1: -2062663162
+      Data2: 1235688488
+      Data3: -1040239977
+      Data4: -1758971917
+    Path: event:/SFX/confirm
+  SoundDiceDrag:
+  - Guid:
+      Data1: -535348498
+      Data2: 1154884796
+      Data3: 1472440738
+      Data4: -601488090
+    Path: event:/SFX/hurt
+  - Guid:
+      Data1: -600580036
+      Data2: 1252658550
+      Data3: 1901655485
+      Data4: 792879826
+    Path: event:/SFX/hurt2
+  - Guid:
+      Data1: -1207129184
+      Data2: 1193395140
+      Data3: -2058363240
+      Data4: -317671635
+    Path: event:/SFX/hurt3
+  - Guid:
+      Data1: 979448939
+      Data2: 1148818469
+      Data3: -353613935
+      Data4: 1499769109
+    Path: event:/SFX/hurt4
+  SoundDiceDrop:
+  - Guid:
+      Data1: -535348498
+      Data2: 1154884796
+      Data3: 1472440738
+      Data4: -601488090
+    Path: event:/SFX/hurt
+  - Guid:
+      Data1: -600580036
+      Data2: 1252658550
+      Data3: 1901655485
+      Data4: 792879826
+    Path: event:/SFX/hurt2
+  - Guid:
+      Data1: -1207129184
+      Data2: 1193395140
+      Data3: -2058363240
+      Data4: -317671635
+    Path: event:/SFX/hurt3
+  - Guid:
+      Data1: 979448939
+      Data2: 1148818469
+      Data3: -353613935
+      Data4: 1499769109
+    Path: event:/SFX/hurt4
+  SoundRequestFail:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  SoundRequestSuccess:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
