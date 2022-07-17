@@ -21,6 +21,8 @@ namespace Game.Core.StateMachines.Game
 			if (state == PLAYBACK_STATE.STOPPED || state == PLAYBACK_STATE.STOPPING)
 				Globals.State.LevelMusic.start();
 
+			if (Globals.State.CurrentLevelIndex >= Globals.Config.Levels.Count())
+				Globals.State.CurrentLevelIndex = 0;
 			var level = Globals.Config.Levels[Globals.State.CurrentLevelIndex];
 			if (Globals.State.CurrentLevelIndex == 0)
 				Globals.State.Score = 0;

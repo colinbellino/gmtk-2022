@@ -40,7 +40,7 @@ namespace Game.Core.StateMachines.Game
 				.Permit(Triggers.StartGame, States.LoadLevel)
 				.Permit(Triggers.LevelSelected, States.LoadLevel)
 				.Permit(Triggers.LevelSelectionRequested, States.SelectLevel)
-				.Permit(Triggers.CreditsRequested, States.Credits)
+				// .Permit(Triggers.CreditsRequested, States.Credits)
 				.Permit(Triggers.Quit, States.Quit);
 
 			_machine.Configure(States.SelectLevel)
@@ -61,7 +61,7 @@ namespace Game.Core.StateMachines.Game
 				.Permit(Triggers.Retry, States.LoadLevel);
 
 			_machine.Configure(States.Ending)
-				.Permit(Triggers.Done, States.Credits);
+				.Permit(Triggers.Done, States.Title);
 
 			_machine.Configure(States.Credits)
 				.Permit(Triggers.Done, States.Title);
