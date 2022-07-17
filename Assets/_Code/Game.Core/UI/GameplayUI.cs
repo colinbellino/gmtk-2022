@@ -20,6 +20,7 @@ namespace Game.Core
 		private float _progressWidth;
 		private float _margin = 4;
 		private int _previousScore = -1;
+		private int _previousFails;
 
 		public bool IsOpened => _root.activeSelf;
 
@@ -85,7 +86,13 @@ namespace Game.Core
 				UpdateRequest(reqIndex, req);
 			}
 
-			_livesText.text = $"Fails: {math.min(Globals.Config.MaxFails, Globals.State.FailedRequests.Count)}/{Globals.Config.MaxFails}";
+			if (_previousFails != Globals.State.FailedRequests.Count)
+			{
+				_livesText.text = $"Fails: {math.min(Globals.Config.MaxFails, Globals.State.FailedRequests.Count)}/{Globals.Config.MaxFails}";
+				_livesText.transform.DOShakePosition(0.3f, 1, 10);
+
+				_previousFails = Globals.State.FailedRequests.Count;
+			}
 
 			if (_previousScore != Globals.State.Score)
 			{
