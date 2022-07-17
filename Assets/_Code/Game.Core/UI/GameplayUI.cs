@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using TMPro;
@@ -52,18 +53,21 @@ namespace Game.Core
 				Globals.UI.AddDebugLine($"<color=#{ColorUtility.ToHtmlStringRGBA(color)}>{text}</color>");
 			}
 
-			var transformIndex = _reqIndexToTransformIndex[reqIndex];
-
-			var r = _requests[transformIndex];
-			r.GetComponentInChildren<TMP_Text>().text = Utils.DiceRequestToString(req);
+			if (_reqIndexToTransformIndex.ContainsKey(reqIndex))
 			{
-				var progressImage = r.Find("Progress").GetComponent<Image>();
-				progressImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _progressWidth - progress * _progressWidth);
-				ColorUtility.TryParseHtmlString("#d77643", out var color);
-				if (req.FromDM)
-					ColorUtility.TryParseHtmlString("#8e4c90", out color);
+				var transformIndex = _reqIndexToTransformIndex[reqIndex];
 
-				progressImage.color = color;
+				var r = _requests[transformIndex];
+				r.GetComponentInChildren<TMP_Text>().text = Utils.DiceRequestToString(req);
+				{
+					var progressImage = r.Find("Progress").GetComponent<Image>();
+					progressImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _progressWidth - progress * _progressWidth);
+					ColorUtility.TryParseHtmlString("#d77643", out var color);
+					if (req.FromDM)
+						ColorUtility.TryParseHtmlString("#8e4c90", out color);
+
+					progressImage.color = color;
+				}
 			}
 		}
 
@@ -95,34 +99,41 @@ namespace Game.Core
 			_scoreText.text = value;
 		}
 
-		public async UniTask AddRequest(int reqIndex, DiceRequest req)
+		public async UniTask AddRequests(List<int> toAdd)
 		{
-			var transformIndex = 0;
-			for (int i = 0; i < _requests.Length; i++)
+			foreach (var reqIndex in toAdd)
 			{
-				if (_requests[i].gameObject.activeSelf == false)
+				var transformIndex = 0;
+				for (int i = 0; i < _requests.Length; i++)
 				{
-					transformIndex = i;
-					break;
+					if (_requests[i].gameObject.activeSelf == false)
+					{
+						transformIndex = i;
+						break;
+					}
 				}
-			}
 
-			_reqIndexToTransformIndex.Add(reqIndex, transformIndex);
-			var posX = 0;
-			var posY = -(_reqIndexToTransformIndex.Count - 1) * (_requests[transformIndex].rect.height + _margin);
-			await _requests[transformIndex].DOLocalMove(new Vector2(-_requests[transformIndex].rect.width, posY), 0.02f);
-			_requests[transformIndex].gameObject.SetActive(true);
-			await _requests[transformIndex].DOLocalMove(new Vector2(posX, posY), 0.3f);
+				_reqIndexToTransformIndex.Add(reqIndex, transformIndex);
+
+				var posX = 0;
+				var posY = -(_reqIndexToTransformIndex.Count - 1) * (_requests[transformIndex].rect.height + _margin);
+				await _requests[transformIndex].DOLocalMove(new Vector2(-_requests[transformIndex].rect.width, posY), 0.02f);
+				_requests[transformIndex].gameObject.SetActive(true);
+				await _requests[transformIndex].DOLocalMove(new Vector2(posX, posY), 0.3f);
+			}
 		}
 
-		public async UniTask RemoveRequest(int reqIndex, DiceRequest req)
+		public async Task RemoveRequests(List<int> toRemove)
 		{
-			var transformIndex = _reqIndexToTransformIndex[reqIndex];
+			foreach (var reqIndex in toRemove)
+			{
+				var transformIndex = _reqIndexToTransformIndex[reqIndex];
 
-			await _requests[transformIndex].DOLocalMoveX(-_requests[transformIndex].rect.width, 0.2f);
-			_requests[transformIndex].gameObject.SetActive(false);
+				await _requests[transformIndex].DOLocalMoveX(-_requests[transformIndex].rect.width, 0.2f);
+				_requests[transformIndex].gameObject.SetActive(false);
 
-			_reqIndexToTransformIndex.Remove(reqIndex);
+				_reqIndexToTransformIndex.Remove(reqIndex);
+			}
 
 			var i = 0;
 			foreach (var r in _requests)

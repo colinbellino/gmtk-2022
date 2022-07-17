@@ -81,7 +81,7 @@ namespace Game.Core.StateMachines.Game
 				{
 					if (Globals.OptionsUI.IsOpened)
 					{
-						Globals.OptionsUI.Hide();
+						_ = Globals.OptionsUI.Hide();
 						Globals.PauseUI.SelectOptionsGameObject();
 						Save.SaveSettings(Globals.State.Settings);
 					}
@@ -107,29 +107,40 @@ namespace Game.Core.StateMachines.Game
 					}
 				}
 
-				var s = Globals.State;
-				for (int i = Globals.State.QueuedRequests.Count - 1; i >= 0; i--)
 				{
-					var reqIndex = Globals.State.QueuedRequests[i];
-					var req = Globals.State.Requests[reqIndex];
-					if (Time.time >= req.Timestamp)
+					var toAdd = new List<int>();
+					for (int i = Globals.State.QueuedRequests.Count - 1; i >= 0; i--)
 					{
-						Globals.State.QueuedRequests.Remove(reqIndex);
-						Globals.State.ActiveRequests.Add(reqIndex);
-						await Globals.GameplayUI.AddRequest(reqIndex, req);
+						var reqIndex = Globals.State.QueuedRequests[i];
+						var req = Globals.State.Requests[reqIndex];
+						if (Time.time >= req.Timestamp)
+						{
+							Globals.State.QueuedRequests.Remove(reqIndex);
+							Globals.State.ActiveRequests.Add(reqIndex);
+							toAdd.Add(reqIndex);
+						}
 					}
+
+					if (toAdd.Count > 0)
+						await Globals.GameplayUI.AddRequests(toAdd);
 				}
 
-				for (int i = Globals.State.ActiveRequests.Count - 1; i >= 0; i--)
 				{
-					var reqIndex = Globals.State.ActiveRequests[i];
-					var req = Globals.State.Requests[reqIndex];
-					if (Time.time >= req.Timestamp + Utils.GetDuration(req))
+					var toRemove = new List<int>();
+					for (int i = Globals.State.ActiveRequests.Count - 1; i >= 0; i--)
 					{
-						Globals.State.ActiveRequests.Remove(reqIndex);
-						Globals.State.FailedRequests.Add(reqIndex);
-						await Globals.GameplayUI.RemoveRequest(reqIndex, req);
+						var reqIndex = Globals.State.ActiveRequests[i];
+						var req = Globals.State.Requests[reqIndex];
+						if (Time.time >= req.Timestamp + Utils.GetDuration(req))
+						{
+							Globals.State.ActiveRequests.Remove(reqIndex);
+							Globals.State.FailedRequests.Add(reqIndex);
+							toRemove.Add(reqIndex);
+						}
 					}
+
+					if (toRemove.Count > 0)
+						await Globals.GameplayUI.RemoveRequests(toRemove);
 				}
 
 				Globals.GameplayUI.Tick();
