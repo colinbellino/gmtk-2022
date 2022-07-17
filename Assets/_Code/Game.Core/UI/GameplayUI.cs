@@ -78,8 +78,11 @@ namespace Game.Core
 		public void Tick()
 		{
 			Globals.UI.SetDebugText("");
-			Globals.UI.AddDebugLine("Level: " + Globals.State.CurrentLevelIndex);
-			Globals.UI.AddDebugLine("Requests: " + Globals.State.CompletedRequests.Count + "/" + Globals.State.Requests.Count);
+			if (Utils.IsDevBuild())
+			{
+				Globals.UI.AddDebugLine("Level: " + Globals.State.CurrentLevelIndex);
+				Globals.UI.AddDebugLine("Requests: " + Globals.State.CompletedRequests.Count + "/" + Globals.State.Requests.Count);
+			}
 			foreach (var reqIndex in Globals.State.ActiveRequests)
 			{
 				var req = Globals.State.Requests[reqIndex];
