@@ -64,6 +64,11 @@ namespace Game.Core
 			Globals.UI.transform.position = Globals.CameraRig.transform.position + Globals.CameraRig.Camera.transform.localPosition;
 		}
 
+		private void OnDisable()
+		{
+			DG.Tweening.DOTween.KillAll();
+		}
+
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			if (Utils.IsWebGL())

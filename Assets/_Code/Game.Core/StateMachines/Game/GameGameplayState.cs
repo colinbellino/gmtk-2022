@@ -15,8 +15,6 @@ namespace Game.Core.StateMachines.Game
 
 		public async UniTask Enter()
 		{
-			await SceneManager.LoadSceneAsync("Gameplay", LoadSceneMode.Additive);
-
 			Globals.Controls.Gameplay.Enable();
 			Globals.Controls.Gameplay.Move.performed += OnMovePerformed;
 
@@ -60,7 +58,7 @@ namespace Game.Core.StateMachines.Game
 			_ = Globals.GameplayUI.Show();
 		}
 
-		public void Tick()
+		public async void Tick()
 		{
 			if (Globals.State.Running)
 			{
@@ -118,7 +116,7 @@ namespace Game.Core.StateMachines.Game
 					{
 						Globals.State.QueuedRequests.Remove(reqIndex);
 						Globals.State.ActiveRequests.Add(reqIndex);
-						Globals.GameplayUI.AddRequest(reqIndex, req);
+						await Globals.GameplayUI.AddRequest(reqIndex, req);
 					}
 				}
 
@@ -130,7 +128,7 @@ namespace Game.Core.StateMachines.Game
 					{
 						Globals.State.ActiveRequests.Remove(reqIndex);
 						Globals.State.FailedRequests.Add(reqIndex);
-						Globals.GameplayUI.RemoveRequest(reqIndex, req);
+						await Globals.GameplayUI.RemoveRequest(reqIndex, req);
 					}
 				}
 
@@ -165,8 +163,6 @@ namespace Game.Core.StateMachines.Game
 			await Globals.GameplayUI.Hide(0);
 			await Globals.PauseUI.Hide(0);
 			await Globals.OptionsUI.Hide(0);
-
-			await SceneManager.UnloadSceneAsync("Gameplay");
 		}
 
 		private void OnMovePerformed(InputAction.CallbackContext context)

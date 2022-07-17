@@ -16,12 +16,16 @@ namespace Game.Core
 		[SerializeField] private TMP_Text _scoreText;
 		[SerializeField] private Image _dropImage;
 		private Dictionary<int, int> _reqIndexToTransformIndex;
+		private float _progressWidth;
+		private float _margin = 4;
 
 		public bool IsOpened => _root.activeSelf;
 
 		public async UniTask Init()
 		{
 			_reqIndexToTransformIndex = new Dictionary<int, int>();
+			var progressImage = _requests[0].Find("Progress").GetComponent<Image>();
+			_progressWidth = progressImage.rectTransform.rect.width;
 			await Hide();
 		}
 
@@ -54,10 +58,11 @@ namespace Game.Core
 			r.GetComponentInChildren<TMP_Text>().text = Utils.DiceRequestToString(req);
 			{
 				var progressImage = r.Find("Progress").GetComponent<Image>();
-				progressImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, r.rect.width - progress * r.rect.width);
-				var color = Color.blue;
+				progressImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _progressWidth - progress * _progressWidth);
+				ColorUtility.TryParseHtmlString("#d77643", out var color);
 				if (req.FromDM)
-					color = Color.red;
+					ColorUtility.TryParseHtmlString("#8e4c90", out color);
+
 				progressImage.color = color;
 			}
 		}
@@ -90,7 +95,7 @@ namespace Game.Core
 			_scoreText.text = value;
 		}
 
-		public async void AddRequest(int reqIndex, DiceRequest req)
+		public async UniTask AddRequest(int reqIndex, DiceRequest req)
 		{
 			var transformIndex = 0;
 			for (int i = 0; i < _requests.Length; i++)
@@ -103,31 +108,31 @@ namespace Game.Core
 			}
 
 			_reqIndexToTransformIndex.Add(reqIndex, transformIndex);
-			var posY = _requests[transformIndex].rect.position.y;
-			var posX = (_reqIndexToTransformIndex.Count - 1) * (_requests[transformIndex].rect.width + 10);
-			await _requests[transformIndex].DOLocalMove(new Vector2(posX, 10), 0.002f);
+			var posX = 0;
+			var posY = -(_reqIndexToTransformIndex.Count - 1) * (_requests[transformIndex].rect.height + _margin);
+			await _requests[transformIndex].DOLocalMove(new Vector2(-_requests[transformIndex].rect.width, posY), 0.02f);
 			_requests[transformIndex].gameObject.SetActive(true);
-			_ = _requests[transformIndex].DOLocalMove(new Vector2(posX, posY), 0.3f);
+			await _requests[transformIndex].DOLocalMove(new Vector2(posX, posY), 0.3f);
 		}
 
-		public async void RemoveRequest(int reqIndex, DiceRequest req)
+		public async UniTask RemoveRequest(int reqIndex, DiceRequest req)
 		{
 			var transformIndex = _reqIndexToTransformIndex[reqIndex];
 
-			await _requests[transformIndex].DOLocalMoveY(40, 0.2f);
+			await _requests[transformIndex].DOLocalMoveX(-_requests[transformIndex].rect.width, 0.2f);
 			_requests[transformIndex].gameObject.SetActive(false);
+
+			_reqIndexToTransformIndex.Remove(reqIndex);
 
 			var i = 0;
 			foreach (var r in _requests)
 			{
 				if (r.gameObject.activeSelf)
 				{
-					_ = r.DOLocalMoveX(i * (r.rect.width + 10), 0.2f);
+					await r.DOLocalMoveY(-i * (r.rect.height + _margin), 0.2f);
 					i += 1;
 				}
 			}
-
-			_reqIndexToTransformIndex.Remove(reqIndex);
 		}
 
 		public UniTask Hide(float duration = 0.5f)
